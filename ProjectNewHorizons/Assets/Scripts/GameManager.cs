@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private TMP_Text antText;
+    [SerializeField] private TMP_Text HiveHPText;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -19,22 +20,36 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        antGain = 1;
+        SetStartStats();
+    }
+
+    private void SetStartStats()
+    {
         hiveMaxHP = startingHiveMaxHP;
         hiveHP = hiveMaxHP;
-        antGain = 1;
+        antCount = 0;
+        alive = true;
+        SetAntText();
+        SetHiveHPText();
+        StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
     }
 
-    private void Update()
+    private IEnumerator AliveChecker()
     {
-        if (alive) 
+        while (alive)
         {
-            
+            if (hiveHP <= 0)
+            {
+                alive = false;
+            }
+            yield return null;
         }
-        else
-        {
 
-        }
+        Debug.Log("you died");
+        yield return new WaitForSeconds(1);
+        SetStartStats();
     }
     private IEnumerator AntGainOvertime()
     {
@@ -42,26 +57,27 @@ public class GameManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             antCount = new(antCount.x, antCount.y + antGain);
-            Debug.Log($"you have {antCount.x}/{antCount.y} ants");
+            //Debug.Log($"you have {antCount.x}/{antCount.y} ants");
             SetAntText();
         }
     }
     public void GainCoins(int amount)
     {
         coins = coins + amount;
-        Debug.Log($"you have {coins} coins");
+        //Debug.Log($"you have {coins} coins");
         SetCoinText();
     }
     public void LoseCoins(int amount)
     {
         coins = coins - amount;
-        Debug.Log($"you have {coins} coins");
+        //Debug.Log($"you have {coins} coins");
         SetCoinText();
     }
     public void LoseHP(int amount)
     {
         hiveHP = hiveHP - amount;
-        Debug.Log($"you have {hiveHP} hp");
+        //Debug.Log($"you have {hiveHP} hp");
+        SetHiveHPText();
     }
     public void IncreaseAntGain(int amount)
     {
@@ -87,6 +103,10 @@ public class GameManager : MonoBehaviour
     {
         antText.text = $"you have {antCount.x}/{antCount.y} ant(s)";
     }
+    public void SetHiveHPText()
+    {
+        HiveHPText.text = $"{hiveHP}/{hiveMaxHP} HP";
+    }
 
     /* testing functions and vars */
     [Button]
@@ -99,5 +119,10 @@ public class GameManager : MonoBehaviour
     public void Allocate1Ant()
     {
         AllocateAnt(1);
+    }
+    [Button]
+    public void Lose2HP()
+    {
+        LoseHP(2);
     }
 }
