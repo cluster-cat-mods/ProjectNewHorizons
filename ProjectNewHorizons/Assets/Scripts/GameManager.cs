@@ -1,12 +1,16 @@
 using NaughtyAttributes;
 using System.Collections;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour 
 {
     [SerializeField] private int startingHiveMaxHP;
-    [SerializeField] private bool alive;
+    [SerializeField] private bool alive = true;
+
+    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text antText;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -34,46 +38,66 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator AntGainOvertime()
     {
-        if (!alive) StopCoroutine(AntGainOvertime());
-        int2 newMaxAntCount = antCount;
-        yield return new WaitForSeconds(1);
-        newMaxAntCount.y += antGain;
-        antCount = newMaxAntCount;
-        Debug.Log($"you have {antCount} ants");
-        StartCoroutine(AntGainOvertime());
+        while (alive)
+        {
+            yield return new WaitForSeconds(1);
+            antCount = new(antCount.x, antCount.y + antGain);
+            Debug.Log($"you have {antCount.x}/{antCount.y} ants");
+            SetAntText();
+        }
     }
     public void GainCoins(int amount)
     {
-        int newCoins = coins;
-        newCoins += amount;
-        coins = newCoins;
+        coins = coins + amount;
         Debug.Log($"you have {coins} coins");
+        SetCoinText();
     }
     public void LoseCoins(int amount)
     {
-        int newCoins = coins;
-        newCoins -= amount;
-        coins = newCoins;
+        coins = coins - amount;
         Debug.Log($"you have {coins} coins");
+        SetCoinText();
     }
     public void LoseHP(int amount)
     {
-        int newHiveHP = hiveHP;
-        newHiveHP -= amount;
-        hiveHP = newHiveHP;
+        hiveHP = hiveHP - amount;
         Debug.Log($"you have {hiveHP} hp");
     }
     public void IncreaseAntGain(int amount)
     {
-        int newAntGain = antGain;
-        newAntGain += amount;
-        antGain = newAntGain;
+        antGain = antGain + amount;
+        SetAntText();
     }
 
     public void AllocateAnt(int amount)
     {
-        int2 newAllocatedAntCount = antCount;
-        newAllocatedAntCount.x += amount;
-        antCount = newAllocatedAntCount;
+        if (antCount.x + amount <= antCount.y)
+        {
+            antCount = new(antCount.x + amount, antCount.y);
+            SetAntText();
+        }
+    }
+
+    public void SetCoinText()
+    {
+        coinText.text = $"{coins} coin(s)";
+    }
+
+    public void SetAntText()
+    {
+        antText.text = $"you have {antCount.x}/{antCount.y} ant(s)";
+    }
+
+    /* testing functions and vars */
+    [Button]
+    public void Get10Coins()
+    {
+        GainCoins(10);
+    }
+
+    [Button]
+    public void Allocate1Ant()
+    {
+        AllocateAnt(1);
     }
 }
