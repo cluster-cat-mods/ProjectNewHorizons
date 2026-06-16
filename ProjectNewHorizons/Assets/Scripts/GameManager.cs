@@ -121,7 +121,7 @@ public class GameManager : MonoBehaviour
         AllocateAnt(1);
     }
     [Button]
-    public void Lose2HP()
+    public void Lose2Hp()
     {
         LoseHP(2);
     }

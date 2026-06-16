@@ -3,9 +3,13 @@ using UnityEngine;
 
 public class CoinUpgrade : MonoBehaviour
 {
+    private enum UpgradeType { AntGain, TowerDMG, TowerUnlock}
+
     [SerializeField] private GameManager manager;
 
-    [SerializeField] private Upgrade u1 = new();
+    [SerializeField] private Upgrade upgrade = new();
+
+    [SerializeField] private UpgradeType upgradeType = UpgradeType.AntGain;
 
     private void Start()
     {
@@ -14,18 +18,56 @@ public class CoinUpgrade : MonoBehaviour
             manager = FindAnyObjectByType<GameManager>();
         }
 
-        u1.SetTexts();
-        u1.upgradeEvent += Upgrade1;
-        u1.Trigger();
+        upgrade.SetTexts();
+
+        switch (upgradeType)
+        {
+            case UpgradeType.AntGain:
+                upgrade.upgradeEvent += AntGainUpgrade;
+                break;
+
+            case UpgradeType.TowerDMG:
+                upgrade.upgradeEvent += TowerDMGUpgrade;
+                break;
+
+            case UpgradeType.TowerUnlock:
+                upgrade.upgradeEvent += TowerUnlock;
+                break;
+
+        }
     }
     
-
-    public void Upgrade1()
+    public void TriggerUpgrade()
     {
-        if (manager.coins >= u1.cost)
+        upgrade.Trigger();
+    }
+
+    public void AntGainUpgrade()
+    {
+        if (manager.coins >= upgrade.cost)
         {
             manager.IncreaseAntGain(1);
-            manager.LoseCoins(u1.cost);
+            manager.LoseCoins(upgrade.cost);
+        }
+    }
+
+    public void TowerDMGUpgrade()
+    {
+        if (manager.coins >= upgrade.cost)
+        {
+            /*weapon/tower.dmg += amount */
+            Debug.Log("tower dmg += amount");
+            manager.LoseCoins(upgrade.cost);
+        }
+    }
+
+    public void TowerUnlock()
+    {
+        if (manager.coins >= upgrade.cost)
+        {
+            /* unlock weapon/tower (set bool to true) */
+            Debug.Log("unlocked the ... tower");
+            manager.LoseCoins(upgrade.cost);
         }
     }
 }

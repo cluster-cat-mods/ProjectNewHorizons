@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 125}
+  m_AnchoredPosition: {x: 0, y: 150}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2271944985114399474
@@ -405,13 +405,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinUpgrade
   manager: {fileID: 0}
-  u1:
+  upgrade:
     upgradeNameText: {fileID: 6456268499927081128}
     upgradeDescriptionText: {fileID: 6380713804459372540}
-    upgradeName: Ant Gain
-    cost: 10
-    upgradeDescription: this upgrade costs 10 coins and you will gain +1 ant per
-      second
+    upgradeName: name of upgrade
+    cost: 0
+    upgradeDescription: text of the function of the upgrade
+  upgradeType: 0
 --- !u!1 &5987922363910973945
 GameObject:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 735874053011172744}
         m_TargetAssemblyTypeName: CoinUpgrade, Assembly-CSharp
-        m_MethodName: Upgrade1
+        m_MethodName: TriggerUpgrade
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
