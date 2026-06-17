@@ -2,7 +2,8 @@ using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
-public class EnemyWave
+[CreateAssetMenu(fileName = "EnemyWave", menuName = "Scriptable Objects/EnemyWave")]
+public class EnemyWave : ScriptableObject
 {
     public EnemyGroup[] enemyGroups;
     public float waveDuration;

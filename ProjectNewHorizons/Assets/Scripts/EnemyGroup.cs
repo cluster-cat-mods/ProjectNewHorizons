@@ -1,8 +1,8 @@
 using UnityEngine;
 
 [System.Serializable]
-public class EnemyGroup
+public struct EnemyGroup
 {
-    public GameObject Enemy;
+    public GameObject enemy;
     public int enemyCount;
 }
