@@ -143,7 +143,6 @@ public class Graph<T>
         return new HashSet<T>(visited);
     }
     
-    
     public HashSet<T> DFS(T startNode)
     {
         Stack<T> stack = new Stack<T>();
@@ -172,18 +171,17 @@ public class Graph<T>
         DFSRecursion(discovered, v);
         return discovered;
     }
-    
     private void DFSRecursion(HashSet<T> discovered, T v)
+    {
+        if (!discovered.Contains(v))
         {
-            if (!discovered.Contains(v))
+            discovered.Add(v);
+            foreach (T w in GetNeighbors(v))
             {
-                discovered.Add(v);
-                foreach (T w in GetNeighbors(v))
-                {
-                    DFSRecursion(discovered, w);
-                }
+                DFSRecursion(discovered, w);
             }
         }
+    }
     
     
 }
