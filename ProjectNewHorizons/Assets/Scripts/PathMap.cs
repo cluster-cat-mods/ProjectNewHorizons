@@ -1,55 +1,88 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using UnityEngine;
 using NaughtyAttributes;
+using Newtonsoft.Json;
+using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEditor;
-using UnityEngine.Serialization;
 
 
 public class PathMap : MonoBehaviour
 {
-    [SerializeField] private bool editMode = false;
-    private Graph<Vector3> _graph;
-    public List<Vector3> keys;
-    public List<List<Vector3>> values;
-    void Start()
-    {
-        _graph = new Graph<Vector3>();
-    }
+    [SerializeField] private bool drawDebug = false;
+    [SerializeField, ShowIf("drawDebug")] private Color nodeColor = Color.cyan;
+    [SerializeField, ShowIf("drawDebug")] private Color lineColor = Color.white;
     
-    void Update()
-    {
-        for (int i = 0; i < _graph.GetNodeCount() - 1; i++)
-        {
-            Debug.DrawLine(_graph.GetNodes()[i], _graph.GetNodes()[i + 1], Color.white);
-        }
+    private bool emptyGraph = true;
 
-        if (editMode && Input.GetMouseButtonDown(0))
+    public Graph<Transform> Graph { get; private set; }
+
+    private void Start()
+    {
+        if (Graph == null)  Graph = new();
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (drawDebug && Graph != null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit))
+            foreach (var node in Graph.GetNodes()) if (node != null)
             {
-                Debug.Log("raycast hit");
-                if (_graph.GetNodeCount() < 1) _graph.AddNode(hit.point);
-                else _graph.AddEdge(hit.point, _graph.GetNodes()[_graph.GetNodeCount() - 1]);
+                Gizmos.color = nodeColor;
+                Gizmos.DrawWireSphere(node.position, 0.1f);
+                
             }
-            Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
+            foreach (var kvp in Graph.GetAdjacencyList()) if (kvp.Key != null)
+            {
+                foreach (var val in kvp.Value) if (val != null) Debug.DrawLine(kvp.Key.position, val.position, lineColor);
+                
+            }
         }
+    }
 
+    [Button, ShowIf("emptyGraph")]
+    public void AddNode()
+    {
+        if (Graph == null) Graph = new();
+        GameObject node = new();
+        node.name = "Node 0";
+        node.transform.parent = transform;
+        node.transform.position = transform.position;
+        node.AddComponent<GraphNode>();
+        node.GetComponent<GraphNode>().SetPathmap(this);
+        Graph.AddNode(node.transform);
+        emptyGraph = false;
+        
+        #if UNITY_EDITOR
+        Selection.SetActiveObjectWithContext(node, null);
+        #endif
     }
     
     [Button]
-    private void SaveMap()
+    public void ClearGraph()
     {
-        _graph.SaveGraph();
+        if (Graph == null) Graph = new();
+        foreach (var node in Graph.GetNodes()) if (node != null)
+        {
+            DestroyImmediate(node.gameObject);
+        }
+        Graph = new();
+        emptyGraph = true;
     }
 
     [Button]
-    private void LoadMap()
+    public void PrintGraph()
     {
-        _graph.LoadGraph();
+        foreach (var key in Graph.GetAdjacencyList().Keys)
+        {
+            string vals = "";
+            foreach (var val in Graph.GetAdjacencyList()[key])
+            {
+                vals += val.name + ", ";
+            }
+            Debug.Log(key.name + "->" + vals);
+        }
     }
-    
 }

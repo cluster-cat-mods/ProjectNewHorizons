@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using Newtonsoft.Json;
 
 public class Graph<T>
 {
     private Dictionary<T, List<T>> adjacencyList;
-    public DictionaryWrapper<T> wrapper = new();
 
     public Graph()
     {
@@ -185,31 +185,5 @@ public class Graph<T>
             }
         }
     
-    public void SaveGraph()
-    {
-        wrapper.keys = adjacencyList.Keys.ToList();
-        wrapper.values = adjacencyList.Values.ToList();
-        string filePath = "Data/graphData.json";
-        string jsonString = JsonUtility.ToJson(wrapper, true);
-        Debug.Log(jsonString);
-        File.WriteAllText(filePath, jsonString);
-    }
-
-    public void LoadGraph()
-    {
-        string filePath = "Data/graphData.json";
-        string jsonString = File.ReadAllText(filePath);
-        wrapper = JsonUtility.FromJson<DictionaryWrapper<T>>(jsonString);
-        adjacencyList = wrapper.keys.Zip(wrapper.values, (key, value) => new { key, value }).ToDictionary(x => x.key, x => x.value);
-        
-    }
-     
     
-}
-
-[System.Serializable]
-public class DictionaryWrapper<T>
-{
-    public List<T> keys;
-    public List<List<T>> values;
 }
