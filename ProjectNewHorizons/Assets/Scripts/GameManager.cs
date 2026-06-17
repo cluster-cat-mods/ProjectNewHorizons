@@ -12,14 +12,24 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private TMP_Text antText;
     [SerializeField] private TMP_Text HiveHPText;
+
+    [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private EnemyWave[] enemyWaves;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
     public int antGain { get; private set; }
     public int coins { get; private set; }
+    public int wave { get; private set; }
+    public int stage { get; private set; }
 
     private void Start()
     {
+        if (enemySpawner == null)
+        {
+            enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        }
+
         antGain = 1;
         SetStartStats();
     }
@@ -124,5 +134,11 @@ public class GameManager : MonoBehaviour
     public void Lose2Hp()
     {
         LoseHP(2);
+    }
+
+    [Button]
+    public void StartEnemySpawners()
+    {
+        StartCoroutine(enemySpawner.StartWave(enemyWaves, wave));
     }
 }
