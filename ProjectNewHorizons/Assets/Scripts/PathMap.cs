@@ -64,6 +64,7 @@ public class PathMap : MonoBehaviour
         if (Graph == null) Graph = new();
         GameObject node = new();
         node.name = "Node 0";
+        node.tag = "Node";
         node.transform.parent = transform;
         node.transform.position = transform.position;
         node.AddComponent<GraphNode>();

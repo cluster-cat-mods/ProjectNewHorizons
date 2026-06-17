@@ -15,6 +15,7 @@ public class GraphNode : MonoBehaviour
     {
         GameObject node = new();
         node.name = "Node " + _graph.GetNodeCount();
+        node.tag = "Node";
         node.transform.parent = transform.parent;
         node.transform.position = transform.position;
         node.AddComponent<GraphNode>();
