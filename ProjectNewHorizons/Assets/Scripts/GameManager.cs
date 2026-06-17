@@ -13,8 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text antText;
     [SerializeField] private TMP_Text HiveHPText;
 
-    [SerializeField] private EnemySpawner enemySpawner;
-    [SerializeField] private EnemyWave[] enemyWaves;
+    [SerializeField] private EnemyWaveManager enemyWaveManager;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -25,9 +24,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (enemySpawner == null)
+        if (enemyWaveManager == null)
         {
-            enemySpawner = FindAnyObjectByType<EnemySpawner>();
+            enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
 
         antGain = 1;
@@ -118,6 +117,26 @@ public class GameManager : MonoBehaviour
         HiveHPText.text = $"{hiveHP}/{hiveMaxHP} HP";
     }
 
+    public void SetWantedStage(int amount)
+    {
+        stage = amount;
+        SetWave(0);
+    }
+
+    public void SetWave(int amount)
+    {
+        wave = amount + 5 * stage;
+    }
+
+    public void IncreaseWave()
+    {
+        wave++;
+
+        if (wave % 5 == 0)
+        {
+            stage++;
+        }
+    }
     /* testing functions and vars */
     [Button]
     public void Get10Coins()
@@ -136,9 +155,4 @@ public class GameManager : MonoBehaviour
         LoseHP(2);
     }
 
-    [Button]
-    public void StartEnemySpawners()
-    {
-        StartCoroutine(enemySpawner.StartWave(enemyWaves, wave));
-    }
 }

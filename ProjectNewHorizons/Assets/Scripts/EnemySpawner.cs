@@ -1,16 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameManager manager;
-    [SerializeField] private Transform[] EnemySpawnPositions;
+    [SerializeField] private List<Transform> enemySpawnPositions;
     void Start()
     {
-        if (manager == null)
+        var SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnNode");
+        foreach (GameObject o in SpawnPoints)
         {
-            manager = FindAnyObjectByType<GameManager>();
-        }
+            if (enemySpawnPositions.Contains(o.transform)) continue;
+            enemySpawnPositions.Add(o.transform);
+        }   
     }
     public IEnumerator StartWave(EnemyWave[] enemyWaves, int wave)
     {
@@ -20,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
             enemyCounter += enemyWaves[wave].enemyGroups[i].enemyCount;
         }
         float spawnDelay = enemyWaves[wave].waveDuration / enemyCounter;
-        Debug.Log($"{enemyWaves[wave].waveDuration} / {enemyCounter} = {spawnDelay}");
+        Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {enemyCounter} =  spawndelay: {spawnDelay}");
 
         yield return StartCoroutine(SpawnEnemy(spawnDelay, enemyCounter, enemyWaves, wave));
     }
@@ -31,14 +33,16 @@ public class EnemySpawner : MonoBehaviour
         while (totalEnemyCount > 0)
         {
             yield return new WaitForSeconds(spawnDelay);
-            var randomEnemyGroupIndex = PickEnemyGroup(enemyWaves, wave);
-            var enemy = enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].Enemy;
-            var randomSpawnpointIndex = Random.Range(0, EnemySpawnPositions.Length);
 
-            Instantiate(enemy, EnemySpawnPositions[randomSpawnpointIndex].position, Quaternion.identity, transform);
+            var randomEnemyGroupIndex = PickEnemyGroup(enemyWaves, wave);
+            var enemy = enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemy;
+            var randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
+
+            /*Enemy enemy =*/ Instantiate(enemy, enemySpawnPositions[randomSpawnpointIndex].position, Quaternion.identity, transform);
+            //enemy.SetSpawnPoint(transform);
             enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
             totalEnemyCount--;
-            //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {EnemySpawnPositions[randomSpawnpointIndex].position}");
+            //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");
             //Debug.Log($"enemy group {randomEnemyGroupIndex} has {enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount} enemies to spawn left");
             //Debug.Log($"total enemy Count = {totalEnemyCount}");
         }

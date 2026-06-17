@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 174036381}
   m_Layer: 0
   m_Name: EnemySpawnpoint
-  m_TagString: Untagged
+  m_TagString: SpawnNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,6 +277,57 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &320255670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 320255672}
+  - component: {fileID: 320255671}
+  m_Layer: 0
+  m_Name: EnemyWaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &320255671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320255670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 563a38e9bd5acb940bd6c455ed13a151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWaveManager
+  manager: {fileID: 0}
+  enemySpawner: {fileID: 0}
+  enemyWaves:
+  - {fileID: 11400000, guid: f98df44a9ec5d6647b2384ac96044cfa, type: 2}
+  - {fileID: 11400000, guid: 72fb022e6621a074fb65b781c311a105, type: 2}
+  - {fileID: 11400000, guid: c459c1fd33ae6bd468f131dc0a8612f8, type: 2}
+  waveDelay: 5
+--- !u!4 &320255672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320255670}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &506274879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -708,7 +759,7 @@ GameObject:
   - component: {fileID: 1025044304}
   m_Layer: 0
   m_Name: EnemySpawnpoint (2)
-  m_TagString: Untagged
+  m_TagString: SpawnNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,11 +945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ece4722dc4bf80408f6a5b508ae889a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  manager: {fileID: 0}
-  EnemySpawnPositions:
-  - {fileID: 174036381}
-  - {fileID: 1939295246}
-  - {fileID: 1025044304}
+  enemySpawnPositions: []
 --- !u!4 &1111029442
 Transform:
   m_ObjectHideFlags: 0
@@ -1087,14 +1134,7 @@ MonoBehaviour:
   coinText: {fileID: 1702418676}
   antText: {fileID: 993100841}
   HiveHPText: {fileID: 1547207092}
-  enemySpawner: {fileID: 1111029441}
-  enemyWaves:
-  - enemyGroups:
-    - Enemy: {fileID: 3569297683343276300, guid: cdc6f6b775499c2468ab193736d6b989, type: 3}
-      enemyCount: 10
-    - Enemy: {fileID: 3569297683343276300, guid: cdc6f6b775499c2468ab193736d6b989, type: 3}
-      enemyCount: 2
-    waveDuration: 12
+  enemyWaveManager: {fileID: 320255671}
 --- !u!4 &1568095558
 Transform:
   m_ObjectHideFlags: 0
@@ -1448,7 +1488,7 @@ GameObject:
   - component: {fileID: 1939295246}
   m_Layer: 0
   m_Name: EnemySpawnpoint (1)
-  m_TagString: Untagged
+  m_TagString: SpawnNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1680,3 +1720,4 @@ SceneRoots:
   - {fileID: 174036381}
   - {fileID: 1939295246}
   - {fileID: 1025044304}
+  - {fileID: 320255672}
