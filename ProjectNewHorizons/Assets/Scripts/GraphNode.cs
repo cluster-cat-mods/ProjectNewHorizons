@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GraphNode : MonoBehaviour
 {
-    private PathMap _pathMap;
+    public PathMap pathMap { get; private set; }
     private Graph<Transform> _graph;
 
     [Button]
@@ -18,7 +18,7 @@ public class GraphNode : MonoBehaviour
         node.transform.parent = transform.parent;
         node.transform.position = transform.position;
         node.AddComponent<GraphNode>();
-        node.GetComponent<GraphNode>().SetPathmap(_pathMap);
+        node.GetComponent<GraphNode>().SetPathmap(pathMap);
         
         _graph.AddEdge(transform, node.transform);
         
@@ -41,8 +41,8 @@ public class GraphNode : MonoBehaviour
     
     public void SetPathmap(PathMap pathMapP)
     {
-        _pathMap = pathMapP;
-        _graph = _pathMap.Graph;
+        pathMap = pathMapP;
+        _graph = pathMap.Graph;
     }
     
     
