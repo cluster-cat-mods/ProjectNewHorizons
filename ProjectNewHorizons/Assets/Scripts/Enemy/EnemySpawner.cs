@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> enemySpawnPositions;
+    [SerializeField] private Vector2 offsetOnSpawnPositionXZ;
+    [SerializeField] private GameObject debugEnemy;
     void Start()
     {
         var SpawnPoints = GameObject.FindGameObjectsWithTag("SpawnNode");
@@ -27,6 +30,13 @@ public class EnemySpawner : MonoBehaviour
         yield return StartCoroutine(SpawnEnemy(spawnDelay, enemyCounter, enemyWaves, wave));
     }
 
+    [Button]
+    private void SpawnDebugEnemy()
+    {
+        var randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
+        var spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y));
+        Instantiate(debugEnemy, spawnPosition, Quaternion.identity, transform);
+    }
     private IEnumerator SpawnEnemy(float spawnDelay, int totalEnemyCount, EnemyWave[] enemyWaves, int wave)
     {
         //Debug.Log($"total enemy count = {totalEnemyCount}");
@@ -37,8 +47,8 @@ public class EnemySpawner : MonoBehaviour
             var randomEnemyGroupIndex = PickEnemyGroup(enemyWaves, wave);
             var enemy = enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemy;
             var randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
-
-            /*Enemy enemy =*/ Instantiate(enemy, enemySpawnPositions[randomSpawnpointIndex].position, Quaternion.identity, transform);
+            var spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y));
+            /*Enemy enemy =*/ Instantiate(enemy, spawnPosition, Quaternion.identity, transform);
             //enemy.SetSpawnPoint(transform);
             enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
             totalEnemyCount--;
