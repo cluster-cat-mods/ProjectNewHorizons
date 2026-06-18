@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemyScript = Instantiate(enemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
         //Debug.Log(enemyScript);
         //Debug.Log(enemyScript.gameObject.transform);
-        enemyScript.SetSpawnPoint(enemyScript.gameObject.transform);
+        enemyScript.SetSpawnPoint(enemySpawnPositions[randomSpawnpointIndex]);
         enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
         _totalEnemyCount--;
         //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");
