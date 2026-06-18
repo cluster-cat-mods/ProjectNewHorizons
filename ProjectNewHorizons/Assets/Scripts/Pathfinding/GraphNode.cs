@@ -10,6 +10,7 @@ public class GraphNode : MonoBehaviour
     public PathMap pathMap { get; private set; }
     private Graph<Transform> _graph;
 
+    #if UNITY_EDITOR
     [Button]
     public void AddConnection()
     {
@@ -45,16 +46,18 @@ public class GraphNode : MonoBehaviour
         Undo.DestroyObjectImmediate(gameObject);
     }
     
+    private void OnDestroy()
+    {
+        _graph.RemoveNode(transform);
+    }
+    
+    #endif
+    
     public void SetPathmap(PathMap pathMapP)
     {
         pathMap = pathMapP;
         _graph = pathMap.Graph;
     }
     
-    
-    private void OnDestroy()
-    {
-        _graph.RemoveNode(transform);
-    }
     
 }

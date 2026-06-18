@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject spawnPoint;
-    [SerializeField] private GameObject endPoint;
+    [SerializeField] private GameObject spawnNode;
+    [SerializeField] private GameObject endNode;
     private GraphNode _graphNode;
     private PathFinder _pathFinder;
     private Graph<Transform> _graph;
@@ -20,19 +20,19 @@ public class Enemy : MonoBehaviour
     private void SetStuff()
     {
         _pathFinder = GetComponent<PathFinder>();
-        _graph = spawnPoint.GetComponent<GraphNode>().pathMap.gameObject.GetComponent<PathMap>().Graph;
+        _graph = spawnNode.GetComponent<GraphNode>().pathMap.gameObject.GetComponent<PathMap>().Graph;
     }
 
     [Button]
     public void SetGraphNode()
     {
-        _graphNode = spawnPoint.GetComponent<GraphNode>();
+        _graphNode = spawnNode.GetComponent<GraphNode>();
     }
     
     public void SetSpawnPoint(GameObject spawnPointP)
     {
-        spawnPoint = spawnPointP;
-        _graphNode = spawnPoint.GetComponent<GraphNode>();
+        spawnNode = spawnPointP;
+        _graphNode = spawnNode.GetComponent<GraphNode>();
     }
 
     [Button]
@@ -40,9 +40,10 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log(_pathFinder);
         Debug.Log(_graph);
-        Debug.Log(spawnPoint);
-        Debug.Log(endPoint);
-        _path = _pathFinder.CalculatePath(_graph, spawnPoint.transform, endPoint.transform);
+        Debug.Log(spawnNode);
+        Debug.Log(endNode);
+        endNode = GameObject.FindGameObjectWithTag("EndNode");
+        _path = _pathFinder.CalculatePath(_graph, spawnNode.transform, endNode.transform);
     }
 
     private void OnDrawGizmos()
@@ -55,8 +56,8 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawWireSphere(_path[i].position, 0.1f);
         }
         Gizmos.color = spawnNodeColor;
-        Gizmos.DrawWireSphere(spawnPoint.transform.position, 0.1f);
+        Gizmos.DrawWireSphere(spawnNode.transform.position, 0.1f);
         Gizmos.color = endNodeColor;
-        Gizmos.DrawWireSphere(endPoint.transform.position, 0.1f);
+        Gizmos.DrawWireSphere(endNode.transform.position, 0.1f);
     }
 }
