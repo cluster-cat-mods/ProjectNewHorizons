@@ -15,12 +15,14 @@ public class PathMap : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private Color lineColor = Color.white;
 
     private bool _emptyGraph = true;
-
+    public List<Transform> SpawnNodes {get ; private set;} = new();
+    public Transform EndNode { get; private set; }
     public Graph<Transform> Graph { get; private set; }
 
     private void Start()
     {
         if (Graph == null) Graph = new();
+        FindNodes();
     }
 
     private void OnDrawGizmos()
@@ -75,6 +77,24 @@ public class PathMap : MonoBehaviour
         #if UNITY_EDITOR
         Selection.SetActiveObjectWithContext(node, null);
         #endif
+    }
+
+    [Button]
+    public void FindNodes()
+    {
+        SpawnNodes.Clear();
+        foreach (var node in Graph.GetNodes())
+        {
+            switch (node.tag)
+            {
+                case "SpawnNode":
+                    SpawnNodes.Add(node.transform);
+                    break;
+                case "EndNode":
+                    EndNode = node.transform;
+                    break;
+            }
+        }
     }
 
     [Button]

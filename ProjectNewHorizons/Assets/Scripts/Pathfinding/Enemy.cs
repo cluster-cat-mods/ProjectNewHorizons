@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private GameObject spawnNode;
-    [SerializeField] private GameObject endNode;
-    private GraphNode _graphNode;
+    private Transform _spawnNode;
+    private Transform _endNode;
     private PathFinder _pathFinder;
+    private PathMap _pathMap; 
     private Graph<Transform> _graph;
     private List<Transform> _path;
     
@@ -15,40 +15,32 @@ public class Enemy : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private Color pathColor = Color.red;
     [SerializeField, ShowIf("drawDebug")] private Color spawnNodeColor = Color.green;
     [SerializeField, ShowIf("drawDebug")] private Color endNodeColor = Color.red;
+
+    private void OnAwake()
+    {
+        SetStuff();
+        Move();
+    }
     
     [Button]
     private void SetStuff()
     {
+        GraphNode graphNode = _spawnNode.gameObject.GetComponent<GraphNode>();
         _pathFinder = GetComponent<PathFinder>();
-        _graph = spawnNode.GetComponent<GraphNode>().pathMap.gameObject.GetComponent<PathMap>().Graph;
-    }
-
-    [Button]
-    public void SetGraphNode()
-    {
-        _graphNode = spawnNode.GetComponent<GraphNode>();
-    }
-    
-    public void SetSpawnPoint(GameObject spawnPointP)
-    {
-        spawnNode = spawnPointP;
-        _graphNode = spawnNode.GetComponent<GraphNode>();
+        _pathMap = graphNode.PathMap;
+        _graph = graphNode.Graph;
+        _endNode = _pathMap.EndNode;
     }
 
     [Button]
     public void Move()
     {
-        Debug.Log(_pathFinder);
-        Debug.Log(_graph);
-        Debug.Log(spawnNode);
-        Debug.Log(endNode);
-        endNode = GameObject.FindGameObjectWithTag("EndNode");
-        _path = _pathFinder.CalculatePath(_graph, spawnNode.transform, endNode.transform);
+        _path = _pathFinder.CalculatePath(_graph, _spawnNode, _endNode);
     }
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < _path.Count - 1; i++)
+        if (_path != null) for (int i = 0; i < _path.Count - 1; i++)
         {
             Debug.DrawLine(_path[i].position, _path[i + 1].position, pathColor);
             Gizmos.color = pathColor;
@@ -56,8 +48,8 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawWireSphere(_path[i].position, 0.1f);
         }
         Gizmos.color = spawnNodeColor;
-        Gizmos.DrawWireSphere(spawnNode.transform.position, 0.1f);
+        if (_spawnNode != null) Gizmos.DrawWireSphere(_spawnNode.transform.position, 0.1f);
         Gizmos.color = endNodeColor;
-        Gizmos.DrawWireSphere(endNode.transform.position, 0.1f);
+        if (_endNode != null) Gizmos.DrawWireSphere(_endNode.transform.position, 0.1f);
     }
 }

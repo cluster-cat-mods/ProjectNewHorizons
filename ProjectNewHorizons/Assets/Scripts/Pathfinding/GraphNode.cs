@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class GraphNode : MonoBehaviour
 {
-    public PathMap pathMap { get; private set; }
-    private Graph<Transform> _graph;
+    public PathMap PathMap { get; private set; }
+    public Graph<Transform> Graph { get; private set; }
 
     #if UNITY_EDITOR
     [Button]
@@ -16,7 +16,7 @@ public class GraphNode : MonoBehaviour
     {
         GameObject node = new()
         {
-            name = "Node " + _graph.GetNodeCount(),
+            name = "Node " + Graph.GetNodeCount(),
             tag = "Node",
             transform =
             {
@@ -25,9 +25,9 @@ public class GraphNode : MonoBehaviour
             }
         };
         GraphNode gn = node.AddComponent<GraphNode>();
-        gn.SetPathmap(pathMap);
+        gn.SetPathmap(PathMap);
         
-        _graph.AddEdge(transform, node.transform);
+        Graph.AddEdge(transform, node.transform);
         
         #if UNITY_EDITOR
         Selection.SetActiveObjectWithContext(node, null);
@@ -48,15 +48,15 @@ public class GraphNode : MonoBehaviour
     
     private void OnDestroy()
     {
-        _graph.RemoveNode(transform);
+        Graph.RemoveNode(transform);
     }
     
     #endif
     
     public void SetPathmap(PathMap pathMapP)
     {
-        pathMap = pathMapP;
-        _graph = pathMap.Graph;
+        PathMap = pathMapP;
+        Graph = PathMap.Graph;
     }
     
     
