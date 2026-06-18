@@ -13,12 +13,18 @@ public class GraphNode : MonoBehaviour
     [Button]
     public void AddConnection()
     {
-        GameObject node = new();
-        node.name = "Node " + _graph.GetNodeCount();
-        node.transform.parent = transform.parent;
-        node.transform.position = transform.position;
-        node.AddComponent<GraphNode>();
-        node.GetComponent<GraphNode>().SetPathmap(pathMap);
+        GameObject node = new()
+        {
+            name = "Node " + _graph.GetNodeCount(),
+            tag = "Node",
+            transform =
+            {
+                parent  = transform.parent,
+                position = transform.position,
+            }
+        };
+        GraphNode gn = node.AddComponent<GraphNode>();
+        gn.SetPathmap(pathMap);
         
         _graph.AddEdge(transform, node.transform);
         
@@ -30,10 +36,10 @@ public class GraphNode : MonoBehaviour
     [Button]
     public void RemoveNode()
     {
-        StartCoroutine(RemoveNodeMethod());
+        StartCoroutine(RemoveNodeCoroutine());
     }
 
-    private IEnumerator RemoveNodeMethod()
+    private IEnumerator RemoveNodeCoroutine()
     {
         yield return new WaitForSeconds(0.001f);
         Undo.DestroyObjectImmediate(gameObject);
