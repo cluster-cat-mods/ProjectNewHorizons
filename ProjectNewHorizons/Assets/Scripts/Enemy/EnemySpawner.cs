@@ -61,7 +61,9 @@ public class EnemySpawner : MonoBehaviour
         var randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
         var spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position/* + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y))*/;
         Enemy enemyScript = Instantiate(enemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
-        enemyScript.SetSpawnPoint(enemy.transform);
+        //Debug.Log(enemyScript);
+        //Debug.Log(enemyScript.gameObject.transform);
+        enemyScript.SetSpawnPoint(enemyScript.gameObject.transform);
         enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
         _totalEnemyCount--;
         //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");

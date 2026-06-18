@@ -940,6 +940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f115b7efe2c1ff24083d5b8031c22321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  movementScalar: 4
 --- !u!1 &1414740489
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,7 +2042,7 @@ PrefabInstance:
     - target: {fileID: 6384886365887757433, guid: ec4968e05cbef1849be65b185ff89491, type: 3}
       propertyPath: debugEnemy
       value: 
-      objectReference: {fileID: 3569297683343276300, guid: cdc6f6b775499c2468ab193736d6b989, type: 3}
+      objectReference: {fileID: 1468303104954696818, guid: ca7c132fcd3d78947b3ea26bd3f01aa0, type: 3}
     - target: {fileID: 6384886365887757433, guid: ec4968e05cbef1849be65b185ff89491, type: 3}
       propertyPath: enemySpawnPositions.Array.size
       value: 3
