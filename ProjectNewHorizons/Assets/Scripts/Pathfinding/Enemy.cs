@@ -38,6 +38,11 @@ public class Enemy : MonoBehaviour
         _path = _pathFinder.CalculatePath(_graph, _spawnNode, _endNode);
     }
 
+    public void SetSpawnPoint(Transform spawnPointP)
+    {
+        _spawnNode = spawnPointP;
+    }
+    
     private void OnDrawGizmos()
     {
         if (_path != null) for (int i = 0; i < _path.Count - 1; i++)
