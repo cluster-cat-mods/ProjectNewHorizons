@@ -25,7 +25,9 @@ public class Enemy : MonoBehaviour
     [Button]
     private void SetStuff()
     {
+        Debug.Log("SpawnNode: " + _spawnNode);
         GraphNode graphNode = _spawnNode.gameObject.GetComponent<GraphNode>();
+        Debug.Log("GraphNode: " + graphNode.name);
         _pathFinder = GetComponent<PathFinder>();
         _pathMap = graphNode.PathMap;
         _graph = graphNode.Graph;
