@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 0df8cb35b63d5e04da21e5cfd33cdeb9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afb533a3de2229245b8ab924681cf1fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  spawnPoint: {fileID: 0}
-  endPoint: {fileID: 0}
   drawDebug: 1
   pathColor: {r: 1, g: 0.7954385, b: 0, a: 1}
   spawnNodeColor: {r: 0, g: 1, b: 0, a: 1}
