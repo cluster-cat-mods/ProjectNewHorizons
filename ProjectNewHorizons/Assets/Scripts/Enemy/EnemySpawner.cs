@@ -42,7 +42,8 @@ public class EnemySpawner : MonoBehaviour
     {
         int randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
         Vector3 spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position;
-        Instantiate(debugEnemy, spawnPosition, Quaternion.identity, transform);
+        Enemy enemyScript = Instantiate(debugEnemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
+        enemyScript.SetSpawnPoint(enemySpawnPositions[randomSpawnpointIndex]);
     }
     private IEnumerator SpawnCoroutine(float spawnDelay, EnemyWave[] enemyWaves, int wave)
     {
