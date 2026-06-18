@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private float movementScalar = 4;
     private void Update()
     {
 //#if    UNITY_ANDROID || UNITY_IOS
@@ -11,6 +12,8 @@ public class CameraMovement : MonoBehaviour
 
             // do things with touch.position
             Debug.Log(touch);
+            var camPos = new Vector3((touch.position.x - 1600 / 2) / movementScalar, 0, -10);
+            transform.position = camPos;
             }
 //#elif UNITY_STANDALONE
         if (UnityEngine.Input.GetMouseButtonDown(0))
