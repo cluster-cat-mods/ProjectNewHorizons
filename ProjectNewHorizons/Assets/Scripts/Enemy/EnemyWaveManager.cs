@@ -27,6 +27,9 @@ public class EnemyWaveManager : MonoBehaviour
             enemySpawner = FindAnyObjectByType<EnemySpawner>();
         }
 
+        Debug.Log($"Manager: {manager}");
+        Debug.Log($"Spawner: {enemySpawner}");
+
         // Do this when initializing your enemyWaves array/list at Start()
         for (int i = 0; i < enemyWaves.Length; i++)
         {
@@ -78,6 +81,12 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void UpdateText(float time)
     {
+        if (waveDelayText == null)
+        {
+            Debug.LogError("waveDelayText is null!");
+            return;
+        }
+
         waveDelayText.text = $"{time} second till the next wave starts";
     }
 }
