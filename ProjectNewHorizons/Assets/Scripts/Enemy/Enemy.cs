@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private EnemyStats stats;
+    [SerializeField] private GameManager manager;
+
     private Transform _spawnNode;
     private Transform _endNode;
     private PathFinder _pathFinder;
@@ -21,7 +24,46 @@ public class Enemy : MonoBehaviour
         SetStuff();
         Move();
     }
-    
+    private void Start()
+    {
+        if (manager == null)
+        {
+            manager = FindAnyObjectByType<GameManager>();
+        }
+
+        stats = Instantiate(stats);
+    }
+
+    private void Update()
+    {
+        HitHive();
+
+        if (stats.startStats.hp > 0) return;
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (!manager.alive) return;
+        if (!stats.startStats.canSpawnEnemy) return;
+        for (int i = 0; i < stats.startStats.enemySpawnCount; i++)
+        {
+            Instantiate(stats.startStats.enemy, transform.position, Quaternion.identity);
+        }
+    }
+
+    public void LoseHp(int amount)
+    {
+        stats.startStats.hp -= amount;
+    }
+
+    public void HitHive()
+    {
+        if (!(Vector3.Distance(transform.position, manager.transform.position) < .1f)) return;
+        manager.LoseHP(stats.startStats.damage);
+        Destroy(gameObject);
+    }
+
     [Button]
     private void SetStuff()
     {
