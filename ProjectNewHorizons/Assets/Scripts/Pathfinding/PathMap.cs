@@ -13,6 +13,7 @@ public class PathMap : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private Color spawnNodeColor = Color.green;
     [SerializeField, ShowIf("drawDebug")] private Color endNodeColor = Color.red;
     [SerializeField, ShowIf("drawDebug")] private Color lineColor = Color.white;
+    [SerializeField, ShowIf("drawDebug")] private float drawSize = .2f;
 
     private bool _emptyGraph = true;
     public List<Transform> SpawnNodes {get ; private set;} = new();
@@ -45,7 +46,7 @@ public class PathMap : MonoBehaviour
                             break;
                     }
 
-                    Gizmos.DrawWireSphere(node.position, 0.2f);
+                    Gizmos.DrawWireSphere(node.position, drawSize);
 
                 }
 
@@ -83,15 +84,22 @@ public class PathMap : MonoBehaviour
     public void FindNodes()
     {
         SpawnNodes.Clear();
+        Debug.Log($"graph = {Graph}");
+        Debug.Log($"graph nodes = {Graph.GetNodes()}");
+        Debug.Log($"graph nodes count = {Graph.GetNodes().Count}");
         foreach (var node in Graph.GetNodes())
         {
+            Debug.Log(node.name);
+            Debug.Log(node.tag);
             switch (node.tag)
             {
                 case "SpawnNode":
                     SpawnNodes.Add(node.transform);
+                    Debug.Log($"Spawn Node Added = {node.transform}");
                     break;
                 case "EndNode":
                     EndNode = node.transform;
+                    Debug.Log($"End Node Added = {node.transform}");
                     break;
             }
         }

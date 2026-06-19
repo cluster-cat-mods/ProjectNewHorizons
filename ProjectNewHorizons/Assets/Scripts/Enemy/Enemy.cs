@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using NaughtyAttributes;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -7,28 +8,41 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyStats stats;
     [SerializeField] private GameManager manager;
 
-    private Transform _spawnNode;
-    private Transform _endNode;
-    private PathFinder _pathFinder;
-    private PathMap _pathMap; 
-    private Graph<Transform> _graph;
-    private List<Transform> _path;
-    
+    [SerializeField]
+    private PathFinder pathFinder;
+
+    [SerializeField]
+    private float Speed = 5f;
+
+    private bool isMoving = false;
+
     [SerializeField] private bool drawDebug = false;
     [SerializeField, ShowIf("drawDebug")] private Color pathColor = Color.red;
     [SerializeField, ShowIf("drawDebug")] private Color spawnNodeColor = Color.green;
     [SerializeField, ShowIf("drawDebug")] private Color endNodeColor = Color.red;
 
+    private Transform _spawnNode;
+    private Transform _endNode;
+    private PathFinder _pathFinder;
+    private PathMap _pathMap; 
+    private Graph<Transform> _graph;
+    private List<Transform> _path = new();
+    
     private void OnAwake()
     {
         SetStuff();
-        Move();
+        GoToDestination();
     }
     private void Start()
     {
         if (manager == null)
         {
             manager = FindAnyObjectByType<GameManager>();
+        }
+
+        if (pathFinder == null)
+        {
+            pathFinder = FindAnyObjectByType<PathFinder>();
         }
 
         stats = Instantiate(stats);
@@ -76,17 +90,44 @@ public class Enemy : MonoBehaviour
         _endNode = _pathMap.EndNode;
     }
 
-    [Button]
-    public void Move()
-    {
-        _path = _pathFinder.CalculatePath(_graph, _spawnNode, _endNode);
-    }
-
     public void SetSpawnPoint(Transform spawnPointP)
     {
         _spawnNode = spawnPointP;
     }
-    
+
+    [Button]
+    public void GoToDestination()
+    {
+        if (!isMoving)
+        {
+            _path = _pathFinder.CalculatePath(_graph, _spawnNode, _endNode);
+            StartCoroutine(FollowPathCoroutine(_path));
+        }
+    }
+
+    IEnumerator FollowPathCoroutine(List<Transform> path)
+    {
+        if (path == null || path.Count == 0)
+        {
+            Debug.Log("No Path found");
+            yield break;
+        }
+        isMoving = true;
+        for (int i = 0; i < path.Count; i++)
+        {
+            Vector3 target = path[i].position;
+            // Move towards the target position
+            while (Vector3.Distance(transform.position, target) > 0.1f)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
+                yield return null;
+            }
+
+            //Debug.Log($"Reached target: {target}");
+        }
+        isMoving = false;
+    }
+
     private void OnDrawGizmos()
     {
         if (_path != null) for (int i = 0; i < _path.Count - 1; i++)
