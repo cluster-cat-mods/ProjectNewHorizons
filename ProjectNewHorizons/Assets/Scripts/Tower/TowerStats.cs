@@ -41,26 +41,26 @@ public struct StartStats
     [Space(30)]
 
     //TowerSpots
-    [SerializeField, HideIf("pathPlacement"), AllowNesting] private float attackSpeed;
-    [SerializeField, HideIf("pathPlacement"), AllowNesting] private float projectileSpeed;
-    [SerializeField, HideIf("pathPlacement"), AllowNesting] private float range;
+    [HideIf("pathPlacement"), AllowNesting] public float attackSpeed;
+    [HideIf("pathPlacement"), AllowNesting] public float projectileSpeed;
+    [HideIf("pathPlacement"), AllowNesting] public float range;
 
     //PathSpots
-    [SerializeField, ShowIf("pathPlacement"), AllowNesting] private float hp;
+    [ShowIf("pathPlacement"), AllowNesting] public float hp;
 
     //Damage
-    [SerializeField, ShowIf("needDamage"), AllowNesting] private float damage;
+    [ShowIf("needDamage"), AllowNesting] public float damage;
 
     //AOE
     [Space(30)]
 
-    [SerializeField, ShowIf("AOE_Effect"), AllowNesting] private float AOE_Range;
+    [ShowIf("AOE_Effect"), AllowNesting] public float AOE_Range;
 }
 
 [System.Serializable]
 public struct AntAllocation
 {
-    public float minimumAntsAllocated;
-    public float currentAntsAllocated;
-    public float maximumAntsAllocated;
+    public int minimumAntsAllocated;
+    public int currentAntsAllocated;
+    public int maximumAntsAllocated;
 }
