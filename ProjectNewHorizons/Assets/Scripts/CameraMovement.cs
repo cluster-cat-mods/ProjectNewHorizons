@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    [SerializeField] private float movementScalar = 4;
+    //[SerializeField] private float movementScalar = 4;
+    [SerializeField] private Vector2 movementScalar = new(8, 8);
     private Vector3 _cameraPosition;
     private void Start()
     {
@@ -16,8 +17,9 @@ public class CameraMovement : MonoBehaviour
                 Touch touch = UnityEngine.Input.GetTouch(0);
 
             // do things with touch.position
-            Debug.Log(touch);
-            var camPos = _cameraPosition + new Vector3((touch.position.x - 1600 / 2) / movementScalar, 0, -10);
+            Debug.Log(touch.position);
+            //1600 or 1920
+            var camPos = _cameraPosition + new Vector3((touch.position.x - 2000 / 2) / movementScalar.x, 0, (touch.position.y - 1080 / 2) / movementScalar.y);
             transform.position = camPos;
             }
 //#elif UNITY_STANDALONE
