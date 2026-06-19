@@ -4,12 +4,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "TowerStats", menuName = "Scriptable Objects/TowerStats")]
 public class TowerStats : ScriptableObject
 {
-    [SerializeField] public StartStats startStats;
+    public TowerStartStats startStats;
 
     //Seperat vars
     [Space(30)]
 
-    [SerializeField] public AntAllocation antAllocation;
+    public AntAllocation antAllocation;
 
     public void SetMinimumAllocated(int antsAvailable)
     {
@@ -32,7 +32,7 @@ public class TowerStats : ScriptableObject
 }
 
 [System.Serializable]
-public struct StartStats
+public struct TowerStartStats
 {
     [SerializeField] private bool pathPlacement;
     [SerializeField] private bool needDamage;
@@ -46,10 +46,10 @@ public struct StartStats
     [HideIf("pathPlacement"), AllowNesting] public float range;
 
     //PathSpots
-    [ShowIf("pathPlacement"), AllowNesting] public float hp;
+    [ShowIf("pathPlacement"), AllowNesting] public int hp;
 
     //Damage
-    [ShowIf("needDamage"), AllowNesting] public float damage;
+    [ShowIf("needDamage"), AllowNesting] public int damage;
 
     //AOE
     [Space(30)]

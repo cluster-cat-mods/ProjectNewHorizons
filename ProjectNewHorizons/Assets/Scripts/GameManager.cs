@@ -7,13 +7,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour 
 {
     [SerializeField] private int startingHiveMaxHP;
-    [SerializeField] private bool alive = true;
+
+    [SerializeField] private GameObject hive;
 
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private TMP_Text antText;
     [SerializeField] private TMP_Text HiveHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+
+    public bool alive = true;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -30,7 +33,6 @@ public class GameManager : MonoBehaviour
         }
 
         antGain = 1;
-        SetStartStats();
     }
 
     private void SetStartStats()
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
             if (hiveHP <= 0)
             {
                 alive = false;
+                Destroy(hive);
             }
             yield return null;
         }
@@ -136,6 +139,12 @@ public class GameManager : MonoBehaviour
         {
             stage++;
         }
+    }
+
+    [Button]
+    public void StartRun()
+    {
+        SetStartStats();
     }
     /* testing functions and vars */
     [Button]

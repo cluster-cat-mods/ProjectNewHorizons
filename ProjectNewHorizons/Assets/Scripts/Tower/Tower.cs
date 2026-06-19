@@ -46,8 +46,19 @@ public class Tower : MonoBehaviour
             Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             spawnedProjectile.SetTarget(_closestEnemy);
             spawnedProjectile._towerRange = stats.startStats.range;
+            spawnedProjectile._movementSpeed = stats.startStats.projectileSpeed;
+            spawnedProjectile._damage = CalculateDamage(stats.startStats.damage);
             _enemyTransformList.Clear();
         }
+    }
+
+    private int CalculateDamage(int startDamage)
+    {
+        // max ants allocated dmg 200% min ants allocated dmg 100% the rest is steps in between
+        var damage = startDamage;
+        var antDifference = stats.antAllocation.maximumAntsAllocated - stats.antAllocation.minimumAntsAllocated;
+        damage *= (stats.antAllocation.currentAntsAllocated - stats.antAllocation.minimumAntsAllocated) / antDifference + 1;
+        return damage;
     }
 
     Transform GetClosestEnemy(Transform[] enemies)

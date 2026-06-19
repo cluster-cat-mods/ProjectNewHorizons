@@ -6,10 +6,11 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Enemy _targetEnemy;
 
     [SerializeField] private Transform _targetTransform;
-    [SerializeField] private float movementSpeed;
 
     private Vector3 _startPosition;
     [HideInInspector] public float _towerRange;
+    [HideInInspector] public float _movementSpeed;
+    [HideInInspector] public int _damage;
 
     private Vector3 _lookVector;
     private Vector3 _crossVector;
@@ -49,7 +50,7 @@ public class Projectile : MonoBehaviour
     {
         //transform.position = Vector3.Lerp(_startPosition, _targetTransform.position, 1f);
         var dist = Vector3.Distance(transform.position, _targetTransform.position);
-        var step = Time.deltaTime * movementSpeed;
+        var step = Time.deltaTime * _movementSpeed;
 
         if (dist > 0.1) 
         {
@@ -59,7 +60,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            Destroy(_targetEnemy.gameObject);
+            _targetEnemy.LoseHp(_damage);
             Destroy(gameObject);
         }
     }
@@ -78,16 +79,26 @@ public class Projectile : MonoBehaviour
     }
 
     private void FindNewTarget()
-    { 
+    {
         var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
         foreach (var gameObject in allEnemyGameObjects)
         {
             _enemyTransformList.Add(gameObject.transform);
         }
 
-        var closestEnemy = GetClosestEnemy(_enemyTransformList.ToArray()).GetComponent<Enemy>();
-        SetTarget(closestEnemy);
-        _enemyTransformList.Clear();
+        var closestEnemyObject = GetClosestEnemy(_enemyTransformList.ToArray());
+
+        if (closestEnemyObject != null)
+        {
+            var closestEnemy = closestEnemyObject.GetComponent<Enemy>();
+            if (closestEnemy == null) return;
+            SetTarget(closestEnemy);
+            _enemyTransformList.Clear();
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     Transform GetClosestEnemy(Transform[] enemies)
     {
