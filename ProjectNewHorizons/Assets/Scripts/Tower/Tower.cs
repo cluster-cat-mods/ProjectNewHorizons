@@ -11,7 +11,10 @@ public class Tower : MonoBehaviour
     [SerializeField] private TowerStats stats;
     [SerializeField] private Projectile projectile;
 
-    private List<Transform> _enemyTransformList;
+    [SerializeField] private bool ShowRange;
+    [SerializeField, ShowIf("ShowRange")] private Color rangeDrawingColor = new Color(0,.2f,1,.4f);
+
+    private List<Transform> _enemyTransformList = new();
     private Enemy _closestEnemy;
 
     private void Start()
@@ -29,16 +32,21 @@ public class Tower : MonoBehaviour
     {
         while (stats.antAllocation.currentAntsAllocated >= stats.antAllocation.minimumAntsAllocated)
         {
-            //GameObject enemies = GameObject.FindObjectsOfType<Enemy>().game;
             yield return new WaitForSeconds(1 / stats.startStats.attackSpeed);
-            Projectile spawnedProjectile = Instantiate(projectile, transform.forward, Quaternion.identity, transform);
             var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (var gameObject in allEnemyGameObjects)
             {
                 _enemyTransformList.Add(gameObject.transform);
             }
-            _closestEnemy = GetClosestEnemy(_enemyTransformList.ToArray()).GetComponent<Enemy>();
+
+            var closestEnemyObject = GetClosestEnemy(_enemyTransformList.ToArray());
+
+            if (closestEnemyObject == null) continue;
+            _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
+            Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             spawnedProjectile.SetTarget(_closestEnemy);
+            spawnedProjectile._towerRange = stats.startStats.range;
+            _enemyTransformList.Clear();
         }
     }
 
@@ -56,7 +64,15 @@ public class Tower : MonoBehaviour
                 minDist = dist;
             }
         }
-        return closestEnemy;
+
+        if (minDist < stats.startStats.range)
+        {
+            return closestEnemy;
+        }
+        else
+        {
+            return null;
+        }
     }
 
     [Button]
@@ -65,5 +81,12 @@ public class Tower : MonoBehaviour
         stats.SetMinimumAllocated(manager.antCount.y - manager.antCount.x);
         manager.AllocateAnt(stats.antAllocation.minimumAntsAllocated);
         StartCoroutine(Shoot());
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = rangeDrawingColor;
+
+        Gizmos.DrawSphere(transform.position, stats.startStats.range);
     }
 }
