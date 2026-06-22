@@ -17812,6 +17812,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1289689538882703983, guid: 21db233f206698d45a5755d385660d46, type: 3}
   m_PrefabInstance: {fileID: 1717106152}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1735581777
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1842490871755230825, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476142621963716639, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_Name
+      value: SlingShotTower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 60.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
 --- !u!1001 &1739540295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22933,6 +23010,7 @@ SceneRoots:
   - {fileID: 1708596007}
   - {fileID: 185583018}
   - {fileID: 374558971}
+  - {fileID: 1735581777}
   - {fileID: 640264098}
   - {fileID: 124770015}
   - {fileID: 553500512}

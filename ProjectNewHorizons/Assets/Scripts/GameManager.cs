@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("you died");
         hive.SetActive(false);
         upgradesCanvas.SetActive(true);
+        DestroyEnemies();
     }
 
     private void GainLife()
