@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour 
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject upgradesCanvas;
 
-    [SerializeField] private Volume volume;
+    [SerializeField] private Volume[] volume;
 
     public bool alive = true;
     public int hiveMaxHP { get; private set; }
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
         SetHiveHPText();
         StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
-        volume.weight = 0;
+        volume[0].weight = 0;
     }
 
     private IEnumerator AliveChecker()
@@ -69,11 +70,19 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("you died");
         hive.SetActive(false);
-        volume.weight = 1;
+        yield return StartCoroutine(DieEffect());
         upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }
 
+    private IEnumerator DieEffect()
+    {
+        while (volume[0].weight < 1)
+        {
+            yield return null;
+            volume[0].weight += .004f;
+        }
+    }
     private void GainLife()
     {
         hive.SetActive(true);
@@ -113,9 +122,21 @@ public class GameManager : MonoBehaviour
     }
     public void LoseHP(int amount)
     {
+        volume[1].weight = 1;
         hiveHP = hiveHP - amount;
         //Debug.Log($"you have {hiveHP} hp");
         SetHiveHPText();
+
+        StartCoroutine(LoseHpEffect());
+    }
+    private IEnumerator LoseHpEffect()
+    {
+        yield return new WaitForSeconds(.3f);
+        while (volume[1].weight > 0)
+        {
+            yield return null;
+            volume[1].weight -= .01f;
+        }
     }
     public void IncreaseAntGain(int amount)
     {
@@ -160,10 +181,44 @@ public class GameManager : MonoBehaviour
     public void IncreaseWave()
     {
         wave++;
+        StartCoroutine(NextWaveEffect());
 
         if (wave % 5 == 0)
         {
             stage++;
+        }
+    }
+
+    private IEnumerator NextWaveEffect()
+    {
+        while (volume[2].weight < 1)
+        {
+            yield return null;
+            volume[2].weight += .2f;
+        }
+        yield return new WaitForSeconds(.5f);
+        while (volume[2].weight > 0)
+        {
+            yield return null;
+            volume[2].weight -= .2f;
+        }
+    }
+
+    private IEnumerator EffectGain(int index, float gainAmount)
+    {
+        while (volume[index].weight < 1)
+        {
+            yield return null;
+            volume[index].weight += gainAmount;
+        }
+    }
+
+    private IEnumerator EffectDecay(int index, float decayAmount)
+    {
+        while (volume[index].weight > 0)
+        {
+            yield return null;
+            volume[index].weight -= decayAmount;
         }
     }
 
