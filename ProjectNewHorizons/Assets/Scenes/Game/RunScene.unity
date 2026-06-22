@@ -6640,6 +6640,7 @@ MonoBehaviour:
   HiveHPText: {fileID: 854287888}
   enemyWaveManager: {fileID: 185583017}
   upgradesCanvas: {fileID: 509013861}
+  volume: {fileID: 0}
   alive: 1
 --- !u!4 &553500512
 Transform:
@@ -9054,6 +9055,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   movementScalar: {x: 16, y: 8}
+  _borderClamp: {x: 2000, y: 1080}
 --- !u!114 &824365212
 MonoBehaviour:
   m_ObjectHideFlags: 0

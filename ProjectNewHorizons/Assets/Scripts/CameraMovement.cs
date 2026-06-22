@@ -16,9 +16,6 @@ public class CameraMovement : MonoBehaviour
         {
             Touch touch = Input.GetTouch(0);
 
-            // do things with touch.position
-            Debug.Log(touch.position);
-
             if (touch.phase == TouchPhase.Began)
             {
                 _startTouchInWorldSpace = GetWorldPosition(touch.position);
@@ -50,10 +47,10 @@ public class CameraMovement : MonoBehaviour
 
 
             //logging
-            Debug.Log($"finger {touch.fingerId} tapped {touch.tapCount} times");
-            Debug.Log($"time since last touch value change = {touch.deltaTime}");
-            Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
-            Debug.Log($"the phase of the touch = {touch.phase}");
+            //Debug.Log($"finger {touch.fingerId} tapped {touch.tapCount} times");
+            //Debug.Log($"time since last touch value change = {touch.deltaTime}");
+            //Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
+            //Debug.Log($"the phase of the touch = {touch.phase}");
         }
     }
 
