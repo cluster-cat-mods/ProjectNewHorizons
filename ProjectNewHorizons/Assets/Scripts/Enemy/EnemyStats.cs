@@ -17,6 +17,7 @@ public struct EnemyStartStats
     [AllowNesting] public int hp;
     [AllowNesting] public int damage;
     [AllowNesting] public float speed;
+    [AllowNesting] public int coinBounty;
 
     [Space(30)]
 

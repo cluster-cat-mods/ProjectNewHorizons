@@ -64,6 +64,7 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(stats.startStats.enemy, transform.position, Quaternion.identity);
         }
+        manager.GainCoins(stats.startStats.coinBounty);
     }
 
     public void LoseHp(int amount)
