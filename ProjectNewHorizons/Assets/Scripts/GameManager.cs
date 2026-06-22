@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using NUnit.Framework;
 using System.Collections;
 using TMPro;
 using Unity.Mathematics;
@@ -15,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text HiveHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+
+    [SerializeField] private GameObject upgradesCanvas;
 
     public bool alive = true;
     public int hiveMaxHP { get; private set; }
@@ -54,14 +57,31 @@ public class GameManager : MonoBehaviour
             if (hiveHP <= 0)
             {
                 alive = false;
-                Destroy(hive);
+                //Destroy(hive);
             }
+
+            upgradesCanvas.SetActive(false);
             yield return null;
         }
-
         Debug.Log("you died");
-        yield return new WaitForSeconds(1);
+        hive.SetActive(false);
+        upgradesCanvas.SetActive(true);
+    }
+
+    private void GainLife()
+    {
+        hive.SetActive(true);
         SetStartStats();
+    }
+
+    private void DestroyEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
+
     }
     private IEnumerator AntGainOvertime()
     {
@@ -144,7 +164,7 @@ public class GameManager : MonoBehaviour
     [Button]
     public void StartRun()
     {
-        SetStartStats();
+        GainLife();
     }
     /* testing functions and vars */
     [Button]
