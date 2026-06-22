@@ -4,6 +4,7 @@ using System.Collections;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour 
 {
@@ -18,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyWaveManager enemyWaveManager;
 
     [SerializeField] private GameObject upgradesCanvas;
+
+    [SerializeField] private Volume volume;
 
     public bool alive = true;
     public int hiveMaxHP { get; private set; }
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
         SetHiveHPText();
         StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
+        volume.weight = 0;
     }
 
     private IEnumerator AliveChecker()
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("you died");
         hive.SetActive(false);
+        volume.weight = 1;
         upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }

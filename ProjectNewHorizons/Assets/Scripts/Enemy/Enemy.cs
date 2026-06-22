@@ -59,12 +59,15 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         if (!manager.alive) return;
+        //gain coins
+        manager.GainCoins(stats.startStats.coinBounty);
+
+        //enemy spawning smaller ones
         if (!stats.startStats.canSpawnEnemy) return;
         for (int i = 0; i < stats.startStats.enemySpawnCount; i++)
         {
             Instantiate(stats.startStats.enemy, transform.position, Quaternion.identity);
         }
-        manager.GainCoins(stats.startStats.coinBounty);
     }
 
     public void LoseHp(int amount)
