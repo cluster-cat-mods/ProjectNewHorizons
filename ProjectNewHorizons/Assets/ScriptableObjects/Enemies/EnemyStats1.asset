@@ -18,7 +18,7 @@ MonoBehaviour:
     hp: 1
     damage: 1
     speed: 1
-    coin: 1
+    coinBounty: 1
     enemy: {fileID: 5016032530360230179, guid: bcebbc852919d5a46b608d6d90f59bbe, type: 3}
     enemySpawnCount: 1
     maxHp: 0
