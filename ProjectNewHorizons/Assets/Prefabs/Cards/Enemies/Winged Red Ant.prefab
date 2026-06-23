@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2476142621963716639, guid: 90da4170e993eaa4dbfb0b57e954b28b, type: 3}
       propertyPath: m_Name
-      value: CardStandS
+      value: Winged Red Ant
       objectReference: {fileID: 0}
     - target: {fileID: 7396491024801009744, guid: 90da4170e993eaa4dbfb0b57e954b28b, type: 3}
       propertyPath: m_LocalPosition.x
