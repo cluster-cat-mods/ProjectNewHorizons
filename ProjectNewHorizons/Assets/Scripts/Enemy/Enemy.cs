@@ -22,16 +22,24 @@ public class Enemy : MonoBehaviour
     private Graph<Transform> _graph;
     private List<Transform> _path = new();
 
+    private void Start()
+    {
+        if (manager != null) 
+        { 
+            manager = FindAnyObjectByType<GameManager>();
+        }
+
+        StartCoroutine(HitHiveCheck());
+    }
     private void Update()
     {
-        HitHive();
-
         if (stats.startStats.hp > 0) return;
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
+        manager = FindAnyObjectByType<GameManager>();
         if (!manager.alive) return;
         //gain coins
         manager.GainCoins(stats.startStats.coinBounty);
@@ -49,9 +57,12 @@ public class Enemy : MonoBehaviour
         stats.startStats.hp -= amount;
     }
 
-    public void HitHive()
+    public IEnumerator HitHiveCheck()
     {
-        if (!(Vector3.Distance(transform.position, manager.transform.position) < .1f)) return;
+        while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < .1f))
+        {
+            yield return null;
+        }
         manager.LoseHP(stats.startStats.damage);
         Destroy(gameObject);
     }

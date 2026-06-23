@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int startingHiveMaxHP;
 
-    [SerializeField] private GameObject hive;
-
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private TMP_Text antText;
     [SerializeField] private TMP_Text HiveHPText;
@@ -22,6 +20,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject upgradesCanvas;
 
     [SerializeField] private Volume[] volume;
+    
+    public GameObject hive;
 
     public bool alive = true;
     public int hiveMaxHP { get; private set; }
