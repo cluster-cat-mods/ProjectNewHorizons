@@ -1011,7 +1011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3500265535701291057, guid: 70b49d7d8612ccf4394bb988160340a2, type: 3}
       propertyPath: m_Name
-      value: w
+      value: Shroom_Red (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4312372948287933067, guid: 70b49d7d8612ccf4394bb988160340a2, type: 3}
       propertyPath: m_LocalPosition.x
