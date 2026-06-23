@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         int randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
         Vector3 spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position;
         Enemy enemyScript = Instantiate(debugEnemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
-        enemyScript.SetSpawnPoint(enemySpawnPositions[randomSpawnpointIndex]);
+        enemyScript.SetStuff(enemySpawnPositions[randomSpawnpointIndex]);
     }
     private IEnumerator SpawnCoroutine(float spawnDelay, EnemyWave[] enemyWaves, int wave)
     {
@@ -64,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
         Enemy enemyScript = Instantiate(enemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
         //Debug.Log(enemyScript);
         //Debug.Log(enemyScript.gameObject.transform);
-        enemyScript.SetSpawnPoint(enemySpawnPositions[randomSpawnpointIndex]);
+        enemyScript.SetStuff(enemySpawnPositions[randomSpawnpointIndex]);
         enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
         _totalEnemyCount--;
         //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");

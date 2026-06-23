@@ -60,7 +60,7 @@ public class Enemy : MonoBehaviour
     }
 
     [Button]
-    private void SetStuff(Transform spawnPointP)
+    public void SetStuff(Transform spawnPointP)
     {
         if (manager == null)
         {
