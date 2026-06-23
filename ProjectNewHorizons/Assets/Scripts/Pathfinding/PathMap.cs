@@ -16,12 +16,12 @@ public class PathMap : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private float drawSize = .2f;
 
     private bool _emptyGraph = true;
-    public List<Transform> SpawnNodes {get ; private set;} = new();
-    public Transform EndNode { get; private set; }
+    [field: SerializeField] public List<Transform> SpawnNodes {get ; private set;} = new();
+    [field: SerializeField] public Transform EndNode { get; private set; }
 
     [field: SerializeField] public Graph<Transform> Graph { get; private set; } = new();
 
-    private void OnAwake()
+    private void Awake()
     {
         FindNodes();
     }

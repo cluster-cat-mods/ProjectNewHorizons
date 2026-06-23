@@ -8,8 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyStats stats;
     [SerializeField] private GameManager manager;
 
-    [SerializeField]
-    private float Speed = 5f;
+    [SerializeField] private float Speed = 5f;
 
     private bool isMoving = false;
 
@@ -58,8 +57,7 @@ public class Enemy : MonoBehaviour
         manager.LoseHP(stats.startStats.damage);
         Destroy(gameObject);
     }
-
-    [Button]
+    
     public void SetStuff(Transform spawnPointP)
     {
         if (manager == null)

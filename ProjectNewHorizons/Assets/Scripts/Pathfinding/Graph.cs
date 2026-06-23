@@ -5,8 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Graph<T> : ISerializationCallbackReceiver
 {
-    [field: SerializeField]
-    private Dictionary<T, List<T>> adjacencyList;
+    [field: SerializeField] private Dictionary<T, List<T>> adjacencyList;
     [SerializeField] private List<SerializableEdge> serializedGraph = new();
     
     [System.Serializable]
