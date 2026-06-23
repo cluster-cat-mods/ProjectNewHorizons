@@ -8,8 +8,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyStats stats;
     [SerializeField] private GameManager manager;
 
-    [SerializeField] private float Speed = 5f;
-
     private bool isMoving = false;
 
     [SerializeField] private bool drawDebug = false;
@@ -101,7 +99,7 @@ public class Enemy : MonoBehaviour
             // Move towards the target position
             while (Vector3.Distance(transform.position, target) > 0.1f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * Speed);
+                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * stats.startStats.speed);
                 yield return null;
             }
 
