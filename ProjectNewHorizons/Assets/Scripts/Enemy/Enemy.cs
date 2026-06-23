@@ -24,10 +24,12 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        if (manager != null) 
-        { 
+        if (manager != null)
+        {
             manager = FindAnyObjectByType<GameManager>();
         }
+
+        Debug.Log($"enemy {gameObject.name} just spawned");
 
         StartCoroutine(HitHiveCheck());
     }
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
+        StopAllCoroutines();
         manager = FindAnyObjectByType<GameManager>();
         if (!manager.alive) return;
         //gain coins
@@ -59,11 +62,15 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator HitHiveCheck()
     {
-        while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < .1f))
+        while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < 1f))
         {
             yield return null;
+            //Debug.Log("not around the hive yet");
+            Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
         }
+        Debug.Log("close to the hive");
         manager.LoseHP(stats.startStats.damage);
+        manager.LoseCoins(stats.startStats.coinBounty);
         Destroy(gameObject);
     }
     
