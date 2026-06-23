@@ -7,7 +7,9 @@ using UnityEngine;
 
 public class GraphNode : MonoBehaviour
 {
+    [field: SerializeField]
     public PathMap PathMap { get; private set; }
+    [field: SerializeField]
     public Graph<Transform> Graph { get; private set; }
 
     #if UNITY_EDITOR
@@ -38,6 +40,13 @@ public class GraphNode : MonoBehaviour
     public void RemoveNode()
     {
         StartCoroutine(RemoveNodeCoroutine());
+    }
+
+    [Button]
+    public void DebugNode()
+    {
+        Debug.Log(Graph);
+        Debug.Log(PathMap);
     }
 
     private IEnumerator RemoveNodeCoroutine()
