@@ -5,7 +5,7 @@ using NaughtyAttributes;
 using Unity.VisualScripting;
 using UnityEditor;
 
-
+[System.Serializable]
 public class PathMap : MonoBehaviour
 {
     [SerializeField] private bool drawDebug = false;
@@ -18,6 +18,7 @@ public class PathMap : MonoBehaviour
     private bool _emptyGraph = true;
     public List<Transform> SpawnNodes {get ; private set;} = new();
     public Transform EndNode { get; private set; }
+    [field: SerializeField]
     public Graph<Transform> Graph { get; private set; }
 
     private void Start()
@@ -28,6 +29,7 @@ public class PathMap : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        Debug.Log($"graph == {Graph}");
         if (drawDebug && Graph != null)
         {
             foreach (var node in Graph.GetNodes())
