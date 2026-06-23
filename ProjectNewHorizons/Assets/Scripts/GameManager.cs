@@ -70,7 +70,8 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("you died");
         hive.SetActive(false);
-        yield return StartCoroutine(DieEffect());
+        yield return new WaitForSeconds(.1f);
+        StartCoroutine(DieEffect());
         upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }

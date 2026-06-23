@@ -26,19 +26,29 @@ public class Tower : MonoBehaviour
 
         stats = Instantiate(stats);
         SetMinimumAnts();
+        StartCoroutine(AliveEnemyUpdater());
+    }
+
+    public IEnumerator AliveEnemyUpdater()
+    {
+        while (manager.alive)
+        {
+            var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
+            foreach (var gameObject in allEnemyGameObjects)
+            {
+                _enemyTransformList.Add(gameObject.transform);
+            }
+            yield return null;
+        }
     }
     public IEnumerator Shoot()
     {
         while (stats.antAllocation.currentAntsAllocated >= stats.antAllocation.minimumAntsAllocated)
         {
             yield return new WaitForSeconds(1 / stats.startStats.attackSpeed);
-            var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var gameObject in allEnemyGameObjects)
-            {
-                _enemyTransformList.Add(gameObject.transform);
-            }
 
-            var closestEnemyObject = GetClosestEnemy(_enemyTransformList.ToArray());
+
+            var closestEnemyObject = GetClosestEnemy();
 
             if (closestEnemyObject == null) continue;
             _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
@@ -60,12 +70,12 @@ public class Tower : MonoBehaviour
         return damage;
     }
 
-    Transform GetClosestEnemy(Transform[] enemies)
+    Transform GetClosestEnemy()
     {
         Transform closestEnemy = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
-        foreach (Transform t in enemies)
+        foreach (Transform t in _enemyTransformList)
         {
             float dist = Vector3.Distance(t.position, currentPos);
             if (dist < minDist)
