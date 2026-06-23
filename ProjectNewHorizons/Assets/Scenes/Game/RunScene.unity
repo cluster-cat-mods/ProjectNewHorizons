@@ -608,6 +608,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &65947575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5460,6 +5463,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &453962797
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9197,7 +9203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f115b7efe2c1ff24083d5b8031c22321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
-  _touchController: {fileID: 1414486181}
+  touchController: {fileID: 0}
   movementScalar: {x: 16, y: 8}
   _borderClamp: {x: 2000, y: 1080}
 --- !u!114 &824365212
@@ -9747,6 +9753,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &893824181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10175,6 +10184,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &938934223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10907,6 +10919,10 @@ MonoBehaviour:
   endNodeColor: {r: 1, g: 0, b: 0, a: 1}
   lineColor: {r: 1, g: 1, b: 1, a: 1}
   drawSize: 1
+  <SpawnNodes>k__BackingField: []
+  <EndNode>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!4 &1007998873
 Transform:
   m_ObjectHideFlags: 0
@@ -10930,6 +10946,8 @@ Transform:
   - {fileID: 1129431279}
   - {fileID: 1367531144}
   - {fileID: 1352088920}
+  - {fileID: 1457820760}
+  - {fileID: 1428451826}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1009122752
@@ -12343,6 +12361,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1135085469
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13520,7 +13541,7 @@ Transform:
   m_GameObject: {fileID: 1210213326}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.78, y: 0, z: 3.16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13538,6 +13559,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1217872302
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14783,6 +14807,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1352795343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15038,6 +15065,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1372897190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15705,6 +15735,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5776951063801047989, guid: f6f53090eb6d4a34c944f54bd29c96c1, type: 3}
   m_PrefabInstance: {fileID: 1424269222}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1428451825
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1428451826}
+  - component: {fileID: 1428451827}
+  m_Layer: 0
+  m_Name: Node 0
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1428451826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428451825}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -15.700001, y: 0, z: 4.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1007998873}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1428451827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428451825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!4 &1432428745 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1946390551774671911, guid: 5fa0b347cdaad234eb2419fe68e20fd2, type: 3}
@@ -15772,6 +15849,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4579711844573762702, guid: 26504908e1ab4a542b5eb098d0ec4a82, type: 3}
   m_PrefabInstance: {fileID: 1438609416}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1457820759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1457820760}
+  - component: {fileID: 1457820761}
+  m_Layer: 0
+  m_Name: Node 0
+  m_TagString: Node
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1457820760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457820759}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.31, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1007998873}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1457820761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457820759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1459454878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20314,6 +20438,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &1951429483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21177,6 +21304,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83846debd32effb4a8f5a88bf08f1aa8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GraphNode
+  <PathMap>k__BackingField: {fileID: 0}
+  <Graph>k__BackingField:
+    serializedGraph: []
 --- !u!1001 &2055605434
 PrefabInstance:
   m_ObjectHideFlags: 0
