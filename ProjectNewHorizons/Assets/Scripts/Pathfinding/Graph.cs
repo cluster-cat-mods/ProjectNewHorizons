@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Graph<T>
 {
+    [field: SerializeField]
     private Dictionary<T, List<T>> adjacencyList;
 
     public Graph()

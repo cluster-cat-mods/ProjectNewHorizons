@@ -8,6 +8,7 @@ TagManager:
   - Node
   - EndNode
   - Enemy
+  - Mushroom
   layers:
   - Default
   - TransparentFX
