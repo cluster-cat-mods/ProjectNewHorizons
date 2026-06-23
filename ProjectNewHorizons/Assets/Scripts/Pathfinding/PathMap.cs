@@ -13,13 +13,11 @@ public class PathMap : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private Color spawnNodeColor = Color.green;
     [SerializeField, ShowIf("drawDebug")] private Color endNodeColor = Color.red;
     [SerializeField, ShowIf("drawDebug")] private Color lineColor = Color.white;
-    [SerializeField, ShowIf("drawDebug")] private float drawSize = .2f;
 
     private bool _emptyGraph = true;
-    [field: SerializeField] public List<Transform> SpawnNodes {get ; private set;} = new();
-    [field: SerializeField] public Transform EndNode { get; private set; }
-
-    [field: SerializeField] public Graph<Transform> Graph { get; private set; } = new();
+    [field: SerializeField, HideInInspector] public List<Transform> SpawnNodes {get ; private set;} = new();
+    [field: SerializeField, HideInInspector] public Transform EndNode { get; private set; }
+    [field: SerializeField, HideInInspector] public Graph<Transform> Graph { get; private set; } = new();
 
     private void Awake()
     {
@@ -28,7 +26,6 @@ public class PathMap : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Debug.Log($"graph == {Graph}");
         if (drawDebug && Graph != null)
         {
             foreach (var node in Graph.GetNodes())
@@ -47,7 +44,7 @@ public class PathMap : MonoBehaviour
                             break;
                     }
 
-                    Gizmos.DrawWireSphere(node.position, drawSize);
+                    Gizmos.DrawWireSphere(node.position, 0.2f);
 
                 }
 
@@ -79,15 +76,13 @@ public class PathMap : MonoBehaviour
         #if UNITY_EDITOR
         Selection.SetActiveObjectWithContext(node, null);
         #endif
+        Debug.Log("Added Node");
     }
 
     [Button]
     public void FindNodes()
     {
         SpawnNodes.Clear();
-        Debug.Log($"graph = {Graph}");
-        Debug.Log($"graph nodes = {Graph.GetNodes()}");
-        Debug.Log($"graph nodes count = {Graph.GetNodes().Count}");
         foreach (var node in Graph.GetNodes())
         {
             Debug.Log(node.name);
@@ -96,14 +91,13 @@ public class PathMap : MonoBehaviour
             {
                 case "SpawnNode":
                     SpawnNodes.Add(node.transform);
-                    Debug.Log($"Spawn Node Added = {node.transform}");
                     break;
                 case "EndNode":
                     EndNode = node.transform;
-                    Debug.Log($"End Node Added = {node.transform}");
                     break;
             }
         }
+        Debug.Log("Found Nodes");
     }
 
     [Button]
@@ -118,6 +112,7 @@ public class PathMap : MonoBehaviour
 
         Graph = new();
         _emptyGraph = true;
+        Debug.Log("Cleared Graph");
     }
 
     [Button]
