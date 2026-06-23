@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class GraphNode : MonoBehaviour
 {
-    [field: SerializeField] public PathMap PathMap { get; private set; }
-    [field: SerializeField] public Graph<Transform> Graph { get; private set; }
+    [field: SerializeField, HideInInspector] public PathMap PathMap { get; private set; }
+    [field: SerializeField, HideInInspector] public Graph<Transform> Graph { get; private set; }
 
     #if UNITY_EDITOR
     [Button]
@@ -32,12 +32,14 @@ public class GraphNode : MonoBehaviour
         #if UNITY_EDITOR
         Selection.SetActiveObjectWithContext(node, null);
         #endif
+        Debug.Log("Added Node");
     }
 
     [Button]
     public void RemoveNode()
     {
         StartCoroutine(RemoveNodeCoroutine());
+        Debug.Log("Removed Node");
     }
 
     [Button]
