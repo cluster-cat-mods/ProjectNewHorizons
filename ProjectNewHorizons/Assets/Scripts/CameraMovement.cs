@@ -2,28 +2,33 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [SerializeField] private TouchController touchController;
+
     [SerializeField] private Vector2 movementScalar = new(16, 8);
     [SerializeField] private Vector2 _borderClamp = new(2000,1080);
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
     private void Start()
     {
+        if (touchController == null)
+        {
+            touchController = FindAnyObjectByType<TouchController>();
+        }
+
         _cameraPosition = transform.position;
     }
     private void Update()
     {
         if (Input.touchCount == 1)
         {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
+            if (touchController.touch.phase == TouchPhase.Began)
             {
-                _startTouchInWorldSpace = GetWorldPosition(touch.position);
+                _startTouchInWorldSpace = touchController.GetWorldPosition();
             }
 
-            if (touch.phase == TouchPhase.Moved)
+            if (touchController.touch.phase == TouchPhase.Moved)
             {
-                var _currentWorldPosition = GetWorldPosition(touch.position);
+                var _currentWorldPosition = touchController.GetWorldPosition();
                 var _worldDifference = _currentWorldPosition - _startTouchInWorldSpace;
 
                 _cameraPosition = transform.position;
@@ -52,18 +57,5 @@ public class CameraMovement : MonoBehaviour
             //Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
             //Debug.Log($"the phase of the touch = {touch.phase}");
         }
-    }
-
-    private Vector3 GetWorldPosition(Vector2 screenPoint)
-    {
-        RaycastHit hit;
-
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(screenPoint), out hit))
-        {
-            return hit.point;
-        }
-
-        Debug.LogWarning("Raycast missed!");
-        return _startTouchInWorldSpace;
     }
 }
