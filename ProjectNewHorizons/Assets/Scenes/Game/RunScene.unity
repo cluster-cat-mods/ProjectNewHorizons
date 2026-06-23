@@ -39025,7 +39025,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   enemySpawnPositions:
-  - {fileID: 0}
+  - {fileID: 290760192}
+  - {fileID: 338809213}
+  - {fileID: 1499329581}
+  - {fileID: 1846795201}
   offsetOnSpawnPositionXZ: {x: 1, y: 1}
   debugEnemy: {fileID: 2992738951168533689, guid: d21442b5e65bd6446b5ec830abc03be2, type: 3}
 --- !u!4 &1708596007
