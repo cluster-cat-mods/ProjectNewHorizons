@@ -1,9 +1,54 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Graph<T>
+[System.Serializable]
+public class Graph<T> : ISerializationCallbackReceiver
 {
     private Dictionary<T, List<T>> adjacencyList;
+    [SerializeField] private List<SerializableEdge> serializedGraph = new();
+    
+    [System.Serializable]
+    public struct SerializableEdge
+    {
+        public T node;
+        public List<T> neighbors;
+    }
+
+    public void OnBeforeSerialize()
+    {
+        Debug.Log("Before Serialization");
+        serializedGraph.Clear();
+        foreach (var kvp in adjacencyList)
+        {
+            if (kvp.Key == null) continue;
+
+            SerializableEdge edge = new SerializableEdge
+            {
+                node  = kvp.Key,
+                neighbors = new List<T>(),
+            };
+
+            foreach (var neighbor in kvp.Value) if (neighbor != null) edge.neighbors.Add(neighbor);
+            
+            serializedGraph.Add(edge);
+        }
+    }
+
+    public void OnAfterDeserialize()
+    {
+        adjacencyList = new Dictionary<T, List<T>>();
+
+        foreach (var edge in serializedGraph)
+        {
+            if (edge.node != null)
+            {
+                adjacencyList[edge.node] = new List<T>(edge.neighbors);
+            }
+        }
+        
+    }
+    
 
     public Graph()
     {

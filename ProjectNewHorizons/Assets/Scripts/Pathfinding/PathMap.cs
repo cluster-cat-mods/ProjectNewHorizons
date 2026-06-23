@@ -18,11 +18,11 @@ public class PathMap : MonoBehaviour
     private bool _emptyGraph = true;
     public List<Transform> SpawnNodes {get ; private set;} = new();
     public Transform EndNode { get; private set; }
-    public Graph<Transform> Graph { get; private set; }
 
-    private void Start()
+    [field: SerializeField] public Graph<Transform> Graph { get; private set; } = new();
+
+    private void OnAwake()
     {
-        if (Graph == null) Graph = new();
         FindNodes();
     }
 
