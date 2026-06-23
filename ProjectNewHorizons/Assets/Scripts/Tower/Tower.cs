@@ -25,7 +25,7 @@ public class Tower : MonoBehaviour
         }
 
         stats = Instantiate(stats);
-
+        SetMinimumAnts();
         StartCoroutine(Shoot());
     }
     public IEnumerator Shoot()
