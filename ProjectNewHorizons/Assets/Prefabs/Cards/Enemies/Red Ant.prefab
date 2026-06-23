@@ -83,8 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   stats: {fileID: 11400000, guid: 55ef3da9921a7e845acdbdcdea7b0ec6, type: 2}
   manager: {fileID: 0}
-  Speed: 5
   drawDebug: 1
-  pathColor: {r: 1, g: 0, b: 0, a: 1}
+  pathColor: {r: 0.5, g: 0, b: 1, a: 1}
   spawnNodeColor: {r: 0, g: 1, b: 0, a: 1}
   endNodeColor: {r: 1, g: 0, b: 0, a: 1}
