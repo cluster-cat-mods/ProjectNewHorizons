@@ -9,9 +9,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameManager manager;
 
     [SerializeField]
-    private PathFinder pathFinder;
-
-    [SerializeField]
     private float Speed = 5f;
 
     private bool isMoving = false;
@@ -27,26 +24,6 @@ public class Enemy : MonoBehaviour
     private PathMap _pathMap; 
     private Graph<Transform> _graph;
     private List<Transform> _path = new();
-    
-    private void OnAwake()
-    {
-        SetStuff();
-        GoToDestination();
-    }
-    private void Start()
-    {
-        if (manager == null)
-        {
-            manager = FindAnyObjectByType<GameManager>();
-        }
-
-        if (pathFinder == null)
-        {
-            pathFinder = FindAnyObjectByType<PathFinder>();
-        }
-
-        stats = Instantiate(stats);
-    }
 
     private void Update()
     {
@@ -83,8 +60,16 @@ public class Enemy : MonoBehaviour
     }
 
     [Button]
-    private void SetStuff()
+    private void SetStuff(Transform spawnPointP)
     {
+        if (manager == null)
+        {
+            manager = FindAnyObjectByType<GameManager>();
+        }
+        stats = Instantiate(stats);
+        
+        _spawnNode = spawnPointP;
+        
         Debug.Log("SpawnNode: " + _spawnNode);
         GraphNode graphNode = _spawnNode.gameObject.GetComponent<GraphNode>();
         Debug.Log("GraphNode: " + graphNode.name);
@@ -92,11 +77,8 @@ public class Enemy : MonoBehaviour
         _pathMap = graphNode.PathMap;
         _graph = graphNode.Graph;
         _endNode = _pathMap.EndNode;
-    }
-
-    public void SetSpawnPoint(Transform spawnPointP)
-    {
-        _spawnNode = spawnPointP;
+        
+        GoToDestination();
     }
 
     [Button]
