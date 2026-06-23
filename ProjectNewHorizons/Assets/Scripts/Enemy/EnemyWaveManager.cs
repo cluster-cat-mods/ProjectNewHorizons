@@ -27,8 +27,8 @@ public class EnemyWaveManager : MonoBehaviour
             enemySpawner = FindAnyObjectByType<EnemySpawner>();
         }
 
-        Debug.Log($"Manager: {manager}");
-        Debug.Log($"Spawner: {enemySpawner}");
+        //Debug.Log($"Manager: {manager}");
+        //Debug.Log($"Spawner: {enemySpawner}");
 
         // Do this when initializing your enemyWaves array/list at Start()
         for (int i = 0; i < enemyWaves.Length; i++)
