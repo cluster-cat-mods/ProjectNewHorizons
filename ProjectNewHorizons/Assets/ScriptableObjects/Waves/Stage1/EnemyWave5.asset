@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa9033c9a56061b49a5f5fad2492835e, type: 3}
+  m_Name: EnemyWave5
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
+  enemyGroups:
+  - enemy: {fileID: 7303752510340531192, guid: dc6f9d042cec62d4abf54efa344895a6, type: 3}
+    enemyCount: 10
+  - enemy: {fileID: 6355293842020295962, guid: d18892e9d2a017f438b5db6a67dff0b8, type: 3}
+    enemyCount: 1
+  waveDuration: 0
