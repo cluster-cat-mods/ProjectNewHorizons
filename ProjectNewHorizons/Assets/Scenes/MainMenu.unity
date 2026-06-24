@@ -7059,7 +7059,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1627177346}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772683886}
+        m_TargetAssemblyTypeName: UIFunctions, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: RunScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1627177346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7155,7 +7167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fc772548abc83ca4e971ea0330ee5d55, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb0a555e3ea331c4abc178fa8b6dbe7d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
