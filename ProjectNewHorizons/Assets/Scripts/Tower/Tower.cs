@@ -75,24 +75,29 @@ public class Tower : MonoBehaviour
         Transform closestEnemy = null;
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
-        foreach (Transform t in _enemyTransformList)
+
+        for (int i = _enemyTransformList.Count - 1; i >= 0; i--)
         {
+            Transform t = _enemyTransformList[i];
+
+            if (t == null)
+            {
+                _enemyTransformList.RemoveAt(i);
+                continue;
+            }
+
             float dist = Vector3.Distance(t.position, currentPos);
+
             if (dist < minDist)
             {
                 closestEnemy = t;
                 minDist = dist;
             }
+
+
         }
 
-        if (minDist < stats.startStats.range)
-        {
-            return closestEnemy;
-        }
-        else
-        {
-            return null;
-        }
+        return minDist < stats.startStats.range ? closestEnemy : null;
     }
 
     [Button]

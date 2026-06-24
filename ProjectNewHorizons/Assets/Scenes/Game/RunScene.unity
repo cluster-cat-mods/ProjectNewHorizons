@@ -39116,7 +39116,7 @@ MonoBehaviour:
   - {fileID: 1499329581}
   - {fileID: 1846795201}
   offsetOnSpawnPositionXZ: {x: 1, y: 1}
-  debugEnemy: {fileID: 2992738951168533689, guid: d21442b5e65bd6446b5ec830abc03be2, type: 3}
+  debugEnemy: {fileID: 6355293842020295962, guid: d18892e9d2a017f438b5db6a67dff0b8, type: 3}
 --- !u!4 &1708596007
 Transform:
   m_ObjectHideFlags: 0
