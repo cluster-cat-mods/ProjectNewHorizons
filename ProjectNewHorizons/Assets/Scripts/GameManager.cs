@@ -4,14 +4,13 @@ using System.Collections;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour 
 {
     [SerializeField] private int startingHiveMaxHP;
-
-    [SerializeField] private GameObject hive;
 
     [SerializeField] private TMP_Text coinText;
     [SerializeField] private TMP_Text antText;
@@ -22,8 +21,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject upgradesCanvas;
 
     [SerializeField] private Volume[] volume;
+    
+    public GameObject hive;
 
     public bool alive = true;
+
+    [SerializeField] private UnityEvent dieEvent;
+    [SerializeField] private UnityEvent regainLifeEvent;
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -70,7 +74,9 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("you died");
         hive.SetActive(false);
-        yield return StartCoroutine(DieEffect());
+        dieEvent?.Invoke();
+        yield return new WaitForSeconds(.1f);
+        StartCoroutine(DieEffect());
         upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }
@@ -87,6 +93,7 @@ public class GameManager : MonoBehaviour
     {
         hive.SetActive(true);
         SetStartStats();
+        regainLifeEvent?.Invoke();
     }
 
     private void DestroyEnemies()
@@ -222,7 +229,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [Button]
+    //[Button]
     public void StartRun()
     {
         GainLife();

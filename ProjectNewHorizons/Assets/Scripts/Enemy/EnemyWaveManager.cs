@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField] private GameManager manager;
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private EnemyWave[] enemyWaves;
+    private List<EnemyWave> savedEnemyWaves = new();
 
     [SerializeField] private TMP_Text waveDelayText;
 
@@ -27,26 +29,37 @@ public class EnemyWaveManager : MonoBehaviour
             enemySpawner = FindAnyObjectByType<EnemySpawner>();
         }
 
-        Debug.Log($"Manager: {manager}");
-        Debug.Log($"Spawner: {enemySpawner}");
+        //Debug.Log($"Manager: {manager}");
+        //Debug.Log($"Spawner: {enemySpawner}");
 
-        // Do this when initializing your enemyWaves array/list at Start()
         for (int i = 0; i < enemyWaves.Length; i++)
         {
             // Creates a unique runtime-only duplicate of the Scriptable Object
-            enemyWaves[i] = Instantiate(enemyWaves[i]);
+            savedEnemyWaves.Add(enemyWaves[i]);
         }
 
         UpdateText(0f);
     }
 
-    [Button]
+    public void setEnemyWaves()
+    {
+        // Do this when initializing your enemyWaves array/list at Start()
+        for (int i = 0; i < enemyWaves.Length; i++)
+        {
+            // Creates a unique runtime-only duplicate of the Scriptable Object
+            enemyWaves[i] = Instantiate(savedEnemyWaves[i]);
+        }
+    }
+    //[Button]
     public void StartRun()
     {
         StartCoroutine(Run());
     }
     public IEnumerator Run()
     {
+        manager.SetWave(0);
+        setEnemyWaves();
+
         foreach (EnemyWave wave in enemyWaves)
         {
             yield return StartCoroutine(StartEnemySpawners());

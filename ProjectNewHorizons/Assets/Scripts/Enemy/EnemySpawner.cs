@@ -69,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         _totalEnemyCount--;
         //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");
         //Debug.Log($"enemy group {randomEnemyGroupIndex} has {enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount} enemies to spawn left");
-        Debug.Log($"total enemy Count = {_totalEnemyCount}");
+        //Debug.Log($"total enemy Count = {_totalEnemyCount}");
     }
     private int PickEnemyGroup(EnemyWave[] enemyWaves, int wave)
     {
