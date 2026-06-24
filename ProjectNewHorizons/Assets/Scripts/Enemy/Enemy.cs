@@ -86,7 +86,6 @@ public class Enemy : MonoBehaviour
         }
         Debug.Log("close to the hive");
         manager.LoseHP(runtimeStats.damage);
-        manager.LoseCoins(runtimeStats.coinBounty);
         Destroy(gameObject);
     }
     
