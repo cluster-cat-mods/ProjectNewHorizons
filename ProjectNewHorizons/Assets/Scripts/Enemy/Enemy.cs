@@ -22,9 +22,14 @@ public class Enemy : MonoBehaviour
     private Graph<Transform> _graph;
     private List<Transform> _path = new();
 
+    private EnemyStartStats runtimeStats;
+    private bool diedByTower = false;
+
     private void Start()
     {
-        if (manager != null)
+        Debug.Log($"{name} HP on spawn: {runtimeStats.hp}");
+
+        if (manager == null)
         {
             manager = FindAnyObjectByType<GameManager>();
         }
@@ -33,44 +38,55 @@ public class Enemy : MonoBehaviour
 
         StartCoroutine(HitHiveCheck());
     }
-    private void Update()
-    {
-        if (stats.startStats.hp > 0) return;
-        Destroy(gameObject);
-    }
-
     private void OnDestroy()
     {
-        StopAllCoroutines();
         manager = FindAnyObjectByType<GameManager>();
         if (!manager.alive) return;
-        //gain coins
-        manager.GainCoins(stats.startStats.coinBounty);
-
-        //enemy spawning smaller ones
-        if (!stats.startStats.canSpawnEnemy) return;
-        for (int i = 0; i < stats.startStats.enemySpawnCount; i++)
+        if (diedByTower)
         {
-            Instantiate(stats.startStats.enemy, transform.position, Quaternion.identity);
+            //gain coins
+            manager.GainCoins(runtimeStats.coinBounty);
         }
+        //enemy spawning smaller ones
+        if (!runtimeStats.canSpawnEnemy) return;
+        for (int i = 0; i < runtimeStats.enemySpawnCount; i++)
+        {
+            GameObject littleEnemy = Instantiate(runtimeStats.enemy, transform.position, Quaternion.identity);
+
+            Enemy enemy = littleEnemy.GetComponent<Enemy>();
+
+            if (enemy != null)
+            {
+                Debug.Log($"Setting up spawned enemy {enemy.name}");
+                enemy.SetStuff(GetClosestNode());
+            }
+        }
+
     }
 
     public void LoseHp(int amount)
     {
-        stats.startStats.hp -= amount;
+        runtimeStats.hp -= amount;
+
+        if (runtimeStats.hp > 0) return;
+        diedByTower = true;
+        Destroy(gameObject);
     }
 
     public IEnumerator HitHiveCheck()
     {
+        Debug.Log($"{name} started hive check");
+
         while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < 1f))
         {
             yield return null;
             //Debug.Log("not around the hive yet");
-            Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
+            Debug.Log($"{name}: {Vector3.Distance(transform.position, manager.hive.transform.position)} distance to hive");
+            //Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
         }
         Debug.Log("close to the hive");
-        manager.LoseHP(stats.startStats.damage);
-        manager.LoseCoins(stats.startStats.coinBounty);
+        manager.LoseHP(runtimeStats.damage);
+        manager.LoseCoins(runtimeStats.coinBounty);
         Destroy(gameObject);
     }
     
@@ -80,8 +96,9 @@ public class Enemy : MonoBehaviour
         {
             manager = FindAnyObjectByType<GameManager>();
         }
-        stats = Instantiate(stats);
-        
+
+        runtimeStats = stats.BaseStats;
+
         _spawnNode = spawnPointP;
         
         GraphNode graphNode = _spawnNode.gameObject.GetComponent<GraphNode>();
@@ -89,8 +106,27 @@ public class Enemy : MonoBehaviour
         _pathMap = graphNode.PathMap;
         _graph = graphNode.Graph;
         _endNode = _pathMap.EndNode;
-        
+
+        Debug.Log($"{name} received spawn node {_spawnNode.name}");
+
         GoToDestination();
+    }
+
+    public Transform GetClosestNode()
+    {
+        var allNodes = GameObject.FindGameObjectsWithTag("Node");
+        var dist = Mathf.Infinity;
+        var closestNode = allNodes[0];
+        foreach (var node in allNodes)
+        {
+            var newDistance = Vector3.Distance(transform.position, node.transform.position);
+            if (newDistance < dist)
+            {
+                dist = newDistance;
+                closestNode = node;
+            }
+        }
+        return closestNode.transform;
     }
 
     [Button]
@@ -117,7 +153,7 @@ public class Enemy : MonoBehaviour
             // Move towards the target position
             while (Vector3.Distance(transform.position, target) > 0.1f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * stats.startStats.speed);
+                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * runtimeStats.speed);
                 yield return null;
             }
 

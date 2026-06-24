@@ -48,6 +48,7 @@ public class Projectile : MonoBehaviour
 
     public void MoveToTarget()
     {
+        if (_targetTransform == null) return;
         //transform.position = Vector3.Lerp(_startPosition, _targetTransform.position, 1f);
         var dist = Vector3.Distance(transform.position, _targetTransform.position);
         var step = Time.deltaTime * _movementSpeed;
@@ -67,6 +68,7 @@ public class Projectile : MonoBehaviour
 
     public void LookAtTarget()
     {
+        if (_targetTransform == null) return;
         _lookVector = (_targetTransform.position - transform.position).normalized;
         _lookVector.y = 0;
         _crossVector = Vector3.Cross(transform.forward, _lookVector);
