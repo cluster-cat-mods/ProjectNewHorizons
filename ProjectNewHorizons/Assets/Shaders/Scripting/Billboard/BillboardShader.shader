@@ -1,11 +1,11 @@
-Shader "Unlit/StandardBillboard"
+Shader "Unlit/StandardBillboard_img"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _NoiseTex ("Noise Texture", 2D) = "white" {}
-        _HoloCol ("Hologram Color", Color) = (1,1,1,1)
-        _NoiseScale ("Noise Scale", Float) = 1
+        _Color ("Color", Color) = (1,1,1,1)
+        _Scale("Image Scale", Float) = 1
+
         
     }
     SubShader
@@ -38,25 +38,27 @@ Shader "Unlit/StandardBillboard"
             };
 
             sampler2D _MainTex;
-            sampler2D _NoiseTex;
             float4 _MainTex_ST;
-            float4 _HoloCol;
-            float _NoiseScale;
+            float4 _Color;
+            float _Scale;
 
             v2f vert (appdata v)
             {
                 v2f o;
-
-                float4 origin = float4(0,0,0,1);
-                float4 world_origin = mul(UNITY_MATRIX_M, origin);
-                float4 view_origin = mul(UNITY_MATRIX_V, world_origin);
-                float4 world_to_view_translation = view_origin - world_origin;
-
-                float4 world_pos = mul(UNITY_MATRIX_M, v.vertex);
-                float4 view_pos = world_pos + world_to_view_translation;
-                float4 clip_pos = mul(UNITY_MATRIX_P, view_pos);
-
-                o.vertex = clip_pos;
+                
+                float3 center_world_space = mul(UNITY_MATRIX_M, float4(0,0,0,1)).xyz;
+                float3 cam_world_space = _WorldSpaceCameraPos;
+                float3 forward = cam_world_space - center_world_space;
+                forward.y = 0;
+                forward = normalize(forward);
+                
+                float3 up = float3(0,1,0);
+                float3 right = normalize(cross(forward, up));
+                
+                float3 local_offset = v.vertex.xyz;
+                float3 world_pos = center_world_space + right * local_offset.x * _Scale + up * local_offset.y * _Scale;
+                
+                o.vertex = mul(UNITY_MATRIX_VP, float4(world_pos, 1));
 
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
@@ -68,26 +70,10 @@ Shader "Unlit/StandardBillboard"
             {
                 float2 uv = i.uv;
                 fixed4 texCol = tex2D(_MainTex, uv);
-                fixed4 noiseCol = tex2D(_NoiseTex, uv * _NoiseScale - 0.2*fmod(_Time.y, 2) * fmod(_Time.y, 1));
-                noiseCol.w = 1;
-                float gray = dot(texCol.xyz, float3(0.299, 0.587, 0.114));
-                float4 col = float4(gray, gray, gray, texCol.w) * _HoloCol;
-                
-                if (col.w > 0.2)
-                {
-                    col.w -= pow(0.125 + 0.125* sin((2 * UNITY_PI) / 1 * (uv.y + 0.5 * _Time.y)), 0.5);
-                }
-                else
-                {
-                    col.w = 0;
-                }
-
-                
-                
                 
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                return texCol;
             }
             ENDCG
         }
