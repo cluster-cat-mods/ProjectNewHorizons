@@ -17,7 +17,6 @@ public class Graph<T> : ISerializationCallbackReceiver
 
     public void OnBeforeSerialize()
     {
-        Debug.Log("Before Serialization");
         serializedGraph.Clear();
         foreach (var kvp in adjacencyList)
         {

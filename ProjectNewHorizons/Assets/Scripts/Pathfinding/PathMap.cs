@@ -85,8 +85,8 @@ public class PathMap : MonoBehaviour
         SpawnNodes.Clear();
         foreach (var node in Graph.GetNodes())
         {
-            Debug.Log(node.name);
-            Debug.Log(node.tag);
+            //Debug.Log(node.name);
+            //Debug.Log(node.tag);
             switch (node.tag)
             {
                 case "SpawnNode":

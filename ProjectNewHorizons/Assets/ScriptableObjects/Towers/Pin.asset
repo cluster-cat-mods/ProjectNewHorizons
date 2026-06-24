@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6cc5401788958945a57f96f2ec4301c, type: 3}
-  m_Name: SlingShot
+  m_Name: Pin
   m_EditorClassIdentifier: Assembly-CSharp::TowerStats
   startStats:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 0
     attackSpeed: 1
-    projectileSpeed: 5
-    range: 10
+    projectileSpeed: 10
+    range: 3
     hp: 0
     damage: 2
     AOE_Range: 0
   antAllocation:
-    minimumAntsAllocated: 8
-    currentAntsAllocated: 12
-    maximumAntsAllocated: 16
+    minimumAntsAllocated: 2
+    currentAntsAllocated: 0
+    maximumAntsAllocated: 4

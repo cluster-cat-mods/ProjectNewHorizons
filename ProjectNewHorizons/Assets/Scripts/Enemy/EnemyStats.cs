@@ -4,7 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "EnemyStats", menuName = "Scriptable Objects/EnemyStats")]
 public class EnemyStats : ScriptableObject
 {
-    public EnemyStartStats startStats;
+    [SerializeField] private EnemyStartStats startStats;
+    public EnemyStartStats BaseStats => startStats;
 }
 
 [System.Serializable]
@@ -13,7 +14,7 @@ public struct EnemyStartStats
     public bool canSpawnEnemy;
     public bool bossEnemy;
 
-    //normal stats
+    //normal runtimeStats
     [AllowNesting] public int hp;
     [AllowNesting] public int damage;
     [AllowNesting] public float speed;
