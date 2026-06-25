@@ -44,7 +44,7 @@ public class CoinUpgrade : MonoBehaviour
 
     public void AntGainUpgrade()
     {
-        if (manager.coins >= upgrade.cost)
+        if (manager.corpse >= upgrade.cost)
         {
             manager.IncreaseAntGain(1);
             manager.LoseCoins(upgrade.cost);
@@ -53,7 +53,7 @@ public class CoinUpgrade : MonoBehaviour
 
     public void TowerDMGUpgrade()
     {
-        if (manager.coins >= upgrade.cost)
+        if (manager.corpse >= upgrade.cost)
         {
             /*weapon/tower.dmg += amount */
             Debug.Log("tower dmg += amount");
@@ -63,7 +63,7 @@ public class CoinUpgrade : MonoBehaviour
 
     public void TowerUnlock()
     {
-        if (manager.coins >= upgrade.cost)
+        if (manager.corpse >= upgrade.cost)
         {
             /* unlock weapon/tower (set bool to true) */
             Debug.Log("unlocked the ... tower");

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
     public int antGain { get; private set; }
-    public int coins { get; private set; }
+    public int corpse { get; private set; }
     public int wave { get; private set; }
     public int stage { get; private set; }
 
@@ -117,14 +117,14 @@ public class GameManager : MonoBehaviour
     }
     public void GainCoins(int amount)
     {
-        coins = coins + amount;
-        //Debug.Log($"you have {coins} coins");
+        corpse = corpse + amount;
+        //Debug.Log($"you have {corpse} corpse");
         SetCoinText();
     }
     public void LoseCoins(int amount)
     {
-        coins = coins - amount;
-        //Debug.Log($"you have {coins} coins");
+        corpse = corpse - amount;
+        //Debug.Log($"you have {corpse} corpse");
         SetCoinText();
     }
     public void LoseHP(int amount)
@@ -162,16 +162,16 @@ public class GameManager : MonoBehaviour
 
     public void SetCoinText()
     {
-        coinText.text = $"{coins} coin(s)";
+        coinText.text = $"{corpse}";
     }
 
     public void SetAntText()
     {
-        antText.text = $"you have {antCount.x}/{antCount.y} ant(s)";
+        antText.text = $"{antCount.x}/{antCount.y}";
     }
     public void SetHiveHPText()
     {
-        HiveHPText.text = $"{hiveHP}/{hiveMaxHP} HP";
+        HiveHPText.text = $"{hiveHP}/{hiveMaxHP}";
     }
 
     public void SetWantedStage(int amount)
