@@ -18,6 +18,9 @@ public class EnemyWaveManager : MonoBehaviour
     [SerializeField] private TMP_Text stageText;
 
     [SerializeField] private float waveDelay;
+
+    [SerializeField] private GameObject skipWaveDelayButton;
+
     private bool _skipWaveDelay = false;
 
     private float _timer;
@@ -44,6 +47,8 @@ public class EnemyWaveManager : MonoBehaviour
         }
 
         UpdateText();
+
+        skipWaveDelayButton.SetActive(false);
     }
 
     private void Update()
@@ -77,12 +82,16 @@ public class EnemyWaveManager : MonoBehaviour
 
             _timer = waveDelay;
 
+
             while (_timer > 0 && !_skipWaveDelay)
             {
+                skipWaveDelayButton.SetActive(true);
                 _timer -= Time.deltaTime;
                 yield return null;
             }
 
+            skipWaveDelayButton.SetActive(false);
+            _timer = 0;
             manager.IncreaseWave();
         }
     }
