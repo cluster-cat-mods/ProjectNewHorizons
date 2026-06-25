@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TowerManager : MonoBehaviour
 {
@@ -6,7 +7,11 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private GameManager manager;
     [SerializeField] private GameObject[] towerObject;
     [SerializeField] private TowerStats[] towerStats;
-    public int towerIndex;
+
+    [SerializeField] private GameObject towerSelect;
+
+    private RaycastHit _lastHit;
+    private bool _ChooseTowerOpen;
 
     void Start()
     {
@@ -24,23 +29,36 @@ public class TowerManager : MonoBehaviour
 
     void Update()
     {
+        if (_ChooseTowerOpen) return;
         if (Input.touchCount == 1)
         {
-            PlaceTower();
+            ChooseTower();
         }
     }
 
-    public void PlaceTower()
+    public void ChooseTower()
     {
-        RaycastHit hit = touchController.GetHit();
+        _lastHit = touchController.GetHit();
 
-        if (!hit.collider.CompareTag("Mushroom")) return;
+        if (!_lastHit.collider.CompareTag("Mushroom")) return;
+
+        towerSelect.SetActive(true);
+
+        _ChooseTowerOpen = true;
+    }
+
+    public void PlaceTower(int towerIndex)
+    {
         var cost = towerStats[towerIndex].antAllocation.minimumAntsAllocated;
         Debug.Log(cost);
         if (manager.antCount.y - manager.antCount.x < cost) return;
 
-        Instantiate(towerObject[towerIndex], hit.collider.transform.position, Quaternion.identity, transform);
+        Instantiate(towerObject[towerIndex], _lastHit.collider.transform.position, Quaternion.identity, transform);
         Debug.Log("spawn tower");
-        Destroy(hit.collider.gameObject);
+        Destroy(_lastHit.collider.gameObject);
+
+        towerSelect.SetActive(false);
+
+        _ChooseTowerOpen = false;
     }
 }
