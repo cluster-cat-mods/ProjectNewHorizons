@@ -79,11 +79,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DieEffect()
     {
-        while (volume[0].weight < 1)
-        {
-            yield return null;
-            volume[0].weight += .004f;
-        }
+        yield return EffectGain(0, .004f);
     }
     private void GainLife()
     {
@@ -135,11 +131,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoseHpEffect()
     {
         yield return new WaitForSeconds(.3f);
-        while (volume[1].weight > 0)
-        {
-            yield return null;
-            volume[1].weight -= .01f;
-        }
+        yield return EffectDecay(1, .01f);
     }
     public void IncreaseAntGain(int amount)
     {
