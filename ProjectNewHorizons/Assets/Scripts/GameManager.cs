@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -24,8 +25,11 @@ public class GameManager : MonoBehaviour
 
     public bool alive = true;
 
+    [SerializeField] private UnityEvent startEvent;
     [SerializeField] private UnityEvent dieEvent;
     [SerializeField] private UnityEvent regainLifeEvent;
+
+    [SerializeField] private List<WaveReached> reachedWaveList = new();
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -42,6 +46,8 @@ public class GameManager : MonoBehaviour
         }
 
         antGain = 1;
+
+        startEvent?.Invoke();
     }
 
     private void SetStartStats()
@@ -79,11 +85,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DieEffect()
     {
-        while (volume[0].weight < 1)
-        {
-            yield return null;
-            volume[0].weight += .004f;
-        }
+        yield return EffectGain(0, .004f);
     }
     private void GainLife()
     {
@@ -135,11 +137,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoseHpEffect()
     {
         yield return new WaitForSeconds(.3f);
-        while (volume[1].weight > 0)
-        {
-            yield return null;
-            volume[1].weight -= .01f;
-        }
+        yield return EffectDecay(1, .01f);
     }
     public void IncreaseAntGain(int amount)
     {
@@ -194,17 +192,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NextWaveEffect()
     {
-        while (volume[2].weight < 1)
-        {
-            yield return null;
-            volume[2].weight += .2f;
-        }
-        yield return new WaitForSeconds(.5f);
-        while (volume[2].weight > 0)
-        {
-            yield return null;
-            volume[2].weight -= .2f;
-        }
+        yield return EffectGain(2, .1f);
+        yield return new WaitForSeconds(1);
+        yield return EffectDecay(2, .05f);
     }
 
     private IEnumerator EffectGain(int index, float gainAmount)
@@ -248,4 +238,10 @@ public class GameManager : MonoBehaviour
         LoseHP(2);
     }
 
+}
+
+public class WaveReached
+{
+    int stageNumber;
+    int amountOfTimesReached;
 }
