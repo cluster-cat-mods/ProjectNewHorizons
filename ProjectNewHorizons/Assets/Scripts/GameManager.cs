@@ -1,5 +1,6 @@
 using NaughtyAttributes;
 using NUnit.Framework;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent dieEvent;
     [SerializeField] private UnityEvent regainLifeEvent;
 
-    [SerializeField] private List<WaveReached> reachedWaveList = new();
+    [SerializeField, AllowNesting] private List<StageReached> reachedStageList = new();
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
@@ -48,6 +49,12 @@ public class GameManager : MonoBehaviour
         antGain = 1;
 
         startEvent?.Invoke();
+
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
+        //    reachedStageList.Add(reachedStage);
+        //}
     }
 
     private void SetStartStats()
@@ -187,6 +194,7 @@ public class GameManager : MonoBehaviour
         if (wave % 5 == 0)
         {
             stage++;
+            reachedStageList[stage].amountOfTimesReached++;
         }
     }
 
@@ -240,8 +248,9 @@ public class GameManager : MonoBehaviour
 
 }
 
-public class WaveReached
+[Serializable]
+public class StageReached
 {
-    int stageNumber;
-    int amountOfTimesReached;
+    public int stageNumber;
+    public int amountOfTimesReached;
 }
