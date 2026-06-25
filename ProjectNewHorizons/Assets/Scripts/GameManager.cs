@@ -18,8 +18,6 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
 
-    [SerializeField] private GameObject upgradesCanvas;
-
     [SerializeField] private Volume[] volume;
     
     public GameObject hive;
@@ -69,7 +67,6 @@ public class GameManager : MonoBehaviour
                 //Destroy(hive);
             }
 
-            upgradesCanvas.SetActive(false);
             yield return null;
         }
         Debug.Log("you died");
@@ -77,7 +74,6 @@ public class GameManager : MonoBehaviour
         dieEvent?.Invoke();
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
-        upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }
 
