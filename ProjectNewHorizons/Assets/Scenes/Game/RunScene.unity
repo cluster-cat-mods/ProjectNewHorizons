@@ -17289,7 +17289,6 @@ MonoBehaviour:
   antText: {fileID: 854287889}
   HiveHPText: {fileID: 854287888}
   enemyWaveManager: {fileID: 185583017}
-  upgradesCanvas: {fileID: 0}
   volume:
   - {fileID: 1655162221}
   - {fileID: 683088201}
@@ -34259,7 +34258,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: c426b4d625571d74782b71fb8da0c311, type: 2}
 --- !u!4 &1367026009
 Transform:

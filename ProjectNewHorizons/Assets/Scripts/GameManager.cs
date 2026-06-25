@@ -194,17 +194,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NextWaveEffect()
     {
-        while (volume[2].weight < 1)
-        {
-            yield return null;
-            volume[2].weight += .2f;
-        }
-        yield return new WaitForSeconds(.5f);
-        while (volume[2].weight > 0)
-        {
-            yield return null;
-            volume[2].weight -= .2f;
-        }
+        yield return EffectGain(2, .1f);
+        yield return new WaitForSeconds(1);
+        yield return EffectDecay(2, .05f);
     }
 
     private IEnumerator EffectGain(int index, float gainAmount)
