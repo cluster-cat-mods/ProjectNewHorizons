@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         if (!manager.alive) return;
         if (diedByTower)
         {
-            //gain coins
+            //gain corpse
             manager.GainCoins(runtimeStats.coinBounty);
         }
         //enemy spawning smaller ones
