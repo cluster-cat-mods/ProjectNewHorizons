@@ -143,10 +143,17 @@ public class GameManager : MonoBehaviour
     {
         while (alive)
         {
-            yield return new WaitForSeconds(1);
-            antCount = new(antCount.x, antCount.y + antGain);
-            //Debug.Log($"you have {antCount.x}/{antCount.y} ants");
-            SetAntText();
+            if (enemyWaveManager.timer == 0)
+            {
+                yield return new WaitForSeconds(1);
+                antCount = new(antCount.x, antCount.y + antGain);
+                //Debug.Log($"you have {antCount.x}/{antCount.y} ants");
+                SetAntText();
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
     public void GainCoins(int amount)
