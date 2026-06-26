@@ -5392,6 +5392,23 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f98df44a9ec5d6647b2384ac96044cfa, type: 2}
   - {fileID: 11400000, guid: 72fb022e6621a074fb65b781c311a105, type: 2}
   - {fileID: 11400000, guid: c459c1fd33ae6bd468f131dc0a8612f8, type: 2}
+  - {fileID: 11400000, guid: 5dfb5e51d5cb7d141b8ab5125b3ccd7d, type: 2}
+  - {fileID: 11400000, guid: 76b3ea07be32066408f2fd0fd898a45a, type: 2}
+  - {fileID: 11400000, guid: 1adb85c9f7a543b41a5dd0cca6ba7153, type: 2}
+  - {fileID: 11400000, guid: d4d1d70835babf648ae04fa78d5c7770, type: 2}
+  - {fileID: 11400000, guid: 2990b06b138f7c24a8bfcd921bbc0b3d, type: 2}
+  - {fileID: 11400000, guid: ba550457dc128494bbf8aae57ae739b4, type: 2}
+  - {fileID: 11400000, guid: 43ab4e0de4ec43041bcca3b8d389a3a1, type: 2}
+  - {fileID: 11400000, guid: 19e62f66ef3f93143b930de82b5368a5, type: 2}
+  - {fileID: 11400000, guid: 46435929d6736024e9a3caf83dfa1fae, type: 2}
+  - {fileID: 11400000, guid: 6750566767dfa16449f5b4256fffafd3, type: 2}
+  - {fileID: 11400000, guid: ce318dd6ba47e714b8e11fa522fc6b10, type: 2}
+  - {fileID: 11400000, guid: be798bf4ac5d1db428ea3181d50da7ae, type: 2}
+  - {fileID: 11400000, guid: fa7056d529590194aabd74c12a96c3b8, type: 2}
+  - {fileID: 11400000, guid: e57f647eead7d7c4898c71e9fc4bb118, type: 2}
+  - {fileID: 11400000, guid: 8ff8108d53eba4d40ab01d649ec2b747, type: 2}
+  - {fileID: 11400000, guid: cdb19ee0096784f49adcf1b3ee176a93, type: 2}
+  - {fileID: 11400000, guid: e9154a8ab68d4144d8de7047772da864, type: 2}
   waveDelayText: {fileID: 1073468197}
   waveText: {fileID: 921074319}
   stageText: {fileID: 1703257189}
@@ -17303,7 +17320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b21046f0b634804594230c210ff72d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  startingHiveMaxHP: 10
+  startingHiveMaxHP: 2147483647
   coinText: {fileID: 854287890}
   antText: {fileID: 854287889}
   HiveHPText: {fileID: 854287888}
