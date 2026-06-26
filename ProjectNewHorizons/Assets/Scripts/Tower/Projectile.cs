@@ -34,7 +34,7 @@ public class Projectile : MonoBehaviour
 
         if (_targetTransform == null)
         {
-            FindNewTarget();
+            Destroy(gameObject);
         }
         LookAtTarget();
         MoveToTarget();
@@ -78,44 +78,5 @@ public class Projectile : MonoBehaviour
 
         var targetRotation = Quaternion.AngleAxis(_degreesBetweenVectors, _crossVector.normalized) * transform.rotation;
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime);
-    }
-
-    private void FindNewTarget()
-    {
-        var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (var gameObject in allEnemyGameObjects)
-        {
-            _enemyTransformList.Add(gameObject.transform);
-        }
-
-        var closestEnemyObject = GetClosestEnemy(_enemyTransformList.ToArray());
-
-        if (closestEnemyObject != null)
-        {
-            var closestEnemy = closestEnemyObject.GetComponent<Enemy>();
-            if (closestEnemy == null) return;
-            SetTarget(closestEnemy);
-            _enemyTransformList.Clear();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    Transform GetClosestEnemy(Transform[] enemies)
-    {
-        Transform closestEnemy = null;
-        float minDist = Mathf.Infinity;
-        Vector3 currentPos = transform.position;
-        foreach (Transform t in enemies)
-        {
-            float dist = Vector3.Distance(t.position, currentPos);
-            if (dist < minDist)
-            {
-                closestEnemy = t;
-                minDist = dist;
-            }
-        }
-        return closestEnemy;
     }
 }
