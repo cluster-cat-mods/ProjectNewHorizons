@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e5ed0d5f7c495c245841f8d401f06d67, type: 3}
-  m_Name: BroodCarrier
+  m_Name: GuardRedAnt
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStats
   startStats:
-    canSpawnEnemy: 1
-    bossEnemy: 1
-    hp: 20
+    canSpawnEnemy: 0
+    bossEnemy: 0
+    hp: 8
     damage: 1
-    speed: 1.2
-    coinBounty: 10
-    enemy: {fileID: 2386113513160735169, guid: d400eb431507f864585f4f9dc9e90f99, type: 3}
-    enemySpawnCount: 4
-    maxHp: 20
+    speed: 1
+    coinBounty: 2
+    enemy: {fileID: 2992738951168533689, guid: d21442b5e65bd6446b5ec830abc03be2, type: 3}
+    enemySpawnCount: 1
+    maxHp: 0
