@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    [SerializeField] private Enemy _targetEnemy;
+    private Enemy _targetEnemy;
 
-    [SerializeField] private Transform _targetTransform;
+    private Transform _targetTransform;
 
     private Vector3 _startPosition;
     [HideInInspector] public float _towerRange;
@@ -16,8 +16,6 @@ public class Projectile : MonoBehaviour
     private Vector3 _crossVector;
 
     private float _degreesBetweenVectors;
-
-    private List<Transform> _enemyTransformList = new();
 
     void Start()
     {
