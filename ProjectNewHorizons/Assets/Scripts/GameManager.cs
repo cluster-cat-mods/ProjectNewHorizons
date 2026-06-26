@@ -114,8 +114,8 @@ public class GameManager : MonoBehaviour
         }
 
         dataSaver.SaveGameData(corpse, saveReachedStages.ToArray());
-        Debug.Log($"corpses == {corpse}");
-        Debug.Log($"saved stages == {saveReachedStages}");
+        //Debug.Log($"corpses == {corpse}");
+        //Debug.Log($"saved stages == {saveReachedStages}");
         //Debug.Log("sgt")
     }
 
