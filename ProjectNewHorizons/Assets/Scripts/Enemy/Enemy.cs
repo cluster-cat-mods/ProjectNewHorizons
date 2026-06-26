@@ -1,12 +1,12 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private EnemyStats stats;
-    [SerializeField] private GameManager manager;
 
     private bool isMoving = false;
 
@@ -25,26 +25,20 @@ public class Enemy : MonoBehaviour
     private EnemyStartStats runtimeStats;
     private bool diedByTower = false;
 
+    private GameManager _manager;
+    private GameObject[] _allNodes;
+
     private void Start()
     {
-        //Debug.Log($"{name} HP on spawn: {runtimeStats.hp}");
-
-        if (manager == null)
-        {
-            manager = FindAnyObjectByType<GameManager>();
-        }
-
-        //Debug.Log($"enemy {gameObject.name} just spawned");
-
         StartCoroutine(HitHiveCheck());
     }
     private void OnDestroy()
     {
-        if (!manager.alive) return;
+        if (!_manager.alive) return;
         if (diedByTower)
         {
             //gain corpse
-            manager.GainCoins(runtimeStats.coinBounty);
+            _manager.GainCoins(runtimeStats.coinBounty);
         }
         //enemy spawning smaller ones
         if (!runtimeStats.canSpawnEnemy) return;
@@ -57,7 +51,7 @@ public class Enemy : MonoBehaviour
             if (enemy != null)
             {
                 //Debug.Log($"Setting up spawned enemy {enemy.name}");
-                enemy.SetStuff(GetClosestNode());
+                enemy.SetStuff(GetClosestNode(), _manager, _allNodes);
             }
         }
 
@@ -76,7 +70,7 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log($"{name} started hive check");
 
-        while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < 1f))
+        while (!(Vector3.SqrMagnitude(transform.position - _manager.hive.transform.position) < 1f))
         {
             yield return null;
             //Debug.Log("not around the hive yet");
@@ -84,16 +78,14 @@ public class Enemy : MonoBehaviour
             //Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
         }
         //Debug.Log("close to the hive");
-        manager.LoseHP(runtimeStats.damage);
+        _manager.LoseHP(runtimeStats.damage);
         Destroy(gameObject);
     }
     
-    public void SetStuff(Transform spawnPointP)
+    public void SetStuff(Transform spawnPointP, GameManager manager, GameObject[] allNodes)
     {
-        if (manager == null)
-        {
-            manager = FindAnyObjectByType<GameManager>();
-        }
+        _manager = manager;
+        _allNodes = allNodes;
 
         runtimeStats = stats.BaseStats;
 
@@ -112,10 +104,10 @@ public class Enemy : MonoBehaviour
 
     public Transform GetClosestNode()
     {
-        var allNodes = GameObject.FindGameObjectsWithTag("Node");
+
         var dist = Mathf.Infinity;
-        var closestNode = allNodes[0];
-        foreach (var node in allNodes)
+        var closestNode = _allNodes[0];
+        foreach (var node in _allNodes)
         {
             var newDistance = Vector3.Distance(transform.position, node.transform.position);
             if (newDistance < dist)
