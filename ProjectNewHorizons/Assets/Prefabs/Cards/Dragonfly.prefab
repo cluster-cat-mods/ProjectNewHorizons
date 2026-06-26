@@ -10,8 +10,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2286898553091643418, guid: 3c8ab1023383a58498458bb8006818f9, type: 3}
       propertyPath: m_Name
-      value: EnemyStand
+      value: Dragonfly
       objectReference: {fileID: 0}
+    - target: {fileID: 2366962412176146242, guid: 3c8ab1023383a58498458bb8006818f9, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 256f7cb926aedbd449d1d2f39568517e, type: 2}
     - target: {fileID: 4035350061513458210, guid: 3c8ab1023383a58498458bb8006818f9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
