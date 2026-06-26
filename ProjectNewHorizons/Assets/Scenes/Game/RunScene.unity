@@ -17320,7 +17320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b21046f0b634804594230c210ff72d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  startingHiveMaxHP: 2147483647
+  startingHiveMaxHP: 10
   coinText: {fileID: 854287890}
   antText: {fileID: 854287889}
   HiveHPText: {fileID: 854287888}
@@ -17460,15 +17460,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-  reachedStageList:
-  - stageNumber: 0
-    amountOfTimesReached: 0
-  - stageNumber: 1
-    amountOfTimesReached: 0
-  - stageNumber: 2
-    amountOfTimesReached: 0
-  - stageNumber: 3
-    amountOfTimesReached: 0
+  reachedStageList: []
 --- !u!4 &553500512
 Transform:
   m_ObjectHideFlags: 0

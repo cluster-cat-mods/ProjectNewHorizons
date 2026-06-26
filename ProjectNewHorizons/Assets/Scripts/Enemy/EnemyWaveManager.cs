@@ -23,7 +23,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private bool _skipWaveDelay = false;
 
-    private float _timer;
+    public float timer = 0;
 
     private void Start()
     {
@@ -80,18 +80,18 @@ public class EnemyWaveManager : MonoBehaviour
             yield return StartCoroutine(StartEnemySpawners());
             _skipWaveDelay = false;
 
-            _timer = waveDelay;
+            timer = waveDelay;
 
 
-            while (_timer > 0 && !_skipWaveDelay)
+            while (timer > 0 && !_skipWaveDelay)
             {
                 skipWaveDelayButton.SetActive(true);
-                _timer -= Time.deltaTime;
+                timer -= Time.deltaTime;
                 yield return null;
             }
 
             skipWaveDelayButton.SetActive(false);
-            _timer = 0;
+            timer = 0;
             manager.IncreaseWave();
         }
     }
@@ -116,11 +116,11 @@ public class EnemyWaveManager : MonoBehaviour
         }
         else
         {
-            if (_timer < 0)
+            if (timer < 0)
             {
-                _timer = 0;
+                timer = 0;
             }
-            var time = Mathf.Ceil(_timer);
+            var time = Mathf.Ceil(timer);
             waveDelayText.text = $"{time} second(s) till next wave";
         }
 

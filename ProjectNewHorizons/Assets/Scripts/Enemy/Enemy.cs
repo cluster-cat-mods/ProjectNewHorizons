@@ -40,7 +40,6 @@ public class Enemy : MonoBehaviour
     }
     private void OnDestroy()
     {
-        manager = FindAnyObjectByType<GameManager>();
         if (!manager.alive) return;
         if (diedByTower)
         {
