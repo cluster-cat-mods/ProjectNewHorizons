@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameManager manager;
 
     [SerializeField] private List<Transform> enemySpawnPositions;
-    [SerializeField] private Vector2 offsetOnSpawnPositionXZ;
     [SerializeField] private GameObject debugEnemy;
 
     [SerializeField] private List<Transform> openPathsList = new();
@@ -80,17 +79,13 @@ public class EnemySpawner : MonoBehaviour
         var enemy = enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemy;
 
         var randomSpawnpointIndex = Random.Range(0, openPathsList.Count);
-        var spawnPosition = openPathsList[randomSpawnpointIndex].position/* + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y))*/;
+        var spawnPosition = openPathsList[randomSpawnpointIndex].position;
         
         Enemy enemyScript = Instantiate(enemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
-        //Debug.Log(enemyScript);
-        //Debug.Log(enemyScript.gameObject.transform);
+
         enemyScript.SetStuff(openPathsList[randomSpawnpointIndex], manager, _allNodes);
         enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
         _totalEnemyCount--;
-        //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");
-        //Debug.Log($"enemy group {randomEnemyGroupIndex} has {enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount} enemies to spawn left");
-        //Debug.Log($"total enemy Count = {_totalEnemyCount}");
     }
     private int PickEnemyGroup(EnemyWave[] enemyWaves, int wave)
     {

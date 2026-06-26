@@ -23,7 +23,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private bool _skipWaveDelay = false;
 
-    public float timer = 0;
+    [HideInInspector] public float timer = 0;
 
     private void Start()
     {
