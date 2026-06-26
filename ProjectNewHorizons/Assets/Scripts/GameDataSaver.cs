@@ -6,9 +6,9 @@ public class GameDataSaver : MonoBehaviour
 {
     private string path = Application.persistentDataPath + "/gameData.json";
     
-    public void SaveGameData(int  corpseCount, int waveNum, int stageNum)
+    public void SaveGameData(int  corpseCount, StageReached[] maxStageReached)
     {
-        GameData gameData = new GameData(corpseCount, waveNum, stageNum);
+        GameData gameData = new GameData(corpseCount, maxStageReached);
         File.WriteAllText(path, JsonUtility.ToJson(JsonUtility.ToJson(gameData)));
     }
 
@@ -22,13 +22,11 @@ public class GameDataSaver : MonoBehaviour
 public class GameData
 {
     public int CorpseCount {get; private set;}
-    public int WaveNum {get; private set;}
-    public int StageNum {get; private set;}
+    public StageReached[] StageReached {get; private set;}
     
-    public GameData(int corpseCount, int waveNum, int stageNum)
+    public GameData(int corpseCount, StageReached[] maxStageReached)
     {
         this.CorpseCount = corpseCount;
-        this.WaveNum = waveNum;
-        this.StageNum = stageNum;
+        this.StageReached = maxStageReached;
     }
 }
