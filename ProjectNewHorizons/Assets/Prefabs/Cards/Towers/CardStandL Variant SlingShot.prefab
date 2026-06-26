@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6461094911691183136, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6461094911691183136, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
       propertyPath: m_LocalPosition.x
