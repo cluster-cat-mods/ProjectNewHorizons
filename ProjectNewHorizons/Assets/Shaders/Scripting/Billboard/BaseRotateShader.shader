@@ -77,7 +77,7 @@ Shader "Unlit/StandardBillboard"
             fixed4 frag (v2f i) : SV_Target
             {
                 //fixed4 diffCol = tex2D(_mainTex, i.uv);
-            	fixed4 diffCol = _Color;
+            	fixed4 diffCol = tex2D(_mainTex, i.uv) * _Color;
 				_ambCol *= diffCol;
 				float diffInt = max(dot(i.normal, _WorldSpaceLightPos0), 0);
 				float4 reflection = reflect(_WorldSpaceLightPos0, i.normal);
