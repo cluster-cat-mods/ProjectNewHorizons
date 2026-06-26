@@ -27,14 +27,14 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log($"{name} HP on spawn: {runtimeStats.hp}");
+        //Debug.Log($"{name} HP on spawn: {runtimeStats.hp}");
 
         if (manager == null)
         {
             manager = FindAnyObjectByType<GameManager>();
         }
 
-        Debug.Log($"enemy {gameObject.name} just spawned");
+        //Debug.Log($"enemy {gameObject.name} just spawned");
 
         StartCoroutine(HitHiveCheck());
     }
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
             if (enemy != null)
             {
-                Debug.Log($"Setting up spawned enemy {enemy.name}");
+                //Debug.Log($"Setting up spawned enemy {enemy.name}");
                 enemy.SetStuff(GetClosestNode());
             }
         }
@@ -75,16 +75,16 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator HitHiveCheck()
     {
-        Debug.Log($"{name} started hive check");
+        //Debug.Log($"{name} started hive check");
 
         while (!(Vector3.Distance(transform.position, manager.hive.transform.position) < 1f))
         {
             yield return null;
             //Debug.Log("not around the hive yet");
-            Debug.Log($"{name}: {Vector3.Distance(transform.position, manager.hive.transform.position)} distance to hive");
+            //Debug.Log($"{name}: {Vector3.Distance(transform.position, manager.hive.transform.position)} distance to hive");
             //Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
         }
-        Debug.Log("close to the hive");
+        //Debug.Log("close to the hive");
         manager.LoseHP(runtimeStats.damage);
         Destroy(gameObject);
     }
@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour
         _graph = graphNode.Graph;
         _endNode = _pathMap.EndNode;
 
-        Debug.Log($"{name} received spawn node {_spawnNode.name}");
+        //Debug.Log($"{name} received spawn node {_spawnNode.name}");
 
         GoToDestination();
     }
