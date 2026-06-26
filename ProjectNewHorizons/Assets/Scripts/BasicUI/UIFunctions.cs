@@ -22,4 +22,9 @@ public class UIFunctions : MonoBehaviour
     {
         Time.timeScale = 1f;
     }
+
+    public void OpenFeedbackForm(string url)
+    {
+        Application.OpenURL(url);
+    }
 }
