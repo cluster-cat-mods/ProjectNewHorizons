@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public int wave { get; private set; }
     public int stage { get; private set; }
 
-    private GameDataSaver dataSaver;
+    private GameDataSaver dataSaver = new();
 
     private void Start()
     {
@@ -57,14 +57,18 @@ public class GameManager : MonoBehaviour
         //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
         //    reachedStageList.Add(reachedStage);
         //}
-        reachedStageList.Clear();
 
         var data = dataSaver.LoadGameData();
-        corpse = data.CorpseCount;
-
-        foreach (var reachedStage in data.StageReached)
+        if (data != null)
         {
-            reachedStageList.Add(reachedStage);
+            reachedStageList.Clear();
+
+            corpse = data.CorpseCount;
+
+            foreach (var reachedStage in data.StageReached)
+            {
+                reachedStageList.Add(reachedStage);
+            }
         }
     }
 
@@ -214,7 +218,18 @@ public class GameManager : MonoBehaviour
         if (wave % 5 == 0)
         {
             stage++;
-            reachedStageList[stage].amountOfTimesReached++;
+
+            StageReached stageReached = new();
+            stageReached.stageNumber = stage;
+            stageReached.amountOfTimesReached = 1;
+            if (reachedStageList.Contains(reachedStageList[stage]))
+            {
+                reachedStageList[stage].amountOfTimesReached++;
+            }
+            else
+            {
+                reachedStageList.Add(stageReached);
+            }
         }
     }
 
