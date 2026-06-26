@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShopWingAnimation
+  m_Name: ShopWingAnimation2
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -22,17 +22,17 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: ba0f87e9786684643af30447e83df4da, type: 3}
-    - time: 0.05
+    - time: 0.06666667
       value: {fileID: 21300000, guid: 4b4048838caf49f4a99a50e6ea3ff9f6, type: 3}
     - time: 0.11666667
       value: {fileID: 21300000, guid: 5b54fb89ed8a46840a4198a183ba773f, type: 3}
-    - time: 0.16666667
+    - time: 0.18333334
       value: {fileID: 21300000, guid: ce4cdd26fd7b66a468845352ab975dcb, type: 3}
-    - time: 0.25
+    - time: 0.23333333
       value: {fileID: 21300000, guid: a7628efe6f0db11438c96616373a9b20, type: 3}
     - time: 0.3
       value: {fileID: 21300000, guid: 6274bfcf24b2a774da5a4f98e889f22f, type: 3}
-    - time: 0.36666667
+    - time: 0.35
       value: {fileID: 21300000, guid: 2f3523421f9598b4583240768f6d5fff, type: 3}
     - time: 0.41666666
       value: {fileID: 21300000, guid: 3c7ecaf06b2619b4aa6bcb332d932183, type: 3}
