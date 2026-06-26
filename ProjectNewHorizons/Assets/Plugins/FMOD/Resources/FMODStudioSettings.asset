@@ -330,8 +330,13 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
-  Banks: []
+  MasterBanks:
+  - Master
+  Banks:
+  - GameObjects
+  - Music
+  - SFX
+  - UISounds
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -347,18 +352,18 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131860
   Platforms:
-  - {fileID: 6563038071422603246}
-  - {fileID: 4417926052732830303}
-  - {fileID: 2741343483344003007}
-  - {fileID: -179059963832749772}
-  - {fileID: 8220345671479380545}
-  - {fileID: -5072765560645290049}
-  - {fileID: 7108101382769195066}
-  - {fileID: -4727967974956789435}
-  - {fileID: 6341075982581525584}
-  - {fileID: 3100115239783669660}
   - {fileID: -7429511251617038547}
+  - {fileID: -5072765560645290049}
+  - {fileID: -4727967974956789435}
+  - {fileID: -179059963832749772}
+  - {fileID: 2741343483344003007}
+  - {fileID: 3100115239783669660}
+  - {fileID: 4417926052732830303}
   - {fileID: 5272746886494619888}
+  - {fileID: 6341075982581525584}
+  - {fileID: 6563038071422603246}
+  - {fileID: 7108101382769195066}
+  - {fileID: 8220345671479380545}
   MigratedPlatforms: 0a00000000000000150000000b00000009000000050000001200000008000000060000000c0000000200000001000000
 --- !u!114 &2741343483344003007
 MonoBehaviour:
@@ -576,16 +581,16 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
-  - 2fea114e74ecf3c4f920e1d5cc1c4c40
-  - c88d16e5272a4e241b0ef0ac2e53b73d
-  - 2c5177b11d81d824dbb064f9ac8527da
-  - e7a046c753c3c3d4aacc91f6597f310d
-  - fd7c55dab0fce234b8c25f6ffca523c1
-  - 52eb9df5db46521439908db3a29a1bbb
-  - 0f8eb3f400726694eb47beb1a9f94ce8
-  - 46fbfdf3fc43db0458918377fd40293e
   - de700ef3f37a49b58a57ae3addf01ad9
+  - e7a046c753c3c3d4aacc91f6597f310d
+  - 52eb9df5db46521439908db3a29a1bbb
+  - c88d16e5272a4e241b0ef0ac2e53b73d
+  - 2fea114e74ecf3c4f920e1d5cc1c4c40
+  - 46fbfdf3fc43db0458918377fd40293e
   - b7716510a1f36934c87976f3a81dbf3d
+  - 0f8eb3f400726694eb47beb1a9f94ce8
+  - fd7c55dab0fce234b8c25f6ffca523c1
+  - 2c5177b11d81d824dbb064f9ac8527da
   codecChannels:
     Value: []
     HasValue: 0
