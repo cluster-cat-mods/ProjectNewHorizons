@@ -22,7 +22,7 @@ public class GameDataSaver
 #else
         path = Application.persistentDataPath + "/gameData.json";
 #endif
-        File.WriteAllText(path, JsonUtility.ToJson(JsonUtility.ToJson(gameData)));
+        File.WriteAllText(path, json);
     }
 
     public GameData LoadGameData()
@@ -48,12 +48,12 @@ public class GameDataSaver
 [System.Serializable]
 public class GameData
 {
-    public int CorpseCount {get; private set;}
-    public StageReached[] StageReached {get; private set;}
+    public int CorpseCount;
+    public StageReached[] StageReached;
     
     public GameData(int corpseCount, StageReached[] maxStageReached)
     {
-        this.CorpseCount = corpseCount;
-        this.StageReached = maxStageReached;
+        CorpseCount = corpseCount;
+        StageReached = maxStageReached;
     }
 }

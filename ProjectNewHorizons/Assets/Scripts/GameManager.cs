@@ -58,6 +58,10 @@ public class GameManager : MonoBehaviour
         //    reachedStageList.Add(reachedStage);
         //}
 
+    }
+
+    private void SetStartStats()
+    {
         var data = dataSaver.LoadGameData();
         if (data != null)
         {
@@ -70,10 +74,7 @@ public class GameManager : MonoBehaviour
                 reachedStageList.Add(reachedStage);
             }
         }
-    }
 
-    private void SetStartStats()
-    {
         hiveMaxHP = startingHiveMaxHP;
         hiveHP = hiveMaxHP;
         antCount = 0;
@@ -103,6 +104,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
         DestroyEnemies();
+        enemyWaveManager.StopAllCoroutines();
 
         List<StageReached> saveReachedStages = new();
 
@@ -112,6 +114,9 @@ public class GameManager : MonoBehaviour
         }
 
         dataSaver.SaveGameData(corpse, saveReachedStages.ToArray());
+        Debug.Log($"corpses == {corpse}");
+        Debug.Log($"saved stages == {saveReachedStages}");
+        //Debug.Log("sgt")
     }
 
     private IEnumerator DieEffect()
@@ -219,16 +224,19 @@ public class GameManager : MonoBehaviour
         {
             stage++;
 
-            StageReached stageReached = new();
-            stageReached.stageNumber = stage;
-            stageReached.amountOfTimesReached = 1;
-            if (reachedStageList.Contains(reachedStageList[stage]))
+            StageReached existingStageReached = reachedStageList.Find(x => x.stageNumber == stage);
+
+            if (existingStageReached != null)
             {
-                reachedStageList[stage].amountOfTimesReached++;
+                existingStageReached.amountOfTimesReached++;
             }
             else
             {
-                reachedStageList.Add(stageReached);
+                reachedStageList.Add(new StageReached
+                {
+                    stageNumber = stage,
+                    amountOfTimesReached = 1
+                });
             }
         }
     }
