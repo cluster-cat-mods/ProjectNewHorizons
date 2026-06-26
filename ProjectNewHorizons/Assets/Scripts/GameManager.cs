@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour
     public int wave { get; private set; }
     public int stage { get; private set; }
 
+    private GameDataSaver dataSaver;
+
     private void Start()
     {
         if (enemyWaveManager == null)
@@ -55,6 +57,15 @@ public class GameManager : MonoBehaviour
         //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
         //    reachedStageList.Add(reachedStage);
         //}
+        reachedStageList.Clear();
+
+        var data = dataSaver.LoadGameData();
+        corpse = data.CorpseCount;
+
+        foreach (var reachedStage in data.StageReached)
+        {
+            reachedStageList.Add(reachedStage);
+        }
     }
 
     private void SetStartStats()
@@ -88,6 +99,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
         DestroyEnemies();
+
+        List<StageReached> saveReachedStages = new();
+
+        foreach (var reachedStage in reachedStageList)
+        {
+            saveReachedStages.Add(reachedStage);
+        }
+
+        dataSaver.SaveGameData(corpse, saveReachedStages.ToArray());
     }
 
     private IEnumerator DieEffect()

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Billboard_GuardRedAnt
+  m_Name: Billboard_Major
   m_Shader: {fileID: 4800000, guid: 7cee8e5dccd9ffd4e9c31a1bdd293349, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -23,26 +23,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _BaseMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d247dac8eba0f0544968344d2a4925b0, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NoiseTex:
-        m_Texture: {fileID: 2800000, guid: 409eff063a4d31140896c7c874e7d757, type: 3}
+        m_Texture: {fileID: 2800000, guid: bb3c38c24eb21504a97922a6866a8563, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _NoiseScale: 1.76
-    - _Scale: 1.5
+    - _Scale: 3
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _HoloCol: {r: 0.32111076, g: 0.7854414, b: 0.8301887, a: 1}
-    - _HologramCol: {r: 0.38625845, g: 0.63773, b: 0.6603774, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
