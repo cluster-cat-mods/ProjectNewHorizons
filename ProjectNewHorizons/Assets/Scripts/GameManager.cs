@@ -1,6 +1,8 @@
 using NaughtyAttributes;
 using NUnit.Framework;
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -18,21 +20,22 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
 
-    [SerializeField] private GameObject upgradesCanvas;
-
     [SerializeField] private Volume[] volume;
     
     public GameObject hive;
 
     public bool alive = true;
 
+    [SerializeField] private UnityEvent startEvent;
     [SerializeField] private UnityEvent dieEvent;
     [SerializeField] private UnityEvent regainLifeEvent;
+
+    [SerializeField, AllowNesting] private List<StageReached> reachedStageList = new();
     public int hiveMaxHP { get; private set; }
     public int hiveHP { get; private set; }
     public int2 antCount { get; private set; }
     public int antGain { get; private set; }
-    public int coins { get; private set; }
+    public int corpse { get; private set; }
     public int wave { get; private set; }
     public int stage { get; private set; }
 
@@ -44,6 +47,14 @@ public class GameManager : MonoBehaviour
         }
 
         antGain = 1;
+
+        startEvent?.Invoke();
+
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
+        //    reachedStageList.Add(reachedStage);
+        //}
     }
 
     private void SetStartStats()
@@ -69,7 +80,6 @@ public class GameManager : MonoBehaviour
                 //Destroy(hive);
             }
 
-            upgradesCanvas.SetActive(false);
             yield return null;
         }
         Debug.Log("you died");
@@ -77,17 +87,12 @@ public class GameManager : MonoBehaviour
         dieEvent?.Invoke();
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
-        upgradesCanvas.SetActive(true);
         DestroyEnemies();
     }
 
     private IEnumerator DieEffect()
     {
-        while (volume[0].weight < 1)
-        {
-            yield return null;
-            volume[0].weight += .004f;
-        }
+        yield return EffectGain(0, .004f);
     }
     private void GainLife()
     {
@@ -117,14 +122,14 @@ public class GameManager : MonoBehaviour
     }
     public void GainCoins(int amount)
     {
-        coins = coins + amount;
-        //Debug.Log($"you have {coins} coins");
+        corpse = corpse + amount;
+        //Debug.Log($"you have {corpse} corpse");
         SetCoinText();
     }
     public void LoseCoins(int amount)
     {
-        coins = coins - amount;
-        //Debug.Log($"you have {coins} coins");
+        corpse = corpse - amount;
+        //Debug.Log($"you have {corpse} corpse");
         SetCoinText();
     }
     public void LoseHP(int amount)
@@ -139,11 +144,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoseHpEffect()
     {
         yield return new WaitForSeconds(.3f);
-        while (volume[1].weight > 0)
-        {
-            yield return null;
-            volume[1].weight -= .01f;
-        }
+        yield return EffectDecay(1, .01f);
     }
     public void IncreaseAntGain(int amount)
     {
@@ -162,16 +163,16 @@ public class GameManager : MonoBehaviour
 
     public void SetCoinText()
     {
-        coinText.text = $"{coins} coin(s)";
+        coinText.text = $"{corpse}";
     }
 
     public void SetAntText()
     {
-        antText.text = $"you have {antCount.x}/{antCount.y} ant(s)";
+        antText.text = $"{antCount.x}/{antCount.y}";
     }
     public void SetHiveHPText()
     {
-        HiveHPText.text = $"{hiveHP}/{hiveMaxHP} HP";
+        HiveHPText.text = $"{hiveHP}/{hiveMaxHP}";
     }
 
     public void SetWantedStage(int amount)
@@ -193,22 +194,15 @@ public class GameManager : MonoBehaviour
         if (wave % 5 == 0)
         {
             stage++;
+            reachedStageList[stage].amountOfTimesReached++;
         }
     }
 
     private IEnumerator NextWaveEffect()
     {
-        while (volume[2].weight < 1)
-        {
-            yield return null;
-            volume[2].weight += .2f;
-        }
-        yield return new WaitForSeconds(.5f);
-        while (volume[2].weight > 0)
-        {
-            yield return null;
-            volume[2].weight -= .2f;
-        }
+        yield return EffectGain(2, .1f);
+        yield return new WaitForSeconds(1);
+        yield return EffectDecay(2, .05f);
     }
 
     private IEnumerator EffectGain(int index, float gainAmount)
@@ -252,4 +246,11 @@ public class GameManager : MonoBehaviour
         LoseHP(2);
     }
 
+}
+
+[Serializable]
+public class StageReached
+{
+    public int stageNumber;
+    public int amountOfTimesReached;
 }

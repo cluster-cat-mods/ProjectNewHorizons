@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using UnityEngine;
 
@@ -13,9 +14,16 @@ public class EnemyWaveManager : MonoBehaviour
     private List<EnemyWave> savedEnemyWaves = new();
 
     [SerializeField] private TMP_Text waveDelayText;
+    [SerializeField] private TMP_Text waveText;
+    [SerializeField] private TMP_Text stageText;
 
     [SerializeField] private float waveDelay;
+
+    [SerializeField] private GameObject skipWaveDelayButton;
+
     private bool _skipWaveDelay = false;
+
+    private float _timer;
 
     private void Start()
     {
@@ -38,7 +46,14 @@ public class EnemyWaveManager : MonoBehaviour
             savedEnemyWaves.Add(enemyWaves[i]);
         }
 
-        UpdateText(0f);
+        UpdateText();
+
+        skipWaveDelayButton.SetActive(false);
+    }
+
+    private void Update()
+    {
+        UpdateText();
     }
 
     public void setEnemyWaves()
@@ -65,17 +80,18 @@ public class EnemyWaveManager : MonoBehaviour
             yield return StartCoroutine(StartEnemySpawners());
             _skipWaveDelay = false;
 
-            float timer = waveDelay;
-            UpdateText(timer);
+            _timer = waveDelay;
 
-            while (timer > 0 && !_skipWaveDelay)
+
+            while (_timer > 0 && !_skipWaveDelay)
             {
-                timer -= Time.deltaTime;
+                skipWaveDelayButton.SetActive(true);
+                _timer -= Time.deltaTime;
                 yield return null;
-                UpdateText(Mathf.Ceil(timer));
             }
 
-            UpdateText(0);
+            skipWaveDelayButton.SetActive(false);
+            _timer = 0;
             manager.IncreaseWave();
         }
     }
@@ -92,14 +108,38 @@ public class EnemyWaveManager : MonoBehaviour
         yield return StartCoroutine(enemySpawner.StartWave(enemyWaves, manager.wave));
     }
 
-    private void UpdateText(float time)
+    private void UpdateText()
     {
         if (waveDelayText == null)
         {
             Debug.LogError("waveDelayText is null!");
-            return;
+        }
+        else
+        {
+            if (_timer < 0)
+            {
+                _timer = 0;
+            }
+            var time = Mathf.Ceil(_timer);
+            waveDelayText.text = $"{time} second(s) till next wave";
         }
 
-        waveDelayText.text = $"{time} second till the next wave starts";
+        if (waveText == null) 
+        {
+            Debug.LogError("waveDelayText is null!");
+        }
+        else
+        {
+            waveText.text = $"Wave : {manager.wave + 1}";
+        }
+
+        if (stageText == null)
+        {
+            Debug.LogError("waveDelayText is null!");
+        }
+        else
+        {
+            stageText.text = $"Stage : {manager.stage + 1}";
+        }
     }
 }

@@ -7,4 +7,5 @@ public class EnemyWave : ScriptableObject
 {
     public EnemyGroup[] enemyGroups;
     public float waveDuration;
+    public int[] openPaths;
 }

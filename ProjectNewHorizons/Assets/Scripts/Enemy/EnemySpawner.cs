@@ -8,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<Transform> enemySpawnPositions;
     [SerializeField] private Vector2 offsetOnSpawnPositionXZ;
     [SerializeField] private GameObject debugEnemy;
+
+    [SerializeField] private List<Transform> openPathsList = new();
+
     private int _totalEnemyCount;
     void Start()
     {
@@ -23,7 +26,12 @@ public class EnemySpawner : MonoBehaviour
         float spawnDelay = enemyWaves[wave].waveDuration / _totalEnemyCount;
         Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {_totalEnemyCount} =  spawndelay: {spawnDelay}");
 
+        foreach (int i in enemyWaves[wave].openPaths)
+        {
+            openPathsList.Add(enemySpawnPositions[i]);
+        }
         yield return StartCoroutine(SpawnCoroutine(spawnDelay, enemyWaves, wave));
+        openPathsList.Clear();
     }
 
     [Button]
@@ -59,12 +67,14 @@ public class EnemySpawner : MonoBehaviour
     {
         var randomEnemyGroupIndex = PickEnemyGroup(enemyWaves, wave);
         var enemy = enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemy;
-        var randomSpawnpointIndex = Random.Range(0, enemySpawnPositions.Count);
-        var spawnPosition = enemySpawnPositions[randomSpawnpointIndex].position/* + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y))*/;
+
+        var randomSpawnpointIndex = Random.Range(0, openPathsList.Count);
+        var spawnPosition = openPathsList[randomSpawnpointIndex].position/* + new Vector3(Random.Range(-offsetOnSpawnPositionXZ.x, offsetOnSpawnPositionXZ.x), 0, Random.Range(-offsetOnSpawnPositionXZ.y, offsetOnSpawnPositionXZ.y))*/;
+        
         Enemy enemyScript = Instantiate(enemy, spawnPosition, Quaternion.identity, transform).GetComponent<Enemy>();
         //Debug.Log(enemyScript);
         //Debug.Log(enemyScript.gameObject.transform);
-        enemyScript.SetStuff(enemySpawnPositions[randomSpawnpointIndex]);
+        enemyScript.SetStuff(openPathsList[randomSpawnpointIndex]);
         enemyWaves[wave].enemyGroups[randomEnemyGroupIndex].enemyCount--;
         _totalEnemyCount--;
         //Debug.Log($"random spawn index = {randomSpawnpointIndex} that is at {enemySpawnPositions[randomSpawnpointIndex].position}");

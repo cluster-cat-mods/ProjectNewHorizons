@@ -8,9 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1842490871755230825, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_Color.a
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842490871755230825, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_Texture
+      value: 
+      objectReference: {fileID: 2800000, guid: a5c559edf40e6e94897946a860d05dda, type: 3}
     - target: {fileID: 2476142621963716639, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
       propertyPath: m_Name
-      value: CardStandL
+      value: CardStandL Variant SlingShot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461094911691183136, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461094911691183136, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7396491024801009744, guid: 4564e0d9932c4a746962c089911b16c4, type: 3}
       propertyPath: m_LocalPosition.x
