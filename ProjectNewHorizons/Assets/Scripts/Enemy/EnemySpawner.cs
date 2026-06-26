@@ -24,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
             _totalEnemyCount += enemyWaves[wave].enemyGroups[i].enemyCount;
         }
         float spawnDelay = enemyWaves[wave].waveDuration / _totalEnemyCount;
-        Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {_totalEnemyCount} =  spawndelay: {spawnDelay}");
+        //Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {_totalEnemyCount} =  spawndelay: {spawnDelay}");
 
         foreach (int i in enemyWaves[wave].openPaths)
         {
