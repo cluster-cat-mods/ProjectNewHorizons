@@ -7487,9 +7487,10 @@ MonoBehaviour:
   manager: {fileID: 0}
   towerObject:
   - {fileID: 6211062677085882509, guid: f832c5715ffd5d8438f6ee1d78184068, type: 3}
-  towerStats:
+  TowerStats:
   - {fileID: 11400000, guid: fca74fbbaf05c4245903f1d847399205, type: 2}
   towerSelect: {fileID: 39511654}
+  unlockedTowers: []
 --- !u!4 &240981294
 Transform:
   m_ObjectHideFlags: 0
@@ -17346,15 +17347,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   startingHiveMaxHP: 10
-  coinText: {fileID: 854287890}
+  corpseText: {fileID: 854287890}
   antText: {fileID: 854287889}
-  HiveHPText: {fileID: 854287888}
+  nestHPText: {fileID: 854287888}
   enemyWaveManager: {fileID: 185583017}
   volume:
   - {fileID: 1655162221}
   - {fileID: 683088201}
   - {fileID: 1367026008}
-  hive: {fileID: 3452999335830819075}
+  nest: {fileID: 3452999335830819075}
   alive: 1
   startEvent:
     m_PersistentCalls:
@@ -21452,7 +21453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   touchController: {fileID: 0}
   movementScalar: {x: 16, y: 8}
-  _borderClamp: {x: 2000, y: 1080}
+  borderClamp: {x: 2000, y: 1080}
 --- !u!114 &824365212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22069,6 +22070,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 185583017}
+    - target: {fileID: 4531960191215878848, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
+      propertyPath: m_Name
+      value: CorpseText
+      objectReference: {fileID: 0}
     - target: {fileID: 5498315093088281367, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
