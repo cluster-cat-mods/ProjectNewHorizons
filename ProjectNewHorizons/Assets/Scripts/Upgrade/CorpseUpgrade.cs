@@ -29,8 +29,6 @@ public class CorpseUpgrade : MonoBehaviour
 
         upgradeData = upgradeDataSaver.GetUpgrades();
 
-        upgrade.SetUIElements();
-
         switch (upgradeType)
         {
             case UpgradeType.AntGain:
@@ -57,6 +55,8 @@ public class CorpseUpgrade : MonoBehaviour
 
     public void AntGainUpgrade()
     {
+        upgrade.SetUIElements();
+
         if (_gameData.CorpseCount >= upgrade.cost)
         {
             upgradeDataSaver.ChangeUpgrade(0, 1);
@@ -69,6 +69,8 @@ public class CorpseUpgrade : MonoBehaviour
 
     public void TowerDMGUpgrade()
     {
+        upgrade.SetUIElements();
+
         if (_gameData.CorpseCount >= upgrade.cost)
         {
             //tower dmg on 2 4 6 8 10
@@ -85,6 +87,8 @@ public class CorpseUpgrade : MonoBehaviour
 
     public void TowerUnlock()
     {
+        upgrade.SetUIElements();
+
         if (_gameData.CorpseCount >= upgrade.cost)
         {
             //tower unlock on 1 3 5 7 9
