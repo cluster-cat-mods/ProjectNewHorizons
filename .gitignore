@@ -106,3 +106,4 @@ InitTestScene*.unity*
 /ProjectNewHorizons/[Aa]ssets/[Ss]ceneDependencyCache*
 ProjectNewHorizons/Assets/_Recovery
 ProjectNewHorizons/Assets/Plugins/FMOD/Cache
+ProjectNewHorizons/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
