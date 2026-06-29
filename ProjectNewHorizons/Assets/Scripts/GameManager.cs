@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
             {
                 reachedStageList.Add(reachedStage);
             }
+
+            SetWantedStage(data.WantedStartStage);
         }
 
         hiveMaxHP = startingHiveMaxHP;
@@ -113,7 +115,7 @@ public class GameManager : MonoBehaviour
             saveReachedStages.Add(reachedStage);
         }
 
-        dataSaver.SaveGameData(corpse, saveReachedStages.ToArray());
+        dataSaver.SaveGameData(corpse, saveReachedStages.ToArray(), 0);
         //Debug.Log($"corpses == {corpse}");
         //Debug.Log($"saved stages == {saveReachedStages}");
         //Debug.Log("sgt")
