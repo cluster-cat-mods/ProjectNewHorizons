@@ -4281,7 +4281,7 @@ MonoBehaviour:
   - Name: IsPlayerAlive
     Value: 1
   - Name: MainMenuOpen
-    Value: 0
+    Value: 1
   - Name: ShopOpen
     Value: 0
   - Name: WaveActive
@@ -4323,7 +4323,7 @@ MonoBehaviour:
     - Name: IsPlayerAlive
       Value: 1
     - Name: MainMenuOpen
-      Value: 0
+      Value: 1
     - Name: ShopOpen
       Value: 0
     - Name: WaveActive
@@ -9307,7 +9307,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 347687254}
+      - m_Target: {fileID: 422635514}
         m_TargetAssemblyTypeName: FMODUnity.StudioParameterTrigger, FMODUnity
         m_MethodName: TriggerParameters
         m_Mode: 1
@@ -11894,6 +11894,57 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &1703655163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1703655164}
+  - component: {fileID: 1703655165}
+  m_Layer: 0
+  m_Name: MusicChange_Runscene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1703655164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703655163}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1922273685}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1703655165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703655163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 744a208c85da6d04c861d81b992e4ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: FMODUnity::FMODUnity.StudioParameterTrigger
+  CollisionTag: 
+  Emitters:
+  - Target: {fileID: 422635512}
+    Params:
+    - Name: MainMenuOpen
+      Value: 0
+  TriggerEvent: 0
 --- !u!1 &1706012450
 GameObject:
   m_ObjectHideFlags: 0
@@ -14547,6 +14598,7 @@ Transform:
   - {fileID: 1202459576}
   - {fileID: 157259061}
   - {fileID: 347687253}
+  - {fileID: 1703655164}
   m_Father: {fileID: 1447610108}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1956293414
