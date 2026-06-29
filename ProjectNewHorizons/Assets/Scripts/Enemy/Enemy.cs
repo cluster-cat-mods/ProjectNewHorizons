@@ -67,16 +67,16 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator HitHiveCheck()
     {
-        //Debug.Log($"{name} started hive check");
+        //Debug.Log($"{name} started nest check");
 
-        while (!(Vector3.SqrMagnitude(transform.position - _manager.hive.transform.position) < 1f))
+        while (!(Vector3.SqrMagnitude(transform.position - _manager.nest.transform.position) < 1f))
         {
             yield return null;
-            //Debug.Log("not around the hive yet");
-            //Debug.Log($"{name}: {Vector3.Distance(transform.position, manager.hive.transform.position)} distance to hive");
-            //Debug.Log($"distance to the hive = {Vector3.Distance(transform.position, manager.hive.transform.position)}");
+            //Debug.Log("not around the nest yet");
+            //Debug.Log($"{name}: {Vector3.Distance(transform.position, manager.nest.transform.position)} distance to nest");
+            //Debug.Log($"distance to the nest = {Vector3.Distance(transform.position, manager.nest.transform.position)}");
         }
-        //Debug.Log("close to the hive");
+        //Debug.Log("close to the nest");
         _manager.LoseHP(runtimeStats.damage);
         Destroy(gameObject);
     }
