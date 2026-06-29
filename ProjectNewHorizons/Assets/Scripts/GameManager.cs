@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text corpseText;
     [SerializeField] private TMP_Text antText;
-    [SerializeField] private TMP_Text HiveHPText;
+    [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
 
     [SerializeField] private Volume[] volume;
     
-    public GameObject hive;
+    public GameObject nest;
 
     public bool alive = true;
 
@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UnityEvent regainLifeEvent;
 
     [SerializeField, AllowNesting] private List<StageReached> reachedStageList = new();
-    public int hiveMaxHP { get; private set; }
-    public int hiveHP { get; private set; }
+    public int nestMaxHP { get; private set; }
+    public int nestHP { get; private set; }
     public int2 antCount { get; private set; }
     public int antGain { get; private set; }
     public int corpse { get; private set; }
@@ -90,8 +90,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        hiveMaxHP = startingHiveMaxHP;
-        hiveHP = hiveMaxHP;
+        nestMaxHP = startingHiveMaxHP;
+        nestHP = nestMaxHP;
         antCount = 0;
         alive = true;
         SetAntText();
@@ -105,16 +105,16 @@ public class GameManager : MonoBehaviour
     {
         while (alive)
         {
-            if (hiveHP <= 0)
+            if (nestHP <= 0)
             {
                 alive = false;
-                //Destroy(hive);
+                //Destroy(nest);
             }
 
             yield return null;
         }
         Debug.Log("you died");
-        hive.SetActive(false);
+        nest.SetActive(false);
         dieEvent?.Invoke();
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
     }
     private void GainLife()
     {
-        hive.SetActive(true);
+        nest.SetActive(true);
         SetStartStats();
         regainLifeEvent?.Invoke();
     }
@@ -186,8 +186,8 @@ public class GameManager : MonoBehaviour
     public void LoseHP(int amount)
     {
         volume[1].weight = 1;
-        hiveHP = hiveHP - amount;
-        //Debug.Log($"you have {hiveHP} hp");
+        nestHP = nestHP - amount;
+        //Debug.Log($"you have {nestHP} hp");
         SetHiveHPText();
 
         StartCoroutine(LoseHpEffect());
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
     }
     public void SetHiveHPText()
     {
-        HiveHPText.text = $"{hiveHP}/{hiveMaxHP}";
+        nestHPText.text = $"{nestHP}/{nestMaxHP}";
     }
 
     public void SetWantedStage(int amount)

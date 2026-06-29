@@ -29,7 +29,7 @@ public class CorpseUpgrade : MonoBehaviour
 
         upgradeData = upgradeDataSaver.GetUpgrades();
 
-        upgrade.SetTexts();
+        upgrade.SetUIElements();
 
         switch (upgradeType)
         {
