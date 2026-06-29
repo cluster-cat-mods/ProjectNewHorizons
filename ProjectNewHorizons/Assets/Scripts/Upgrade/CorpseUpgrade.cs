@@ -1,0 +1,106 @@
+using NaughtyAttributes;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+
+public class CorpseUpgrade : MonoBehaviour
+{
+    private enum UpgradeType { AntGain, TowerDMG, TowerUnlock}
+
+    [SerializeField] private Upgrade upgrade = new();
+
+    [SerializeField] private UpgradeType upgradeType = UpgradeType.AntGain;
+    [SerializeField] private bool _isTowerUpgrade;
+    [SerializeField, ShowIf("_isTowerUpgrade")] private int towerIndex;
+
+    private UpgradeDataSaver upgradeDataSaver = new();
+    private List<UpgradeClass> upgradeData;
+
+    [SerializeField] private TMP_Text corpseText;
+
+    private GameDataSaver dataSaver = new();
+    private GameData _gameData;
+
+    private void Start()
+    {
+        _gameData = dataSaver.LoadGameData();
+
+        upgradeData = upgradeDataSaver.GetUpgrades();
+
+        upgrade.SetTexts();
+
+        switch (upgradeType)
+        {
+            case UpgradeType.AntGain:
+                upgrade.upgradeEvent += AntGainUpgrade;
+                break;
+
+            case UpgradeType.TowerDMG:
+                upgrade.upgradeEvent += TowerDMGUpgrade;
+                break;
+
+            case UpgradeType.TowerUnlock:
+                upgrade.upgradeEvent += TowerUnlock;
+                break;
+
+        }
+
+        SetCorpseText();
+    }
+    
+    public void TriggerUpgrade()
+    {
+        upgrade.Trigger();
+    }
+
+    public void AntGainUpgrade()
+    {
+        if (_gameData.CorpseCount >= upgrade.cost)
+        {
+            upgradeDataSaver.ChangeUpgrade(0, 1);
+            _gameData.CorpseCount -= upgrade.cost;
+            dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
+
+            SetCorpseText();
+        }
+    }
+
+    public void TowerDMGUpgrade()
+    {
+        if (_gameData.CorpseCount >= upgrade.cost)
+        {
+            //tower dmg on 2 4 6 8 10
+            var towerNum = 2 * towerIndex + 2;
+            /*weapon/tower.dmg += amount */
+            Debug.Log("tower dmg += amount");
+            upgradeDataSaver.ChangeUpgrade(towerNum, 1);
+            _gameData.CorpseCount -= upgrade.cost;
+            dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
+
+            SetCorpseText();
+        }
+    }
+
+    public void TowerUnlock()
+    {
+        if (_gameData.CorpseCount >= upgrade.cost)
+        {
+            //tower unlock on 1 3 5 7 9
+            var towerNum = 2 * towerIndex + 1;
+            /* unlock weapon/tower (set bool to true) */
+            Debug.Log("unlocked the ... tower");
+            upgradeDataSaver.ChangeUpgrade(towerNum, 1);
+            _gameData.CorpseCount -= upgrade.cost;
+            dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
+
+            SetCorpseText();
+        }
+    }
+    public void SetCorpseText()
+    {
+        _gameData = dataSaver.LoadGameData();
+        corpseText.text = $"{_gameData.CorpseCount}";
+    }
+}

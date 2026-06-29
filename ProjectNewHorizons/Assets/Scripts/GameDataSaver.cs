@@ -7,9 +7,9 @@ public class GameDataSaver
     private string path;
     private string json;
     
-    public void SaveGameData(int  corpseCount, StageReached[] maxStageReached)
+    public void SaveGameData(int  corpseCount, StageReached[] maxStageReached, int wantedStartStage)
     {
-        GameData gameData = new GameData(corpseCount, maxStageReached);
+        GameData gameData = new GameData(corpseCount, maxStageReached, wantedStartStage);
         json = JsonUtility.ToJson(gameData);
 
 #if (UNITY_WEBGL && !UNITY_EDITOR)
@@ -50,10 +50,12 @@ public class GameData
 {
     public int CorpseCount;
     public StageReached[] StageReached;
+    public int WantedStartStage;
     
-    public GameData(int corpseCount, StageReached[] maxStageReached)
+    public GameData(int corpseCount, StageReached[] maxStageReached, int wantedStartStage)
     {
         CorpseCount = corpseCount;
         StageReached = maxStageReached;
+        WantedStartStage = wantedStartStage;
     }
 }

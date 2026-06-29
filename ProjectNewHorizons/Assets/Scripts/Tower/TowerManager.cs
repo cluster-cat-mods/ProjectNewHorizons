@@ -6,15 +6,32 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private TouchController touchController;
     [SerializeField] private GameManager manager;
     [SerializeField] private GameObject[] towerObject;
-    [SerializeField] private TowerStats[] towerStats;
+    [SerializeField] private TowerStats[] TowerStats;
 
     [SerializeField] private GameObject towerSelect;
+    [SerializeField] private GameObject[] unlockedTowers;
 
     private RaycastHit _lastHit;
     private bool _ChooseTowerOpen;
 
+    private TowerStats[] _originalStats;
+    private UpgradeDataSaver upgradeDataSaver = new();
+
     void Start()
     {
+        if (_originalStats == null)
+        {
+            _originalStats = new TowerStats[TowerStats.Length];
+
+            for (int i = 0; i < TowerStats.Length; i++)
+            {
+                if (TowerStats[i] != null)
+                {
+                    _originalStats[i] = Instantiate(TowerStats[i]);
+                }
+            }
+        }
+
         if (touchController == null)
         {
             touchController = FindAnyObjectByType<TouchController>();
@@ -23,6 +40,42 @@ public class TowerManager : MonoBehaviour
         if (manager == null)
         {
             manager = FindAnyObjectByType<GameManager>();
+        }
+
+        var upgradeDataList = upgradeDataSaver.GetUpgrades();
+        if (upgradeDataList != null)
+        {
+            foreach (var upgrade in upgradeDataList)
+            {
+                int towerIndex = (int)Mathf.Floor(upgrade.ID / 2) - 1;
+                
+                switch (upgrade.ID % 2)
+                {
+                    case 0:
+                        if (upgrade.ID < 2 || upgrade.count <= 0) return;
+                        TowerStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
+                        break;
+                    case 1:
+                        if (upgrade.count <= 0) return;
+                        TowerStats[towerIndex].startStats.towerUnlocked = true;
+                        break;
+
+                }
+
+            }
+        }
+
+
+        for (int i = 0; i < unlockedTowers.Length; i++)
+        {
+            if (TowerStats[i].startStats.towerUnlocked)
+            {
+                unlockedTowers[i].SetActive(true);
+            }
+            else
+            {
+                unlockedTowers[i].SetActive(false);
+            }
         }
     }
 
@@ -49,7 +102,7 @@ public class TowerManager : MonoBehaviour
 
     public void PlaceTower(int towerIndex)
     {
-        var cost = towerStats[towerIndex].antAllocation.minimumAntsAllocated;
+        var cost = TowerStats[towerIndex].antAllocation.minimumAntsAllocated;
         Debug.Log(cost);
         if (manager.antCount.y - manager.antCount.x < cost) return;
 
