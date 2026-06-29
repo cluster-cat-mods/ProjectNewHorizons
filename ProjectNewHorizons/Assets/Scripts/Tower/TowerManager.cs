@@ -89,10 +89,15 @@ public class TowerManager : MonoBehaviour
         }
     }
 
+    public void ChooseTowerUIOpenToggle()
+    {
+        _ChooseTowerOpen = !_ChooseTowerOpen;
+    }
+
     public void ChooseTower()
     {
         _lastHit = touchController.GetHit();
-
+        if (_lastHit.collider == null) return;
         if (!_lastHit.collider.CompareTag("Mushroom")) return;
 
         towerSelect.SetActive(true);
