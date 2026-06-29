@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private int startingHiveMaxHP;
 
-    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text corpseText;
     [SerializeField] private TMP_Text antText;
     [SerializeField] private TMP_Text HiveHPText;
 
@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
     public int stage { get; private set; }
 
     private GameDataSaver dataSaver = new();
+    private UpgradeDataSaver upgradeDataSaver = new();
 
     private void Start()
     {
@@ -47,8 +48,6 @@ public class GameManager : MonoBehaviour
         {
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
-
-        antGain = 1;
 
         startEvent?.Invoke();
 
@@ -62,19 +61,33 @@ public class GameManager : MonoBehaviour
 
     private void SetStartStats()
     {
-        var data = dataSaver.LoadGameData();
-        if (data != null)
+        var gameData = dataSaver.LoadGameData();
+        if (gameData != null)
         {
             reachedStageList.Clear();
 
-            corpse = data.CorpseCount;
+            corpse = gameData.CorpseCount;
 
-            foreach (var reachedStage in data.StageReached)
+            foreach (var reachedStage in gameData.StageReached)
             {
                 reachedStageList.Add(reachedStage);
             }
 
-            SetWantedStage(data.WantedStartStage);
+            SetWantedStage(gameData.WantedStartStage);
+        }
+
+        antGain = 1;
+
+        var upgradeDataList = upgradeDataSaver.GetUpgrades();
+        if (upgradeDataList != null)
+        {
+            foreach (var upgrade in upgradeDataList)
+            {
+                if (upgrade.ID == 0)
+                {
+                    IncreaseAntGain(upgrade.count);
+                }
+            }
         }
 
         hiveMaxHP = startingHiveMaxHP;
@@ -162,13 +175,13 @@ public class GameManager : MonoBehaviour
     {
         corpse = corpse + amount;
         //Debug.Log($"you have {corpse} corpse");
-        SetCoinText();
+        SetCorpseText();
     }
-    public void LoseCoins(int amount)
+    public void LoseCorpse(int amount)
     {
         corpse = corpse - amount;
         //Debug.Log($"you have {corpse} corpse");
-        SetCoinText();
+        SetCorpseText();
     }
     public void LoseHP(int amount)
     {
@@ -199,9 +212,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetCoinText()
+    public void SetCorpseText()
     {
-        coinText.text = $"{corpse}";
+        corpseText.text = $"{corpse}";
     }
 
     public void SetAntText()

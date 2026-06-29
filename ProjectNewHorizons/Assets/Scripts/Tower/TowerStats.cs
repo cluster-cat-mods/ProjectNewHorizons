@@ -38,6 +38,10 @@ public struct TowerStartStats
     [SerializeField] private bool needDamage;
     [SerializeField] private bool AOE_Effect;
 
+    [Space(10)]
+
+    [AllowNesting] public bool towerUnlocked;
+
     [Space(30)]
 
     //TowerSpots

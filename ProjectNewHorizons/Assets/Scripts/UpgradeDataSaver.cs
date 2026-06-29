@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class UpgradeDataSaver : MonoBehaviour
+public class UpgradeDataSaver
 {
     private string path =  Application.persistentDataPath + "/upgrades.json";
 
@@ -38,8 +38,8 @@ public class UpgradeDataSaver : MonoBehaviour
 [System.Serializable]
 public class UpgradeClass
 {
-    public int ID {get; private set;}
-    public int count {get; private set;}
+    public int ID;
+    public int count;
 
     public void AddCount(int countIncrease)
     {
