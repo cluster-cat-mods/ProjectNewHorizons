@@ -40,6 +40,7 @@ public class GameDataSaver
         }
         else
         {
+            File.WriteAllText(path, "[]");
             return null;
         }
     }

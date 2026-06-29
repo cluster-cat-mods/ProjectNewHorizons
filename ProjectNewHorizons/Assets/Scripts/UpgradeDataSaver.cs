@@ -19,7 +19,21 @@ public class UpgradeDataSaver
 #else
         path = Application.persistentDataPath + "/upgradeData.json";
 #endif
-        List<UpgradeClass> upgrades = JsonUtility.FromJson<List<UpgradeClass>>(File.ReadAllText(path));
+        if (!File.Exists(path))
+        {
+            var emptyData = new UpgradeData();
+            File.WriteAllText(path, JsonUtility.ToJson(emptyData, true));
+        }
+
+        var fileText = File.ReadAllText(path);
+        UpgradeData data = JsonUtility.FromJson<UpgradeData>(fileText);
+
+        if (data == null)
+        {
+            data = new UpgradeData();
+        }
+
+        List<UpgradeClass> upgrades = data.upgrades;
         bool foundUpgrade = false;
         for (int i = 0; i < upgrades.Count; i++)
         {
@@ -35,7 +49,9 @@ public class UpgradeDataSaver
         }
         if (!foundUpgrade)  upgrades.Add(new   UpgradeClass(ID, count));
 
-        json = JsonUtility.ToJson(upgrades, true);
+        data.upgrades = upgrades;
+
+        json = JsonUtility.ToJson(data, true);
 
         File.WriteAllText(path, json);
     }
@@ -51,14 +67,22 @@ public class UpgradeDataSaver
         if (File.Exists(path))
         {
             json = File.ReadAllText(path);
-            //return JsonUtility.FromJson<GameData>(json);
-            return JsonUtility.FromJson<List<UpgradeClass>>(File.ReadAllText(path));
+            var rawJsonOutput = JsonUtility.FromJson<UpgradeData>(json);
+            return rawJsonOutput.upgrades;
         }
         else
         {
+            var emptyData = new UpgradeData();
+            File.WriteAllText(path, JsonUtility.ToJson(emptyData, true));
             return null;
         }
     }   
+}
+
+[System.Serializable]
+public class UpgradeData
+{
+    public List<UpgradeClass> upgrades = new();
 }
 
 [System.Serializable]

@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
         alive = true;
         SetAntText();
         SetHiveHPText();
+        SetCorpseText();
         StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
         volume[0].weight = 0;
@@ -171,7 +172,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void GainCoins(int amount)
+    public void GainCorpse(int amount)
     {
         corpse = corpse + amount;
         //Debug.Log($"you have {corpse} corpse");
@@ -295,9 +296,9 @@ public class GameManager : MonoBehaviour
     }
     /* testing functions and vars */
     [Button]
-    public void Get10Coins()
+    public void Get10Corpse()
     {
-        GainCoins(10);
+        GainCorpse(10);
     }
 
     [Button]

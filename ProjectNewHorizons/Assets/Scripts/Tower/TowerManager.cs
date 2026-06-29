@@ -42,18 +42,38 @@ public class TowerManager : MonoBehaviour
             manager = FindAnyObjectByType<GameManager>();
         }
 
+        SetUpgradeValues();
+    }
+
+
+    void Update()
+    {
+        if (_ChooseTowerOpen) return;
+        if (Input.touchCount == 1)
+        {
+            ChooseTower();
+        }
+    }
+
+    public void SetUpgradeValues()
+    {
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)
         {
+            var upgradeTest = upgradeDataList[0];
+            Debug.Log(upgradeTest.ToString());
             foreach (var upgrade in upgradeDataList)
             {
+                Debug.Log(upgrade.ToString());
+
                 int towerIndex = (int)Mathf.Floor(upgrade.ID / 2) - 1;
-                
+
                 switch (upgrade.ID % 2)
                 {
                     case 0:
                         if (upgrade.ID < 2 || upgrade.count <= 0) return;
                         TowerStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
+                        Debug.Log($"tower {towerObject[towerIndex].name} now has {_originalStats[towerIndex].startStats.damage + upgrade.count} damage");
                         break;
                     case 1:
                         if (upgrade.count <= 0) return;
@@ -76,16 +96,6 @@ public class TowerManager : MonoBehaviour
             {
                 unlockedTowers[i].SetActive(false);
             }
-        }
-    }
-
-
-    void Update()
-    {
-        if (_ChooseTowerOpen) return;
-        if (Input.touchCount == 1)
-        {
-            ChooseTower();
         }
     }
 
