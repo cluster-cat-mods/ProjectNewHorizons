@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -5,9 +6,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private TouchController touchController;
 
     [SerializeField] private Vector2 movementScalar = new(16, 8);
-    [SerializeField] private Vector2 _borderClamp = new(2000,1080);
+    [SerializeField] private Vector2 borderClamp = new(2000,1080);
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
+    private bool _zooming = false;
+    
     private void Start()
     {
         if (touchController == null)
@@ -37,14 +40,14 @@ public class CameraMovement : MonoBehaviour
 
                 _newCameraPosition.x = Mathf.Clamp(
                     _newCameraPosition.x,
-                    -_borderClamp.x / movementScalar.x / 2f,
-                    _borderClamp.x / movementScalar.x / 2f
+                    -borderClamp.x / movementScalar.x / 2f,
+                    borderClamp.x / movementScalar.x / 2f
                 );
 
                 _newCameraPosition.z = Mathf.Clamp(
                     _newCameraPosition.z,
-                    -_borderClamp.y / movementScalar.y / 2f - 20,
-                    _borderClamp.y / movementScalar.y / 2f - 20
+                    -borderClamp.y / movementScalar.y / 2f - 20,
+                    borderClamp.y / movementScalar.y / 2f - 20
                 );
 
                 transform.position = _newCameraPosition;
@@ -57,5 +60,25 @@ public class CameraMovement : MonoBehaviour
             //Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
             //Debug.Log($"the phase of the touch = {touch.phase}");
         }
+        
+        if (Input.touchCount == 2 && !_zooming)
+        {
+            StartCoroutine(ZoomCoroutine());
+            _zooming = true;
+        }
+
     }
+
+    private IEnumerator ZoomCoroutine()
+    {
+        float localX = transform.localPosition.x;
+        while (Input.touchCount == 2)
+        {
+            float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            transform.localPosition = new Vector3(localX - distance,  transform.localPosition.y,  transform.localPosition.z);
+        }
+        _zooming = false;
+        yield return null;
+    }
+        
 }
