@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/Audio/Music.bank
   Name: Music
   StudioPath: bank:/Music
-  lastModified: 639180827328835725
+  lastModified: 639180815532682564
   FileSizes: []
   Exists: 1
 --- !u!114 &-8977206129825621402
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: 8515621685547666034}
   cacheVersion: 131860
-  cacheTime: 639180827329446434
+  cacheTime: 639180815533168775
   SerializableEventsDict:
   - key: event:/Enemy/OnMove
     index: 0
@@ -1308,7 +1308,7 @@ MonoBehaviour:
   Path: Assets/Audio/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639180827326835672
+  lastModified: 639180815530600243
   FileSizes: []
   Exists: 1
 --- !u!114 &2097221276799463963
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   Path: Assets/Audio/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 639180827329266049
+  lastModified: 639180815533074159
   FileSizes: []
   Exists: 1
 --- !u!114 &4372206831114477050
@@ -1479,7 +1479,7 @@ MonoBehaviour:
   Path: Assets/Audio/UISounds.bank
   Name: UISounds
   StudioPath: bank:/UISounds
-  lastModified: 639180827329446434
+  lastModified: 639180815533168775
   FileSizes: []
   Exists: 1
 --- !u!114 &4967002365147494639
@@ -1657,7 +1657,7 @@ MonoBehaviour:
   Path: Assets/Audio/GameObjects.bank
   Name: GameObjects
   StudioPath: bank:/GameObjects
-  lastModified: 639180827326815735
+  lastModified: 639180815530577423
   FileSizes: []
   Exists: 1
 --- !u!114 &6843781613003560357
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   Path: Assets/Audio/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639180827326845580
+  lastModified: 639180815530621903
   FileSizes:
   - Name: 
     Value: 1960
