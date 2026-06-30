@@ -112,7 +112,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 var spawnPosition = t;
 
-                PathHighlight go = Instantiate(pathIndicator, spawnPosition.position, Quaternion.identity, transform).GetComponent<PathHighlight>();
+                PathHighlight go = Instantiate(pathIndicator, spawnPosition.position, pathIndicator.transform.rotation, transform).GetComponent<PathHighlight>();
 
                 go.SetStuff(spawnPosition, manager, _allNodes);
                 yield return null;
