@@ -53,6 +53,27 @@ public class GameDataSaver
             return JsonUtility.FromJson<GameData>(json);
         }
     }
+
+    public void ResetData()
+    {
+        StageReached[] allStagesReached = new StageReached[1];
+        GameData gameData = new GameData(0,allStagesReached,0);
+
+        json = JsonUtility.ToJson(gameData, true);
+
+#if (UNITY_WEBGL && !UNITY_EDITOR)
+        path = System.IO.Path.Combine("idbfs", Application.productName);
+        Debug.Log($"{path}");
+        if (!Directory.Exists(path)) 
+        { 
+            Directory.CreateDirectory(path);
+        }
+        path = System.IO.Path.Combine(path, "saveAntData");
+#else
+        path = Application.persistentDataPath + "/gameData.json";
+#endif
+        File.WriteAllText(path, json);
+    }
 }
 
 [System.Serializable]

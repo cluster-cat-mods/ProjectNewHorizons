@@ -85,6 +85,27 @@ public class UpgradeDataSaver
             return JsonUtility.FromJson<UpgradeData>(json).upgrades;
         }
     }   
+
+    public void ResetUpgrades()
+    {
+#if (UNITY_WEBGL && !UNITY_EDITOR)
+                path = System.IO.Path.Combine("idbfs", Application.productName);
+                Debug.Log($"{path}");
+                if (!Directory.Exists(path)) 
+                { 
+                    Directory.CreateDirectory(path);
+                }
+                path = System.IO.Path.Combine(path, "saveAntUpgradeData");
+                Debug.Log($"{path}");
+#else
+        path = Application.persistentDataPath + "/upgradeData.json";
+#endif
+        var data = new UpgradeData();
+
+        json = JsonUtility.ToJson(data, true);
+
+        File.WriteAllText(path, json);
+    }
 }
 
 [System.Serializable]
