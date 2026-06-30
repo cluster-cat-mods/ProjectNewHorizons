@@ -40,7 +40,9 @@ public class GameDataSaver
         }
         else
         {
-            File.WriteAllText(path, "[]");
+            StageReached[] stageReached = new StageReached[0];
+            GameData emptyData = new(0,stageReached,0);
+            File.WriteAllText(path, JsonUtility.ToJson(emptyData, true));
             return null;
         }
     }
