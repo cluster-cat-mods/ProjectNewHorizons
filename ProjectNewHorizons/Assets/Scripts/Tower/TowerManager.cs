@@ -60,8 +60,6 @@ public class TowerManager : MonoBehaviour
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)
         {
-            var upgradeTest = upgradeDataList[0];
-            Debug.Log(upgradeTest.ToString());
             foreach (var upgrade in upgradeDataList)
             {
                 Debug.Log(upgrade.ToString());
