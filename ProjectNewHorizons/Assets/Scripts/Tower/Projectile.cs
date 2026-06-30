@@ -41,7 +41,9 @@ public class Projectile : MonoBehaviour
 
     public void SetTarget(Enemy target)
     {
+        Debug.Log($"Setting projectile target to: {target.name}");
         _targetEnemy = target;
+        Debug.Log($"Projectile target set to: {_targetEnemy.name}");
         _targetTransform = _targetEnemy.transform;
     }
 
