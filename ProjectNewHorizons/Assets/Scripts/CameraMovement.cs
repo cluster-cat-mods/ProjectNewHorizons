@@ -81,6 +81,7 @@ public class CameraMovement : MonoBehaviour
             Vector3 newPos = transform.localPosition + transform.forward * distance / zoomScalar;
             newPos.y = Mathf.Clamp(newPos.y, 5, 25);
             newPos.z = Mathf.Clamp(newPos.x, -35, -25);
+            transform.localPosition = newPos;
             startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
 
             yield return null;
