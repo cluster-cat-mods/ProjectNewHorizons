@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         StartCoroutine(HitHiveCheck());
+        if (runtimeStats.spawnSoundPath != null) RuntimeManager.PlayOneShot(runtimeStats.spawnSoundPath);
     }
     private void OnDestroy()
     {
@@ -39,25 +41,40 @@ public class Enemy : MonoBehaviour
             //gain corpse
             _manager.GainCorpse(runtimeStats.coinBounty);
         }
+
+    }
+
+    private IEnumerator OnDie()
+    {
+        if (runtimeStats.deathSoundPath != null) RuntimeManager.PlayOneShot(runtimeStats.deathSoundPath);
         //enemy spawning smaller ones
-        if (!runtimeStats.canSpawnEnemy) return;
-        for (int i = 0; i < runtimeStats.enemySpawnCount; i++)
+        if (runtimeStats.canSpawnEnemy)
         {
-            GameObject littleEnemy = Instantiate(runtimeStats.enemy, transform.position, Quaternion.identity);
-
-            Enemy enemy = littleEnemy.GetComponent<Enemy>();
-
-            if (enemy != null)
+            for (int i = 0; i < runtimeStats.enemySpawnCount; i++)
             {
-                //Debug.Log($"Setting up spawned enemy {enemy.name}");
-                enemy.SetStuff(GetClosestNode(), _manager, _allNodes);
+                
+                GameObject littleEnemy = Instantiate(runtimeStats.enemy, transform.position, Quaternion.identity);
+
+                Enemy enemy = littleEnemy.GetComponent<Enemy>();
+
+                if (enemy != null)
+                {
+                    //Debug.Log($"Setting up spawned enemy {enemy.name}");
+                    enemy.SetStuff(GetClosestNode(), _manager, _allNodes);
+                }
+
+                yield return new WaitForSeconds(runtimeStats.spawnDelay);
             }
         }
-
+        else
+        {
+            yield return null;
+        }
     }
 
     public void LoseHp(int amount)
     {
+        if (runtimeStats.hitSoundPath != null)  RuntimeManager.PlayOneShot(runtimeStats.hitSoundPath);
         runtimeStats.hp -= amount;
 
         if (runtimeStats.hp > 0) return;
