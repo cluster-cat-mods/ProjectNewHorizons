@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: projectile
       value: 
-      objectReference: {fileID: 4092076749580936132, guid: 72fde0912c29c4947bf821bcaeb256ad, type: 3}
+      objectReference: {fileID: 7227247805241783583, guid: 8ffaf2d34ea655c4189765e3adc554dc, type: 3}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: Pins

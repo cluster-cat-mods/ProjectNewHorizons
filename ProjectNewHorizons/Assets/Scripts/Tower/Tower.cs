@@ -56,7 +56,7 @@ public class Tower : MonoBehaviour
             _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
             Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             spawnedProjectile._hitSoundPath = stats.startStats.hitSoundPath;
-            spawnedProjectile.SetTarget(_closestEnemy);
+            spawnedProjectile.SetTarget(_closestEnemy, stats.startStats.isRangedTower);
             spawnedProjectile._towerRange = stats.startStats.range;
             spawnedProjectile._movementSpeed = stats.startStats.projectileSpeed;
             spawnedProjectile._damage = CalculateDamage(stats.startStats.damage);

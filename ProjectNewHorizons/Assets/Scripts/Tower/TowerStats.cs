@@ -37,6 +37,7 @@ public struct TowerStartStats
     [SerializeField] private bool pathPlacement;
     [SerializeField] private bool needDamage;
     [SerializeField] private bool AOE_Effect;
+    public bool isRangedTower;
 
     [Space(10)]
 
@@ -52,8 +53,8 @@ public struct TowerStartStats
 
     //TowerSpots
     [HideIf("pathPlacement"), AllowNesting] public float attackSpeed;
-    [HideIf("pathPlacement"), AllowNesting] public float projectileSpeed;
     [HideIf("pathPlacement"), AllowNesting] public float range;
+    [ShowIf("isRangedTower"), AllowNesting] public float projectileSpeed;
 
     //PathSpots
     [ShowIf("pathPlacement"), AllowNesting] public int hp;

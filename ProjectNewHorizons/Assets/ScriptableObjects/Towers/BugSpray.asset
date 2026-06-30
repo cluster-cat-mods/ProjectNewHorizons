@@ -16,12 +16,13 @@ MonoBehaviour:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 0
+    isRangedTower: 1
     towerUnlocked: 0
     shootSoundPath: event:/Tower/ShootSounds/Fire
     hitSoundPath: 
     attackSpeed: 1
-    projectileSpeed: 5
     range: 10
+    projectileSpeed: 5
     hp: 0
     damage: 100
     AOE_Range: 0

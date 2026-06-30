@@ -16,12 +16,13 @@ MonoBehaviour:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 0
+    isRangedTower: 0
     towerUnlocked: 1
     shootSoundPath: event:/Tower/ShootSounds/Melee_Hit
     hitSoundPath: 
     attackSpeed: 1
-    projectileSpeed: 10
     range: 10
+    projectileSpeed: 10
     hp: 0
     damage: 2
     AOE_Range: 0

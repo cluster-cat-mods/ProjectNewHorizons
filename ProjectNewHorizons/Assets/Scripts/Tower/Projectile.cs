@@ -16,7 +16,8 @@ public class Projectile : MonoBehaviour
     private Vector3 _lookVector;
     private Vector3 _crossVector;
     private float _degreesBetweenVectors;
-    
+
+    private bool _isRanged;
 
     void Start()
     {
@@ -25,26 +26,40 @@ public class Projectile : MonoBehaviour
     }
     void Update()
     {
-        if (Vector3.Distance(_startPosition, transform.position) >= _towerRange)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
         if (_targetTransform == null)
         {
             Destroy(gameObject);
         }
-        LookAtTarget();
-        MoveToTarget();
+
+        if (_isRanged)
+        {
+            if (Vector3.Distance(_startPosition, transform.position) >= _towerRange)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            LookAtTarget();
+            MoveToTarget();
+        }
+        else
+        {
+            LookAtTarget();
+            if (!string.IsNullOrEmpty(_hitSoundPath)) RuntimeManager.PlayOneShot(_hitSoundPath);
+            _targetEnemy.LoseHp(_damage);
+            Destroy(gameObject);
+        }
+
     }
 
-    public void SetTarget(Enemy target)
+    public void SetTarget(Enemy target, bool rangedTower)
     {
         Debug.Log($"Setting projectile target to: {target.name}");
         _targetEnemy = target;
         Debug.Log($"Projectile target set to: {_targetEnemy.name}");
         _targetTransform = _targetEnemy.transform;
+
+        _isRanged = rangedTower;
     }
 
     public void MoveToTarget()
