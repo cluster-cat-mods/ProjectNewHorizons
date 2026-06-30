@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         StartCoroutine(HitHiveCheck());
-        if (runtimeStats.spawnSoundPath != null) RuntimeManager.PlayOneShot(runtimeStats.spawnSoundPath);
+        if (!string.IsNullOrEmpty(runtimeStats.spawnSoundPath)) RuntimeManager.PlayOneShot(runtimeStats.spawnSoundPath);
     }
     private void OnDestroy()
     {
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator OnDie()
     {
-        if (runtimeStats.deathSoundPath != null) RuntimeManager.PlayOneShot(runtimeStats.deathSoundPath);
+        if (!string.IsNullOrEmpty(runtimeStats.deathSoundPath)) RuntimeManager.PlayOneShot(runtimeStats.deathSoundPath);
         //enemy spawning smaller ones
         if (runtimeStats.canSpawnEnemy)
         {
@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour
 
     public void LoseHp(int amount)
     {
-        if (runtimeStats.hitSoundPath != null)  RuntimeManager.PlayOneShot(runtimeStats.hitSoundPath);
+        if (!string.IsNullOrEmpty(runtimeStats.hitSoundPath))  RuntimeManager.PlayOneShot(runtimeStats.hitSoundPath);
         runtimeStats.hp -= amount;
 
         if (runtimeStats.hp > 0) return;

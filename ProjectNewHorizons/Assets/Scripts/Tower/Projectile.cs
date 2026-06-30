@@ -60,7 +60,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            if (_hitSoundPath != null) RuntimeManager.PlayOneShot(_hitSoundPath);
+            if (!string.IsNullOrEmpty(_hitSoundPath)) RuntimeManager.PlayOneShot(_hitSoundPath);
             _targetEnemy.LoseHp(_damage);
             Destroy(gameObject);
         }

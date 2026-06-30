@@ -52,7 +52,7 @@ public class Tower : MonoBehaviour
             var closestEnemyObject = GetClosestEnemy();
 
             if (closestEnemyObject == null) continue;
-            if (stats.startStats.shootSoundPath != null) RuntimeManager.PlayOneShot(stats.startStats.shootSoundPath);
+            if (!string.IsNullOrEmpty(stats.startStats.shootSoundPath)) RuntimeManager.PlayOneShot(stats.startStats.shootSoundPath);
             _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
             Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
             spawnedProjectile._hitSoundPath = stats.startStats.hitSoundPath;
