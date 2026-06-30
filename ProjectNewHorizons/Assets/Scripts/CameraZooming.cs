@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraZooming : MonoBehaviour
 {
-    [SerializeField] private float zoomMin;
-    [SerializeField] private float zoomMax;
+    [SerializeField] private float zoomMin = -25;
+    [SerializeField] private float zoomMax = 25;
     
     private bool _zooming = false;
     [SerializeField] private float zoomLevel;
