@@ -39,12 +39,12 @@ public class EnemySpawner : MonoBehaviour
         float spawnDelay = enemyWaves[wave].waveDuration / _totalEnemyCount;
         //Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {_totalEnemyCount} =  spawndelay: {spawnDelay}");
 
+        openPathsList.Clear();
         foreach (int i in enemyWaves[wave].openPaths)
         {
             openPathsList.Add(enemySpawnPositions[i]);
         }
         yield return StartCoroutine(SpawnCoroutine(spawnDelay, enemyWaves, wave));
-        openPathsList.Clear();
     }
 
     [Button]
@@ -120,6 +120,8 @@ public class EnemySpawner : MonoBehaviour
 
             yield return new WaitForSeconds(indicatorDelay);
         }
+
+        yield return null;
     }
 
     public void ActivateIndicator()
