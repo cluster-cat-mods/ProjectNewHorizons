@@ -14,6 +14,7 @@ public class GameDataSaver
 
 #if (UNITY_WEBGL && !UNITY_EDITOR)
         path = System.IO.Path.Combine("idbfs", Application.productName);
+        Debug.Log($"{path}");
         if (!File.Exists(path)) 
         { 
             Directory.CreateDirectory(path);
@@ -30,6 +31,11 @@ public class GameDataSaver
 #if (UNITY_WEBGL && !UNITY_EDITOR)
         path = System.IO.Path.Combine("idbfs", Application.productName);
         path = System.IO.Path.Combine(path, "saveAntData");
+        if (!File.Exists(path)) 
+        { 
+            Directory.CreateDirectory(path);
+        }
+        Debug.Log($"{path}");
 #else
         path = Application.persistentDataPath + "/gameData.json";
 #endif
