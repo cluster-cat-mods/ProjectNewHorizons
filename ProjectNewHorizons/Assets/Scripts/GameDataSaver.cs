@@ -47,6 +47,7 @@ public class GameDataSaver
         return JsonUtility.FromJson<GameData>(json);
         }
 
+        return new GameData(0, new StageReached[0], 0);
 #else
         path = Application.persistentDataPath + "/gameData.json";
         if (File.Exists(path))
