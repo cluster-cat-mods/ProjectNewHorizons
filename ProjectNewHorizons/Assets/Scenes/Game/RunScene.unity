@@ -104708,10 +104708,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   manager: {fileID: 0}
   enemySpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 30721084}
+  - {fileID: 1114059001}
+  - {fileID: 130225667}
+  - {fileID: 344959247}
+  - {fileID: 1772447456}
+  - {fileID: 589962242}
+  - {fileID: 2101454964}
+  - {fileID: 770045918}
+  - {fileID: 1504673402}
+  - {fileID: 1979027913}
+  - {fileID: 1798294611}
+  - {fileID: 1424694233}
+  - {fileID: 1468466579}
   debugEnemy: {fileID: 6355293842020295962, guid: d18892e9d2a017f438b5db6a67dff0b8, type: 3}
   openPathsList: []
 --- !u!4 &1708596007
