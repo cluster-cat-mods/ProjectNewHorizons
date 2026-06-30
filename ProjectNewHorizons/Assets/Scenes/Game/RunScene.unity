@@ -55320,6 +55320,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1378803029696754186, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378803029696754186, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
       propertyPath: m_fontSize
       value: 36.6
       objectReference: {fileID: 0}
@@ -55554,6 +55558,12 @@ PrefabInstance:
     - target: {fileID: 7273037034122531309, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
       propertyPath: m_Name
       value: PlayerUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587710834171049444, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
+      propertyPath: m_text
+      value: '0/0
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 7587710834171049444, guid: ff60dfcc3f09ee44da0777736424c4d1, type: 3}
       propertyPath: m_fontSize

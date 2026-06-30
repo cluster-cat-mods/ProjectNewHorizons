@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
     private GameDataSaver dataSaver = new();
     private UpgradeDataSaver upgradeDataSaver = new();
 
+    private GameData _gameData;
+
     private void Start()
     {
         if (enemyWaveManager == null)
@@ -49,28 +51,41 @@ public class GameManager : MonoBehaviour
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
 
+        _gameData = dataSaver.LoadGameData();
+
+        SetTexts();
+
         startEvent?.Invoke();   
     }
 
-    private void SetStartStats()
+    private void SetTexts()
     {
-        var gameData = dataSaver.LoadGameData();
-        if (gameData != null)
+        if (_gameData != null)
         {
             reachedStageList.Clear();
 
-            corpse = gameData.CorpseCount;
+            corpse = _gameData.CorpseCount;
 
-            foreach (var reachedStage in gameData.StageReached)
+            foreach (var reachedStage in _gameData.StageReached)
             {
                 reachedStageList.Add(reachedStage);
             }
 
-            SetWantedStage(gameData.WantedStartStage);
+            SetWantedStage(_gameData.WantedStartStage);
         }
 
-        antGain = 1;
         nestMaxHP = startingNestMaxHP;
+        nestHP = nestMaxHP;
+        antCount = 0;
+
+        SetAntText();
+        SetNestHPText();
+        SetCorpseText();
+    }
+
+    private void SetStartStats()
+    {
+        antGain = 1;
 
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)
@@ -89,12 +104,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        nestHP = nestMaxHP;
-        antCount = 0;
         alive = true;
-        SetAntText();
-        SetNestHPText();
-        SetCorpseText();
+        SetTexts();
         StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
         volume[0].weight = 0;
