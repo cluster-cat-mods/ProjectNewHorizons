@@ -16,6 +16,9 @@ MonoBehaviour:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 0
+    towerUnlocked: 0
+    shootSoundPath: event:/Tower/ShootSounds/Shoot_Slingshot
+    hitSoundPath: event:/Tower/ShootSounds/Hit_Slinghot
     attackSpeed: 1
     projectileSpeed: 5
     range: 10

@@ -16,6 +16,9 @@ MonoBehaviour:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 1
+    towerUnlocked: 0
+    shootSoundPath: event:/SFX/Snap
+    hitSoundPath: 
     attackSpeed: 0.5
     projectileSpeed: 3
     range: 10
