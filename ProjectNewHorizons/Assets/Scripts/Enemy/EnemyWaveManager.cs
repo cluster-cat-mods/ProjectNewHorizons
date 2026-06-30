@@ -74,6 +74,7 @@ public class EnemyWaveManager : MonoBehaviour
     {
         manager.SetWave(0);
         setEnemyWaves();
+        StartCoroutine(enemySpawner.PathIndicator());
 
         foreach (EnemyWave wave in enemyWaves)
         {
@@ -81,7 +82,6 @@ public class EnemyWaveManager : MonoBehaviour
             _skipWaveDelay = false;
 
             timer = waveDelay;
-            StartCoroutine(enemySpawner.PathIndicator());
             while (timer > 0 && !_skipWaveDelay)
             {
                 skipWaveDelayButton.SetActive(true);
