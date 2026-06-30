@@ -42,6 +42,12 @@ public struct TowerStartStats
 
     [AllowNesting] public bool towerUnlocked;
 
+    [Space(10)] 
+    
+    [AllowNesting] public string shootSoundPath;
+    [AllowNesting] public string hitSoundPath;
+    
+
     [Space(30)]
 
     //TowerSpots

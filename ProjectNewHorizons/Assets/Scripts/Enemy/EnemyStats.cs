@@ -19,12 +19,16 @@ public struct EnemyStartStats
     [AllowNesting] public int damage;
     [AllowNesting] public float speed;
     [AllowNesting] public int coinBounty;
+    [AllowNesting] public string spawnSoundPath;
+    [AllowNesting] public string deathSoundPath;
+    [AllowNesting] public string hitSoundPath;
 
     [Space(30)]
 
     //Enemy spawning enemy
     [ShowIf("canSpawnEnemy"), AllowNesting] public GameObject enemy;
     [ShowIf("canSpawnEnemy"), AllowNesting] public int enemySpawnCount;
+    [ShowIf("canSpawnEnemy"), AllowNesting] public float spawnDelay;
 
     [Space(30)]
 

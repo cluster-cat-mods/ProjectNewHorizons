@@ -2,6 +2,7 @@ using NaughtyAttributes;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -51,8 +52,10 @@ public class Tower : MonoBehaviour
             var closestEnemyObject = GetClosestEnemy();
 
             if (closestEnemyObject == null) continue;
+            if (stats.startStats.shootSoundPath != null) RuntimeManager.PlayOneShot(stats.startStats.shootSoundPath);
             _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
             Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
+            spawnedProjectile._hitSoundPath = stats.startStats.hitSoundPath;
             spawnedProjectile.SetTarget(_closestEnemy);
             spawnedProjectile._towerRange = stats.startStats.range;
             spawnedProjectile._movementSpeed = stats.startStats.projectileSpeed;
