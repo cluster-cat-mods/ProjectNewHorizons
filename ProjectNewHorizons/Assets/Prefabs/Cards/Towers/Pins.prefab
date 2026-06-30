@@ -8,10 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1196545032079764295, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.48
+      objectReference: {fileID: 0}
     - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: stats
       value: 
       objectReference: {fileID: 11400000, guid: 72907a2034a393e4eb6c8e9fe7dc46f6, type: 2}
+    - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 4092076749580936132, guid: 72fde0912c29c4947bf821bcaeb256ad, type: 3}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: Pins
