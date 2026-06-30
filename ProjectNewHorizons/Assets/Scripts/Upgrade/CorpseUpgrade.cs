@@ -1,13 +1,19 @@
+using FMODUnity;
 using NaughtyAttributes;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CorpseUpgrade : MonoBehaviour
 {
     private enum UpgradeType { AntGain, TowerDMG, TowerUnlock}
+
+    [SerializeField] private Button buyButton;
+
+    [Space(30)] 
 
     [SerializeField] private Upgrade upgrade = new();
 
@@ -15,10 +21,11 @@ public class CorpseUpgrade : MonoBehaviour
     [SerializeField] private bool _isTowerUpgrade;
     [SerializeField, ShowIf("_isTowerUpgrade")] private int towerIndex;
 
+    [SerializeField] private TMP_Text corpseText;
+
     private UpgradeDataSaver upgradeDataSaver = new();
     private List<UpgradeClass> upgradeData;
 
-    [SerializeField] private TMP_Text corpseText;
 
     private GameDataSaver dataSaver = new();
     private GameData _gameData;
@@ -57,11 +64,15 @@ public class CorpseUpgrade : MonoBehaviour
     {
         if (_gameData.CorpseCount >= upgrade.cost)
         {
+            RuntimeManager.PlayOneShot("event:/UI/PurchaseSound");
+
             upgradeDataSaver.ChangeUpgrade(0, 1);
             _gameData.CorpseCount -= upgrade.cost;
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
+
+            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 
@@ -69,6 +80,7 @@ public class CorpseUpgrade : MonoBehaviour
     {
         if (_gameData.CorpseCount >= upgrade.cost)
         {
+            RuntimeManager.PlayOneShot("event:/UI/PurchaseSound");
             //tower dmg on 2 4 6 8 10
             var towerNum = 2 * towerIndex + 2;
             /*weapon/tower.dmg += amount */
@@ -78,6 +90,8 @@ public class CorpseUpgrade : MonoBehaviour
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
+
+            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 
@@ -85,6 +99,7 @@ public class CorpseUpgrade : MonoBehaviour
     {
         if (_gameData.CorpseCount >= upgrade.cost)
         {
+            RuntimeManager.PlayOneShot("event:/UI/PurchaseSound");
             //tower unlock on 1 3 5 7 9
             var towerNum = 2 * towerIndex + 1;
             /* unlock weapon/tower (set bool to true) */
@@ -94,12 +109,15 @@ public class CorpseUpgrade : MonoBehaviour
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
+
+            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 
     public void SetUIElements()
     {
         upgrade.SetUIElements();
+        buyButton.onClick.AddListener(TriggerUpgrade);
     }
     public void SetCorpseText()
     {

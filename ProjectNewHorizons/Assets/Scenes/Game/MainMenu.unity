@@ -564,6 +564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 631795440}
   upgrade:
     upgradeNameText: {fileID: 1874725011}
     upgradeDescriptionText: {fileID: 201988443}
@@ -953,6 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 0}
   upgrade:
     upgradeNameText: {fileID: 1344286054}
     upgradeDescriptionText: {fileID: 1872147459}
@@ -1491,6 +1493,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 631795440}
   upgrade:
     upgradeNameText: {fileID: 1874725011}
     upgradeDescriptionText: {fileID: 201988443}
@@ -3678,6 +3681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 631795440}
   upgrade:
     upgradeNameText: {fileID: 1874725011}
     upgradeDescriptionText: {fileID: 201988443}
@@ -3961,6 +3965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 0}
   upgrade:
     upgradeNameText: {fileID: 1344286054}
     upgradeDescriptionText: {fileID: 1872147459}
@@ -5310,18 +5315,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 602782212}
-        m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
-        m_MethodName: PlaySound
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1434781148}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
         m_Mode: 1
@@ -8186,6 +8179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 0}
   upgrade:
     upgradeNameText: {fileID: 1344286054}
     upgradeDescriptionText: {fileID: 1872147459}
@@ -10822,6 +10816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 0}
   upgrade:
     upgradeNameText: {fileID: 1344286054}
     upgradeDescriptionText: {fileID: 1872147459}
@@ -13263,6 +13258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 631795440}
   upgrade:
     upgradeNameText: {fileID: 1874725011}
     upgradeDescriptionText: {fileID: 201988443}
@@ -15277,6 +15273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 631795440}
   upgrade:
     upgradeNameText: {fileID: 1874725011}
     upgradeDescriptionText: {fileID: 201988443}
@@ -15853,6 +15850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69bf56667409e324b8c79e9cb2fc0f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CorpseUpgrade
+  buyButton: {fileID: 0}
   upgrade:
     upgradeNameText: {fileID: 1344286054}
     upgradeDescriptionText: {fileID: 1872147459}
