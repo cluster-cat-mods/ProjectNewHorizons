@@ -26,8 +26,8 @@ public class GameDataSaver
 
 #else
         path = Application.persistentDataPath + "/gameData.json";
-#endif
         File.WriteAllText(path, json);
+#endif
     }
 
     public GameData LoadGameData()
@@ -49,7 +49,6 @@ public class GameDataSaver
 
 #else
         path = Application.persistentDataPath + "/gameData.json";
-#endif
         if (File.Exists(path))
         {
             json = File.ReadAllText(path);
@@ -63,6 +62,7 @@ public class GameDataSaver
             json = File.ReadAllText(path);
             return JsonUtility.FromJson<GameData>(json);
         }
+#endif
     }
 }
 
