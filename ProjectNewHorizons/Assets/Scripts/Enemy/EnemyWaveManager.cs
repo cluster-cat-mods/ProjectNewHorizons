@@ -72,12 +72,14 @@ public class EnemyWaveManager : MonoBehaviour
     }
     public IEnumerator Run()
     {
-        manager.SetWave(0);
+        //manager.SetWave(0);
         setEnemyWaves();
         StartCoroutine(enemySpawner.PathIndicator());
 
-        foreach (EnemyWave wave in enemyWaves)
+        for (int i = manager.wave; i < enemyWaves.Length; i++)
         {
+            var wave = enemyWaves[i];
+
             yield return StartCoroutine(StartEnemySpawners());
             _skipWaveDelay = false;
 
@@ -86,10 +88,10 @@ public class EnemyWaveManager : MonoBehaviour
             {
                 skipWaveDelayButton.SetActive(true);
                 timer -= Time.deltaTime;
-                
+
                 yield return null;
             }
-            
+
             skipWaveDelayButton.SetActive(false);
             timer = 0;
             manager.IncreaseWave();

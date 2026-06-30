@@ -18,8 +18,13 @@ public class CorpseUpgrade : MonoBehaviour
     [SerializeField] private Upgrade upgrade = new();
 
     [SerializeField] private UpgradeType upgradeType = UpgradeType.AntGain;
-    [SerializeField] private bool _isTowerUpgrade;
-    [SerializeField, ShowIf("_isTowerUpgrade")] private int towerIndex;
+    [SerializeField] private bool isTowerUpgrade;
+    [SerializeField, ShowIf("isTowerUpgrade")] private int towerIndex;
+    [SerializeField, ShowIf("isTowerUpgrade")] private bool needsToChange;
+    [SerializeField, ShowIf("needsToChange")] private Sprite upgradeSpriteDMGUp;
+    [SerializeField, ShowIf("needsToChange")] private string upgradeNameDMGUp;
+    [SerializeField, ShowIf("needsToChange")] private string upgradeDescriptionDMGUp;
+    [SerializeField, ShowIf("needsToChange")] private string upgradeCostDMGUp;
 
     [SerializeField] private TMP_Text corpseText;
 
@@ -115,7 +120,16 @@ public class CorpseUpgrade : MonoBehaviour
             SetCorpseText();
 
             buyButton.onClick.RemoveListener(TriggerUpgrade);
+
+            ChangeToTowerDMGUpgrade();
         }
+    }
+
+    void ChangeToTowerDMGUpgrade()
+    {
+        upgradeType = UpgradeType.TowerDMG;
+        upgrade.ChangeImage(upgradeSpriteDMGUp);
+        upgrade.ChangeText(upgradeNameDMGUp, upgradeDescriptionDMGUp, upgradeCostDMGUp);
     }
 
     public void NestMaxHPUpgrade()

@@ -27,5 +27,5 @@ MonoBehaviour:
     AOE_Range: 0
   antAllocation:
     minimumAntsAllocated: 8
-    currentAntsAllocated: 12
+    currentAntsAllocated: 0
     maximumAntsAllocated: 16

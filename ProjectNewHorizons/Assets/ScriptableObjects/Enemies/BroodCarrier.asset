@@ -19,6 +19,10 @@ MonoBehaviour:
     damage: 1
     speed: 1.2
     coinBounty: 10
+    spawnSoundPath: 
+    deathSoundPath: 
+    hitSoundPath: 
     enemy: {fileID: 2386113513160735169, guid: d400eb431507f864585f4f9dc9e90f99, type: 3}
     enemySpawnCount: 4
+    spawnDelay: 0.2
     maxHp: 20

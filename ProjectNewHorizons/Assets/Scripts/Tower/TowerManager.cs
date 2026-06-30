@@ -15,6 +15,7 @@ public class TowerManager : MonoBehaviour
     private bool _ChooseTowerOpen;
 
     private TowerStats[] _originalStats;
+    private TowerStats[] _runtimeStats;
     private UpgradeDataSaver upgradeDataSaver = new();
 
     void Start()
@@ -28,6 +29,19 @@ public class TowerManager : MonoBehaviour
                 if (TowerStats[i] != null)
                 {
                     _originalStats[i] = Instantiate(TowerStats[i]);
+                }
+            }
+        }
+
+        if (_runtimeStats == null)
+        {
+            _runtimeStats = new TowerStats[TowerStats.Length];
+
+            for (int i = 0; i < TowerStats.Length; i++)
+            {
+                if (TowerStats[i] != null)
+                {
+                    _runtimeStats[i] = Instantiate(TowerStats[i]);
                 }
             }
         }
@@ -70,12 +84,12 @@ public class TowerManager : MonoBehaviour
                 {
                     case 0:
                         if (upgrade.ID < 2 || upgrade.count <= 0) continue;
-                        TowerStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
+                        _runtimeStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
                         Debug.Log($"tower {towerObject[towerIndex].name} now has {_originalStats[towerIndex].startStats.damage + upgrade.count} damage");
                         break;
                     case 1:
                         if (upgrade.count <= 0) continue;
-                        TowerStats[towerIndex].startStats.towerUnlocked = true;
+                        _runtimeStats[towerIndex].startStats.towerUnlocked = true;
                         break;
 
                 }
@@ -86,7 +100,7 @@ public class TowerManager : MonoBehaviour
 
         for (int i = 0; i < unlockedTowers.Length; i++)
         {
-            if (TowerStats[i].startStats.towerUnlocked)
+            if (_runtimeStats[i].startStats.towerUnlocked)
             {
                 unlockedTowers[i].SetActive(true);
             }
@@ -115,11 +129,13 @@ public class TowerManager : MonoBehaviour
 
     public void PlaceTower(int towerIndex)
     {
-        var cost = TowerStats[towerIndex].antAllocation.minimumAntsAllocated;
+        var cost = _runtimeStats[towerIndex].antAllocation.minimumAntsAllocated;
         Debug.Log(cost);
         if (manager.antCount.y - manager.antCount.x < cost) return;
 
-        Instantiate(towerObject[towerIndex], _lastHit.collider.transform.position, Quaternion.identity, transform);
+        Tower tower = Instantiate(towerObject[towerIndex], _lastHit.collider.transform.position, Quaternion.identity, transform).GetComponentInChildren<Tower>();
+        tower.setStats(_runtimeStats[towerIndex]);
+
         Debug.Log("spawn tower");
         Destroy(_lastHit.collider.gameObject);
 

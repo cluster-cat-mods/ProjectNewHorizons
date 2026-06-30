@@ -28,4 +28,15 @@ public class Upgrade
         upgradeCostText.text = cost + "";
         upgradeImage.sprite = upgradeSprite;
     }
+
+    public void ChangeText(string newName, string newDescription, string newCost)
+    {
+        upgradeNameText.text = newName;
+        upgradeDescriptionText.text = newDescription;
+        upgradeCostText.text = newCost;
+    }
+    public void ChangeImage(Sprite newSprite)
+    {
+        upgradeImage.sprite = newSprite;
+    }
 }

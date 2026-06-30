@@ -111,6 +111,11 @@ public class Tower : MonoBehaviour
         StartCoroutine(Shoot());
     }
 
+    public void setStats(TowerStats runtimeStats)
+    {
+        stats = runtimeStats;
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = rangeDrawingColor;
