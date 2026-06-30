@@ -11,8 +11,6 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
     private bool _zooming = false;
-    private float _localYPos;
-    private float _zoomChange;
     
     private void Start()
     {
@@ -22,9 +20,6 @@ public class CameraMovement : MonoBehaviour
         }
 
         _cameraPosition = transform.position;
-
-        _localYPos = transform.localPosition.y;
-        _zoomChange = 0;
     }
     private void Update()
     {
@@ -84,9 +79,8 @@ public class CameraMovement : MonoBehaviour
             float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startDist;
             distance -= borderClamp.x / 2;
             distance /= zoomScalar;
-
-            _zoomChange = _localYPos - distance;
-            transform.localPosition = new Vector3(transform.localPosition.x, _zoomChange, transform.localPosition.z);
+            
+            transform.localPosition = transform.localPosition + transform.forward * distance;
 
             yield return null;
         }
