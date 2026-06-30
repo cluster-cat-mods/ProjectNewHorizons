@@ -83,7 +83,8 @@ public class TowerManager : MonoBehaviour
                 switch (upgrade.ID % 2)
                 {
                     case 0:
-                        if (upgrade.ID < 2 || upgrade.count <= 0) continue;
+                        if (upgrade.ID < 2 || upgrade.count <= 0 || upgrade.ID > 500) continue;
+                        Debug.Log($"tower to set currently to check is {towerIndex}");
                         _runtimeStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
                         Debug.Log($"tower {towerObject[towerIndex].name} now has {_originalStats[towerIndex].startStats.damage + upgrade.count} damage");
                         break;

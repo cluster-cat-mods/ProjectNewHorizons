@@ -10,6 +10,7 @@ public class Upgrade
     [SerializeField] private TMP_Text upgradeDescriptionText;
     [SerializeField] private TMP_Text upgradeCostText;
     [SerializeField] private Image upgradeImage;
+    [SerializeField] private Image upgradeSelectButtonImage;
 
     [Space(30)]
 
@@ -27,16 +28,19 @@ public class Upgrade
         upgradeDescriptionText.text = upgradeDescription;
         upgradeCostText.text = cost + "";
         upgradeImage.sprite = upgradeSprite;
+        upgradeSelectButtonImage.sprite = upgradeSprite;
     }
 
-    public void ChangeText(string newName, string newDescription, string newCost)
+    public void ChangeText(string newName, string newDescription)
     {
-        upgradeNameText.text = newName;
-        upgradeDescriptionText.text = newDescription;
-        upgradeCostText.text = newCost;
+        upgradeName = newName;
+        upgradeDescription = newDescription;
+
+        SetUIElements();
     }
     public void ChangeImage(Sprite newSprite)
     {
-        upgradeImage.sprite = newSprite;
+        upgradeSprite = newSprite;
+        SetUIElements();
     }
 }

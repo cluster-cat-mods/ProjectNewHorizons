@@ -24,7 +24,6 @@ public class CorpseUpgrade : MonoBehaviour
     [SerializeField, ShowIf("needsToChange")] private Sprite upgradeSpriteDMGUp;
     [SerializeField, ShowIf("needsToChange")] private string upgradeNameDMGUp;
     [SerializeField, ShowIf("needsToChange")] private string upgradeDescriptionDMGUp;
-    [SerializeField, ShowIf("needsToChange")] private string upgradeCostDMGUp;
 
     [SerializeField] private TMP_Text corpseText;
 
@@ -61,6 +60,14 @@ public class CorpseUpgrade : MonoBehaviour
         }
 
         SetCorpseText();
+
+        foreach (var upgrade in upgradeData)
+        {
+            if (upgrade.ID == 2 * towerIndex + 1)
+            {
+                ChangeToTowerDMGUpgrade();
+            }
+        }
     }
     
     public void TriggerUpgrade()
@@ -80,8 +87,6 @@ public class CorpseUpgrade : MonoBehaviour
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
-
-            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 
@@ -99,8 +104,6 @@ public class CorpseUpgrade : MonoBehaviour
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
-
-            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 
@@ -119,17 +122,29 @@ public class CorpseUpgrade : MonoBehaviour
 
             SetCorpseText();
 
-            buyButton.onClick.RemoveListener(TriggerUpgrade);
-
             ChangeToTowerDMGUpgrade();
         }
+    }
+
+    public void RemoveListener()
+    {
+        //if (buyButton.onClick.)
+        buyButton.onClick.RemoveListener(TriggerUpgrade);
     }
 
     void ChangeToTowerDMGUpgrade()
     {
         upgradeType = UpgradeType.TowerDMG;
         upgrade.ChangeImage(upgradeSpriteDMGUp);
-        upgrade.ChangeText(upgradeNameDMGUp, upgradeDescriptionDMGUp, upgradeCostDMGUp);
+        upgrade.ChangeText(upgradeNameDMGUp, upgradeDescriptionDMGUp);
+
+        resetEvent();
+    }
+
+    void resetEvent()
+    {
+        upgrade.upgradeEvent -= TowerUnlock;
+        upgrade.upgradeEvent += TowerDMGUpgrade;
     }
 
     public void NestMaxHPUpgrade()
@@ -143,8 +158,6 @@ public class CorpseUpgrade : MonoBehaviour
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 
             SetCorpseText();
-
-            buyButton.onClick.RemoveListener(TriggerUpgrade);
         }
     }
 

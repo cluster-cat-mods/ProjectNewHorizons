@@ -286,10 +286,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1685812372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -1000}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22930035
 MonoBehaviour:
@@ -439,6 +439,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 201988443}
     upgradeCostText: {fileID: 2001535875}
     upgradeImage: {fileID: 678729457}
+    upgradeSelectButtonImage: {fileID: 22930036}
     upgradeName: Bug Spray
     upgradeDescription: Unlock the Bug Spray tower!
     cost: 10000
@@ -449,8 +450,7 @@ MonoBehaviour:
   needsToChange: 1
   upgradeSpriteDMGUp: {fileID: 21300000, guid: 6cc7556629caeed44bbb258329bdeafa, type: 3}
   upgradeNameDMGUp: Bug Spray DMG Up
-  upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
+  upgradeDescriptionDMGUp: Bug Spray Damage +1!
   corpseText: {fileID: 745566199}
 --- !u!1 &44806422
 GameObject:
@@ -681,10 +681,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1408738008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 670, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &62685478
 MonoBehaviour:
@@ -834,6 +834,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 1872147459}
     upgradeCostText: {fileID: 126624809}
     upgradeImage: {fileID: 1759303467}
+    upgradeSelectButtonImage: {fileID: 62685479}
     upgradeName: Hardened Hive
     upgradeDescription: Gain extra HP for your nest!
     cost: 1000
@@ -845,7 +846,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &73385505
 GameObject:
@@ -1225,10 +1225,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1685812372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 670, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &110571082
 MonoBehaviour:
@@ -1378,6 +1378,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 201988443}
     upgradeCostText: {fileID: 2001535875}
     upgradeImage: {fileID: 678729457}
+    upgradeSelectButtonImage: {fileID: 110571083}
     upgradeName: Toothpicks
     upgradeDescription: Unlock the Toothpic tower!
     cost: 250
@@ -1389,7 +1390,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 21300000, guid: fa8d10eedfae4b449928490fe26f3cac, type: 3}
   upgradeNameDMGUp: Thootpicks DMG Up
   upgradeDescriptionDMGUp: Thootpicks Damage +1!
-  upgradeCostDMGUp: 250
   corpseText: {fileID: 745566199}
 --- !u!1 &118510199
 GameObject:
@@ -3490,10 +3490,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1685812372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 670, y: -600}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321280187
 MonoBehaviour:
@@ -3643,6 +3643,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 201988443}
     upgradeCostText: {fileID: 2001535875}
     upgradeImage: {fileID: 678729457}
+    upgradeSelectButtonImage: {fileID: 321280188}
     upgradeName: Needle Launcher
     upgradeDescription: Unlock the Needle Launcher tower!
     cost: 5000
@@ -3653,8 +3654,7 @@ MonoBehaviour:
   needsToChange: 1
   upgradeSpriteDMGUp: {fileID: 21300000, guid: 9230191e526e786478cb45ad3276015d, type: 3}
   upgradeNameDMGUp: Needle Launcher DMG Up
-  upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
+  upgradeDescriptionDMGUp: Needle Launcher Damage +1!
   corpseText: {fileID: 745566199}
 --- !u!1 &345744580
 GameObject:
@@ -3932,6 +3932,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 1872147459}
     upgradeCostText: {fileID: 126624809}
     upgradeImage: {fileID: 1759303467}
+    upgradeSelectButtonImage: {fileID: 0}
     upgradeName: name of upgrade
     upgradeDescription: text of the function of the upgrade
     cost: 0
@@ -3943,7 +3944,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &375359881
 GameObject:
@@ -4219,7 +4219,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &433074089
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8006,6 +8006,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2120203137}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 62685481}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1025205198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8501,6 +8525,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 1872147459}
     upgradeCostText: {fileID: 126624809}
     upgradeImage: {fileID: 1759303467}
+    upgradeSelectButtonImage: {fileID: 0}
     upgradeName: name of upgrade
     upgradeDescription: text of the function of the upgrade
     cost: 0
@@ -8512,7 +8537,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &1086830815
 GameObject:
@@ -10197,7 +10221,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 908.69995, y: 400}
+  m_SizeDelta: {x: 908.69995, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1408738009
 MonoBehaviour:
@@ -11223,6 +11247,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 1872147459}
     upgradeCostText: {fileID: 126624809}
     upgradeImage: {fileID: 1759303467}
+    upgradeSelectButtonImage: {fileID: 0}
     upgradeName: name of upgrade
     upgradeDescription: text of the function of the upgrade
     cost: 0
@@ -11234,7 +11259,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &1528942504
 GameObject:
@@ -12299,7 +12323,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -600}
-  m_SizeDelta: {x: 919.8, y: 1200}
+  m_SizeDelta: {x: 919.8, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1685812373
 MonoBehaviour:
@@ -13561,10 +13585,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1685812372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1768907046
 MonoBehaviour:
@@ -13714,6 +13738,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 201988443}
     upgradeCostText: {fileID: 2001535875}
     upgradeImage: {fileID: 678729457}
+    upgradeSelectButtonImage: {fileID: 1768907047}
     upgradeName: Pins DMG Up
     upgradeDescription: Pins Damage +1!
     cost: 100
@@ -13725,7 +13750,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &1808304112
 GameObject:
@@ -15715,10 +15739,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1685812372}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -600}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2030344681
 MonoBehaviour:
@@ -15868,6 +15892,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 201988443}
     upgradeCostText: {fileID: 2001535875}
     upgradeImage: {fileID: 678729457}
+    upgradeSelectButtonImage: {fileID: 2030344682}
     upgradeName: Slingshot
     upgradeDescription: Unlock the Slingshot tower!
     cost: 1000
@@ -15878,8 +15903,7 @@ MonoBehaviour:
   needsToChange: 1
   upgradeSpriteDMGUp: {fileID: 21300000, guid: e7820d111b93e89499d27f40f3c215ff, type: 3}
   upgradeNameDMGUp: Slingshot DMG Up
-  upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
+  upgradeDescriptionDMGUp: Slingshot Damage +1!
   corpseText: {fileID: 745566199}
 --- !u!1 &2052343884
 GameObject:
@@ -16225,6 +16249,66 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1768907049}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 110571085}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2030344684}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 321280190}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 22930038}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: RemoveListener
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2109367424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16297,10 +16381,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1408738008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 270, y: -200}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2120203134
 MonoBehaviour:
@@ -16450,6 +16534,7 @@ MonoBehaviour:
     upgradeDescriptionText: {fileID: 1872147459}
     upgradeCostText: {fileID: 126624809}
     upgradeImage: {fileID: 1759303467}
+    upgradeSelectButtonImage: {fileID: 2120203135}
     upgradeName: Ant Abundance
     upgradeDescription: Gain +1 Ant per second!
     cost: 420
@@ -16461,7 +16546,6 @@ MonoBehaviour:
   upgradeSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
-  upgradeCostDMGUp: 
   corpseText: {fileID: 745566199}
 --- !u!1 &2138063586
 GameObject:
