@@ -78,9 +78,10 @@ public class CameraMovement : MonoBehaviour
 
     private IEnumerator ZoomCoroutine()
     {
+        float startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
         while (Input.touchCount == 2)
         {
-            float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
+            float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startDist;
             distance -= borderClamp.x / 2;
             distance /= zoomScalar;
 
