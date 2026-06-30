@@ -10,7 +10,7 @@ public class GameDataSaver
     public void SaveGameData(int  corpseCount, StageReached[] maxStageReached, int wantedStartStage)
     {
         GameData gameData = new GameData(corpseCount, maxStageReached, wantedStartStage);
-        json = JsonUtility.ToJson(gameData);
+        json = JsonUtility.ToJson(gameData, true);
 
 #if (UNITY_WEBGL && !UNITY_EDITOR)
         path = System.IO.Path.Combine("idbfs", Application.productName);
@@ -40,6 +40,7 @@ public class GameDataSaver
         }
         else
         {
+            File.WriteAllText(path, "[]");
             return null;
         }
     }

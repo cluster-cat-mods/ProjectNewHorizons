@@ -19,7 +19,5 @@ MonoBehaviour:
     enemyCount: 5
   - enemy: {fileID: 7272222628244922929, guid: 25731db1c091c36478f0a663407b6027, type: 3}
     enemyCount: 8
-  - enemy: {fileID: 5499855767120887464, guid: 114169ab2dfe0a045b747c02ee5da632, type: 3}
-    enemyCount: 0
   waveDuration: 20
   openPaths: 0000000001000000
