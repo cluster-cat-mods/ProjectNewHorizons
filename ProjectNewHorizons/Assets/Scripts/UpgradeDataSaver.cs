@@ -81,7 +81,8 @@ public class UpgradeDataSaver
         {
             var emptyData = new UpgradeData();
             File.WriteAllText(path, JsonUtility.ToJson(emptyData, true));
-            return null;
+            json = File.ReadAllText(path);
+            return JsonUtility.FromJson<UpgradeData>(json).upgrades;
         }
     }   
 }

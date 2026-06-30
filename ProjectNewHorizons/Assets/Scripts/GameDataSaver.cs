@@ -49,7 +49,8 @@ public class GameDataSaver
             StageReached[] stageReached = new StageReached[0];
             GameData emptyData = new(0,stageReached,0);
             File.WriteAllText(path, JsonUtility.ToJson(emptyData, true));
-            return null;
+            json = File.ReadAllText(path);
+            return JsonUtility.FromJson<GameData>(json);
         }
     }
 }
