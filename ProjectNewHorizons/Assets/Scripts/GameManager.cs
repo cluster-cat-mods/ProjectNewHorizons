@@ -319,9 +319,9 @@ public class GameManager : MonoBehaviour
     }
     /* testing functions and vars */
     [Button]
-    public void Get10Corpse()
+    public void Get10000Corpse()
     {
-        GainCorpse(10);
+        GainCorpse(10000);
     }
 
     [Button]
