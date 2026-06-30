@@ -122,14 +122,8 @@ public class GameManager : MonoBehaviour
         DestroyEnemies();
         enemyWaveManager.StopAllCoroutines();
 
-        List<StageReached> saveReachedStages = new();
-
-        foreach (var reachedStage in reachedStageList)
-        {
-            saveReachedStages.Add(reachedStage);
-        }
-
-        dataSaver.SaveGameData(corpse, saveReachedStages.ToArray(), 0);
+        SaveData();
+        //dataSaver.SaveGameData(corpse, saveReachedStages.ToArray(), 0);
         //Debug.Log($"corpses == {corpse}");
         //Debug.Log($"saved stages == {saveReachedStages}");
         //Debug.Log("sgt")
@@ -262,6 +256,18 @@ public class GameManager : MonoBehaviour
                 });
             }
         }
+    }
+
+    public void SaveData()
+    {
+        List<StageReached> saveReachedStages = new();
+
+        foreach (var reachedStage in reachedStageList)
+        {
+            saveReachedStages.Add(reachedStage);
+        }
+
+        dataSaver.SaveGameData(corpse, saveReachedStages.ToArray(), 0);
     }
 
     private IEnumerator NextWaveEffect()
