@@ -66,7 +66,7 @@ public class TowerManager : MonoBehaviour
             {
                 Debug.Log(upgrade.ToString());
 
-                int towerIndex = (int)Mathf.Floor(upgrade.ID / 2) - 1;
+                int towerIndex = (int) Mathf.Floor(upgrade.ID / 2 - .5f);
 
                 switch (upgrade.ID % 2)
                 {
