@@ -9,18 +9,18 @@ public class UpgradeDataSaver
 
     public void ChangeUpgrade(int ID, int count)
     {
-//#if (UNITY_WEBGL && !UNITY_EDITOR)
-//        path = System.IO.Path.Combine("idbfs", Application.productName);
-//        Debug.Log($"{path}");
-//        if (!Directory.Exists(path)) 
-//        { 
-//            Directory.CreateDirectory(path);
-//        }
-//        path = System.IO.Path.Combine(path, "saveAntUpgradeData");
-//        Debug.Log($"{path}");
-//#else
+#if (UNITY_WEBGL && !UNITY_EDITOR)
+                path = System.IO.Path.Combine("idbfs", Application.productName);
+                Debug.Log($"{path}");
+                if (!Directory.Exists(path)) 
+                { 
+                    Directory.CreateDirectory(path);
+                }
+                path = System.IO.Path.Combine(path, "saveAntUpgradeData");
+                Debug.Log($"{path}");
+#else
         path = Application.persistentDataPath + "/upgradeData.json";
-//#endif
+#endif
         if (!File.Exists(path))
         {
             var emptyData = new UpgradeData();
@@ -60,17 +60,17 @@ public class UpgradeDataSaver
 
     public List<UpgradeClass> GetUpgrades()
     {
-//#if (UNITY_WEBGL && !UNITY_EDITOR)
-//        path = System.IO.Path.Combine("idbfs", Application.productName);
-//        if (!Directory.Exists(path)) 
-//        { 
-//            Directory.CreateDirectory(path);
-//        }
-//        path = System.IO.Path.Combine(path, "saveAntUpgradeData");
-//        Debug.Log($"{path}");
-//#else
+#if (UNITY_WEBGL && !UNITY_EDITOR)
+        path = System.IO.Path.Combine("idbfs", Application.productName);
+        if (!Directory.Exists(path)) 
+        {
+            Directory.CreateDirectory(path);
+    }
+    path = System.IO.Path.Combine(path, "saveAntUpgradeData");
+        Debug.Log($"{path}");
+#else
         path = Application.persistentDataPath + "/upgradeData.json";
-//#endif
+#endif
         if (File.Exists(path))
         {
             json = File.ReadAllText(path);
