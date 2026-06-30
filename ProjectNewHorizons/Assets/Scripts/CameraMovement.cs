@@ -6,11 +6,10 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private TouchController touchController;
 
     [SerializeField] private Vector2 movementScalar = new(16, 8);
-    [SerializeField] private float zoomScalar = 175;
     [SerializeField] private Vector2 borderClamp = new(2000,1080);
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
-    private bool _zooming = false;
+    
     
     private void Start()
     {
@@ -62,32 +61,10 @@ public class CameraMovement : MonoBehaviour
             //Debug.Log($"the phase of the touch = {touch.phase}");
         }
         
-        if (Input.touchCount == 2 && !_zooming)
-        {
-            Debug.Log("Start zooming");
-            StartCoroutine(ZoomCoroutine());
-            _zooming = true;
-        }
+        
 
     }
 
-    private IEnumerator ZoomCoroutine()
-    {
-        float startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-        while (Input.touchCount == 2)
-        {
-            float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startDist;
-            
-            Vector3 newPos = transform.localPosition + transform.forward * distance / zoomScalar;
-            newPos.y = Mathf.Clamp(newPos.y, 5, 25);
-            newPos.z = Mathf.Clamp(newPos.x, -35, -25);
-            transform.localPosition = newPos;
-            startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
-
-            yield return null;
-        }
-        _zooming = false;
-        yield return null;
-    }
+    
         
 }

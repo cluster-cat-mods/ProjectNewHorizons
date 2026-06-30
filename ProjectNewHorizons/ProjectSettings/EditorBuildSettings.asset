@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Cas_camerazoom.unity
+    guid: 0469784f05d2dce4db518705e5920144
+  - enabled: 1
     path: Assets/Scenes/Game/MainMenu.unity
     guid: d9867afb2ca1c0e46b2581a14d899e2d
   - enabled: 1
