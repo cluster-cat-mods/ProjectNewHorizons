@@ -17,8 +17,6 @@ MonoBehaviour:
     enemyCount: 50
   - enemy: {fileID: 3062645911159360230, guid: 8bfbe83e2c753614bbb43acdfaac70ea, type: 3}
     enemyCount: 50
-  - enemy: {fileID: 7272222628244922929, guid: 25731db1c091c36478f0a663407b6027, type: 3}
-    enemyCount: 0
   - enemy: {fileID: 5499855767120887464, guid: 114169ab2dfe0a045b747c02ee5da632, type: 3}
     enemyCount: 2
   waveDuration: 20

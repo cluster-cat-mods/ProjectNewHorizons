@@ -40,7 +40,7 @@ public struct TowerStartStats
 
     [Space(10)]
 
-    [AllowNesting] public bool towerUnlocked;
+    public bool towerUnlocked;
 
     [Space(30)]
 

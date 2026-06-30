@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: EnemyWave19
   m_EditorClassIdentifier: Assembly-CSharp::EnemyWave
   enemyGroups:
-  - enemy: {fileID: 2386113513160735169, guid: d400eb431507f864585f4f9dc9e90f99, type: 3}
-    enemyCount: 0
   - enemy: {fileID: 3062645911159360230, guid: 8bfbe83e2c753614bbb43acdfaac70ea, type: 3}
     enemyCount: 20
   - enemy: {fileID: 7272222628244922929, guid: 25731db1c091c36478f0a663407b6027, type: 3}
