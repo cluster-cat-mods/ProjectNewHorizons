@@ -13,43 +13,32 @@ public class GameDataSaver
         json = JsonUtility.ToJson(gameData, true);
 
 #if (UNITY_WEBGL && !UNITY_EDITOR)
-        //path = System.IO.Path.Combine("idbfs", Application.productName);
-        //Debug.Log($"{path}");
-        //if (!Directory.Exists(path)) 
-        //{ 
-        //    Directory.CreateDirectory(path);
-        //}
-        //path = System.IO.Path.Combine(path, "saveAntData");
-
-        PlayerPrefs.SetString("SaveGame", json);
-        PlayerPrefs.Save();
-
+        path = System.IO.Path.Combine("idbfs", Application.productName);
+        Debug.Log($"{path}");
+        if (!Directory.Exists(path)) 
+        { 
+            Directory.CreateDirectory(path);
+        }
+        path = System.IO.Path.Combine(path, "saveAntData");
 #else
         path = Application.persistentDataPath + "/gameData.json";
-        File.WriteAllText(path, json);
 #endif
+        File.WriteAllText(path, json);
     }
 
     public GameData LoadGameData()
     {
 #if (UNITY_WEBGL && !UNITY_EDITOR)
-        //path = System.IO.Path.Combine("idbfs", Application.productName);
-        //if (!Directory.Exists(path)) 
-        //{ 
-        //Directory.CreateDirectory(path);
-        //}
-        //Debug.Log($"{path}");
-        //path = System.IO.Path.Combine(path, "saveAntData");
-
-        if (PlayerPrefs.HasKey("SaveGame"))
-        {
-        string json = PlayerPrefs.GetString("SaveGame");
-        return JsonUtility.FromJson<GameData>(json);
+        path = System.IO.Path.Combine("idbfs", Application.productName);
+        if (!Directory.Exists(path)) 
+        { 
+            Directory.CreateDirectory(path);
         }
-
-        return new GameData(0, new StageReached[0], 0);
+        Debug.Log($"{path}");
+        path = System.IO.Path.Combine(path, "saveAntData");
 #else
         path = Application.persistentDataPath + "/gameData.json";
+#endif
         if (File.Exists(path))
         {
             json = File.ReadAllText(path);
@@ -63,7 +52,6 @@ public class GameDataSaver
             json = File.ReadAllText(path);
             return JsonUtility.FromJson<GameData>(json);
         }
-#endif
     }
 }
 
