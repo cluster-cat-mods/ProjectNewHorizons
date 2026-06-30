@@ -13,13 +13,17 @@ public class GameDataSaver
         json = JsonUtility.ToJson(gameData, true);
 
 #if (UNITY_WEBGL && !UNITY_EDITOR)
-        path = System.IO.Path.Combine("idbfs", Application.productName);
-        Debug.Log($"{path}");
-        if (!Directory.Exists(path)) 
-        { 
-            Directory.CreateDirectory(path);
-        }
-        path = System.IO.Path.Combine(path, "saveAntData");
+        //path = System.IO.Path.Combine("idbfs", Application.productName);
+        //Debug.Log($"{path}");
+        //if (!Directory.Exists(path)) 
+        //{ 
+        //    Directory.CreateDirectory(path);
+        //}
+        //path = System.IO.Path.Combine(path, "saveAntData");
+
+        PlayerPrefs.SetString("SaveGame", json);
+        PlayerPrefs.Save();
+
 #else
         path = Application.persistentDataPath + "/gameData.json";
 #endif
@@ -29,13 +33,20 @@ public class GameDataSaver
     public GameData LoadGameData()
     {
 #if (UNITY_WEBGL && !UNITY_EDITOR)
-        path = System.IO.Path.Combine("idbfs", Application.productName);
-        if (!Directory.Exists(path)) 
-        { 
-            Directory.CreateDirectory(path);
+        //path = System.IO.Path.Combine("idbfs", Application.productName);
+        //if (!Directory.Exists(path)) 
+        //{ 
+        //Directory.CreateDirectory(path);
+        //}
+        //Debug.Log($"{path}");
+        //path = System.IO.Path.Combine(path, "saveAntData");
+
+        if (PlayerPrefs.HasKey("SaveGame"))
+        {
+        string json = PlayerPrefs.GetString("SaveGame");
+        return JsonUtility.FromJson<GameData>(json);
         }
-        Debug.Log($"{path}");
-        path = System.IO.Path.Combine(path, "saveAntData");
+
 #else
         path = Application.persistentDataPath + "/gameData.json";
 #endif
