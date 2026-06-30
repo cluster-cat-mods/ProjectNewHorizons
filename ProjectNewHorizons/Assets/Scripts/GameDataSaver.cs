@@ -26,8 +26,8 @@ public class GameDataSaver
 
 #else
         path = Application.persistentDataPath + "/gameData.json";
-#endif
         File.WriteAllText(path, json);
+#endif
     }
 
     public GameData LoadGameData()
@@ -47,9 +47,9 @@ public class GameDataSaver
         return JsonUtility.FromJson<GameData>(json);
         }
 
+        return new GameData(0, new StageReached[0], 0);
 #else
         path = Application.persistentDataPath + "/gameData.json";
-#endif
         if (File.Exists(path))
         {
             json = File.ReadAllText(path);
@@ -63,6 +63,7 @@ public class GameDataSaver
             json = File.ReadAllText(path);
             return JsonUtility.FromJson<GameData>(json);
         }
+#endif
     }
 }
 
