@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class CorpseUpgrade : MonoBehaviour
 {
-    private enum UpgradeType { AntGain, TowerDMG, TowerUnlock}
+    private enum UpgradeType { AntGain, TowerDMG, TowerUnlock, NestMaxHP}
 
     [SerializeField] private Button buyButton;
 
@@ -50,6 +50,9 @@ public class CorpseUpgrade : MonoBehaviour
                 upgrade.upgradeEvent += TowerUnlock;
                 break;
 
+            case UpgradeType.NestMaxHP:
+                upgrade.upgradeEvent += NestMaxHPUpgrade;
+                break;
         }
 
         SetCorpseText();
@@ -58,6 +61,7 @@ public class CorpseUpgrade : MonoBehaviour
     public void TriggerUpgrade()
     {
         upgrade.Trigger();
+        SetCorpseText();
     }
 
     public void AntGainUpgrade()
@@ -105,6 +109,22 @@ public class CorpseUpgrade : MonoBehaviour
             /* unlock weapon/tower (set bool to true) */
             Debug.Log("unlocked the ... tower");
             upgradeDataSaver.ChangeUpgrade(towerNum, 1);
+            _gameData.CorpseCount -= upgrade.cost;
+            dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
+
+            SetCorpseText();
+
+            buyButton.onClick.RemoveListener(TriggerUpgrade);
+        }
+    }
+
+    public void NestMaxHPUpgrade()
+    {
+        if (_gameData.CorpseCount >= upgrade.cost)
+        {
+            RuntimeManager.PlayOneShot("event:/UI/PurchaseSound");
+
+            upgradeDataSaver.ChangeUpgrade(1000, 1);
             _gameData.CorpseCount -= upgrade.cost;
             dataSaver.SaveGameData(_gameData.CorpseCount, _gameData.StageReached, _gameData.WantedStartStage);
 

@@ -12,7 +12,7 @@ using UnityEngine.Rendering;
 
 public class GameManager : MonoBehaviour 
 {
-    [SerializeField] private int startingHiveMaxHP;
+    [SerializeField] private int startingNestMaxHP;
 
     [SerializeField] private TMP_Text corpseText;
     [SerializeField] private TMP_Text antText;
@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         }
 
         antGain = 1;
+        nestMaxHP = startingNestMaxHP;
 
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)
@@ -87,15 +88,19 @@ public class GameManager : MonoBehaviour
                 {
                     IncreaseAntGain(upgrade.count);
                 }
+
+                if (upgrade.ID == 1000)
+                {
+                    IncreaseMaxHP(upgrade.count);
+                }
             }
         }
 
-        nestMaxHP = startingHiveMaxHP;
         nestHP = nestMaxHP;
         antCount = 0;
         alive = true;
         SetAntText();
-        SetHiveHPText();
+        SetNestHPText();
         SetCorpseText();
         StartCoroutine(AliveChecker());
         StartCoroutine(AntGainOvertime());
@@ -183,7 +188,7 @@ public class GameManager : MonoBehaviour
         volume[1].weight = 1;
         nestHP = nestHP - amount;
         //Debug.Log($"you have {nestHP} hp");
-        SetHiveHPText();
+        SetNestHPText();
 
         StartCoroutine(LoseHpEffect());
     }
@@ -196,6 +201,12 @@ public class GameManager : MonoBehaviour
     {
         antGain = antGain + amount;
         SetAntText();
+    }
+
+    public void IncreaseMaxHP(int amount)
+    {
+        nestMaxHP = nestMaxHP + amount;
+        SetNestHPText();
     }
 
     public void AllocateAnt(int amount)
@@ -216,7 +227,7 @@ public class GameManager : MonoBehaviour
     {
         antText.text = $"{antCount.x}/{antCount.y}";
     }
-    public void SetHiveHPText()
+    public void SetNestHPText()
     {
         nestHPText.text = $"{nestHP}/{nestMaxHP}";
     }
