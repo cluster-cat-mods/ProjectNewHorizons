@@ -16,4 +16,4 @@ MonoBehaviour:
   - enemy: {fileID: 3062645911159360230, guid: 8bfbe83e2c753614bbb43acdfaac70ea, type: 3}
     enemyCount: 25
   waveDuration: 20
-  openPaths: 0000000001000000
+  openPaths: 00000000010000000200000003000000040000000500000006000000
