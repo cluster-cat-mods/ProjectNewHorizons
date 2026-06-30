@@ -70,6 +70,7 @@ public class Enemy : MonoBehaviour
         {
             yield return null;
         }
+        Destroy(gameObject);
     }
 
     public void LoseHp(int amount)
@@ -79,7 +80,7 @@ public class Enemy : MonoBehaviour
 
         if (runtimeStats.hp > 0) return;
         diedByTower = true;
-        Destroy(gameObject);
+        StartCoroutine(OnDie());
     }
 
     public IEnumerator HitHiveCheck()
