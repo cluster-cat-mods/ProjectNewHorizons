@@ -69,12 +69,12 @@ public class TowerManager : MonoBehaviour
                 switch (upgrade.ID % 2)
                 {
                     case 0:
-                        if (upgrade.ID < 2 || upgrade.count <= 0) return;
+                        if (upgrade.ID < 2 || upgrade.count <= 0) continue;
                         TowerStats[towerIndex].startStats.damage = _originalStats[towerIndex].startStats.damage + upgrade.count;
                         Debug.Log($"tower {towerObject[towerIndex].name} now has {_originalStats[towerIndex].startStats.damage + upgrade.count} damage");
                         break;
                     case 1:
-                        if (upgrade.count <= 0) return;
+                        if (upgrade.count <= 0) continue;
                         TowerStats[towerIndex].startStats.towerUnlocked = true;
                         break;
 

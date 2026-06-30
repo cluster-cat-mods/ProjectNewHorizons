@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+    //[SerializeField] private TowerManager towerManager;
 
     [SerializeField] private Volume[] volume;
     
@@ -49,6 +50,11 @@ public class GameManager : MonoBehaviour
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
 
+        //if (towerManager == null)
+        //{
+        //    towerManager = FindAnyObjectByType<TowerManager>();
+        //}
+
         startEvent?.Invoke();
 
         //for (int i = 0; i < 3; i++)
@@ -56,7 +62,7 @@ public class GameManager : MonoBehaviour
         //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
         //    reachedStageList.Add(reachedStage);
         //}
-
+        //towerManager.SetUpgradeValues();
     }
 
     private void SetStartStats()
