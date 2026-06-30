@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CameraZooming : MonoBehaviour
 {
-    [SerializeField] private float zoomScalar = 175;
+    [SerializeField] private float zoomMin = -25;
+    [SerializeField] private float zoomMax = 25;
     
     private bool _zooming = false;
-    private float zoomLevel;
+    [SerializeField] private float zoomLevel;
     private void Update()
     {
         if (Input.touchCount == 2 && !_zooming)
@@ -24,11 +25,11 @@ public class CameraZooming : MonoBehaviour
         while (Input.touchCount == 2)
         {
             float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startDist;
-            distance /= 200;
+            distance /= 1600;
             zoomLevel += distance;
             zoomLevel = Mathf.Clamp(zoomLevel, 0f, 1f);
             
-            Vector3 newPos = transform.forward * zoomLevel * zoomScalar;
+            Vector3 newPos = transform.forward * Mathf.Lerp(zoomMin, zoomMax, zoomLevel);
             transform.localPosition = newPos;
             startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
 
