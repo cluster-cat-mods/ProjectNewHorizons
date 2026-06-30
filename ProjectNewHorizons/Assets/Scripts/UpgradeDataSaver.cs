@@ -11,11 +11,13 @@ public class UpgradeDataSaver
     {
 #if (UNITY_WEBGL && !UNITY_EDITOR)
         path = System.IO.Path.Combine("idbfs", Application.productName);
+        Debug.Log($"{path}");
         if (!File.Exists(path)) 
         { 
             Directory.CreateDirectory(path);
         }
         path = System.IO.Path.Combine(path, "saveAntUpgradeData");
+        Debug.Log($"{path}");
 #else
         path = Application.persistentDataPath + "/upgradeData.json";
 #endif
@@ -61,6 +63,7 @@ public class UpgradeDataSaver
 #if (UNITY_WEBGL && !UNITY_EDITOR)
         path = System.IO.Path.Combine("idbfs", Application.productName);
         path = System.IO.Path.Combine(path, "saveAntUpgradeData");
+        Debug.Log($"{path}");
 #else
         path = Application.persistentDataPath + "/upgradeData.json";
 #endif
