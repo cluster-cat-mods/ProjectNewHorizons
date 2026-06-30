@@ -1,21 +1,22 @@
 using System.Collections.Generic;
+using FMODUnity;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     private Enemy _targetEnemy;
-
     private Transform _targetTransform;
 
     private Vector3 _startPosition;
     [HideInInspector] public float _towerRange;
     [HideInInspector] public float _movementSpeed;
     [HideInInspector] public int _damage;
-
+    [HideInInspector] public string _hitSoundPath;
+    
     private Vector3 _lookVector;
     private Vector3 _crossVector;
-
     private float _degreesBetweenVectors;
+    
 
     void Start()
     {
@@ -59,6 +60,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
+            if (_hitSoundPath != null) RuntimeManager.PlayOneShot(_hitSoundPath);
             _targetEnemy.LoseHp(_damage);
             Destroy(gameObject);
         }
