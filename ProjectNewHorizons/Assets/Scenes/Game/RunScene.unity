@@ -104722,6 +104722,8 @@ MonoBehaviour:
   - {fileID: 1424694233}
   - {fileID: 1468466579}
   debugEnemy: {fileID: 6355293842020295962, guid: d18892e9d2a017f438b5db6a67dff0b8, type: 3}
+  pathIndicator: {fileID: 8138194839224499890, guid: 202f45962141132419e9800db68540c3, type: 3}
+  indicatorDelay: 1
   openPathsList: []
 --- !u!4 &1708596007
 Transform:

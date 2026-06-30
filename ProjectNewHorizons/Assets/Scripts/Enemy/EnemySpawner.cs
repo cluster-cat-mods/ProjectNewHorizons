@@ -9,6 +9,9 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private List<Transform> enemySpawnPositions;
     [SerializeField] private GameObject debugEnemy;
+    [SerializeField] private GameObject pathIndicator;
+    [SerializeField, Min(0.1f)] private float indicatorDelay = 1;
+    private bool indicatorActive = false;
 
     [SerializeField] private List<Transform> openPathsList = new();
 
@@ -66,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
     private IEnumerator SpawnCoroutine(float spawnDelay, EnemyWave[] enemyWaves, int wave)
     {
         //Debug.Log($"total enemy count = {totalEnemyCount}");
+        
         while (_totalEnemyCount > 0)
         {
             yield return new WaitForSeconds(spawnDelay);
@@ -98,4 +102,35 @@ public class EnemySpawner : MonoBehaviour
 
         return randomEnemyGroupIndex;
     }
+
+    public IEnumerator PathIndicator()
+    {
+        indicatorActive = true;
+        while (indicatorActive)
+        {
+            foreach (Transform t in openPathsList)
+            {
+                var spawnPosition = t;
+
+                PathHighlight go = Instantiate(pathIndicator, spawnPosition.position, Quaternion.identity, transform).GetComponent<PathHighlight>();
+
+                go.SetStuff(spawnPosition, manager, _allNodes);
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(indicatorDelay);
+        }
+    }
+
+    public void ActivateIndicator()
+    {
+        if (!indicatorActive) indicatorActive = true;
+    }
+
+    public void DeactivateIndicator()
+    {
+        Debug.Log("deactivate indicator");
+        if (indicatorActive) indicatorActive = false;
+    }
+    
 }

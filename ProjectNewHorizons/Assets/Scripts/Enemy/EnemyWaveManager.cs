@@ -81,15 +81,15 @@ public class EnemyWaveManager : MonoBehaviour
             _skipWaveDelay = false;
 
             timer = waveDelay;
-
-
+            StartCoroutine(enemySpawner.PathIndicator());
             while (timer > 0 && !_skipWaveDelay)
             {
                 skipWaveDelayButton.SetActive(true);
                 timer -= Time.deltaTime;
+                
                 yield return null;
             }
-
+            
             skipWaveDelayButton.SetActive(false);
             timer = 0;
             manager.IncreaseWave();
