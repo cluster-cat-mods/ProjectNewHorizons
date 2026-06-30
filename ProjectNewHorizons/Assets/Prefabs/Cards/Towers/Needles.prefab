@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: stats
+      value: 
+      objectReference: {fileID: 11400000, guid: 141a753e485b462418825ca72cee8aca, type: 2}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: Needles
