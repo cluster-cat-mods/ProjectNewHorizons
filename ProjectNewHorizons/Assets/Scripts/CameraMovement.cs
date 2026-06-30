@@ -77,10 +77,9 @@ public class CameraMovement : MonoBehaviour
         while (Input.touchCount == 2)
         {
             float distance = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position) - startDist;
-            distance -= borderClamp.x / 2;
-            distance /= zoomScalar;
             
-            transform.localPosition = transform.localPosition + transform.forward * distance;
+            transform.localPosition = transform.localPosition + transform.forward * distance / zoomScalar;
+            startDist = Vector2.Distance(Input.GetTouch(0).position, Input.GetTouch(1).position);
 
             yield return null;
         }
