@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(HitHiveCheck());
+        StartCoroutine(HitNestCheck());
         if (!string.IsNullOrEmpty(runtimeStats.spawnSoundPath)) RuntimeManager.PlayOneShot(runtimeStats.spawnSoundPath);
     }
     private void OnDestroy()
@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
         StartCoroutine(OnDie());
     }
 
-    public IEnumerator HitHiveCheck()
+    public IEnumerator HitNestCheck()
     {
         //Debug.Log($"{name} started nest check");
 

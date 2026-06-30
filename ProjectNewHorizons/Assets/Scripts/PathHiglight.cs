@@ -27,11 +27,11 @@ public class PathHighlight : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(HitHiveCheck());
+        StartCoroutine(HitNestCheck());
     }
     
 
-    public IEnumerator HitHiveCheck()
+    public IEnumerator HitNestCheck()
     {
 
         while (!(Vector3.SqrMagnitude(transform.position - _manager.nest.transform.position) < 1f)) yield return null;

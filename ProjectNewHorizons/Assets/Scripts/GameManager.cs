@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
-    //[SerializeField] private TowerManager towerManager;
 
     [SerializeField] private Volume[] volume;
     
@@ -50,19 +49,7 @@ public class GameManager : MonoBehaviour
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
 
-        //if (towerManager == null)
-        //{
-        //    towerManager = FindAnyObjectByType<TowerManager>();
-        //}
-
-        startEvent?.Invoke();
-
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    StageReached reachedStage = new StageReached { stageNumber = i, amountOfTimesReached = 0 };
-        //    reachedStageList.Add(reachedStage);
-        //}
-        //towerManager.SetUpgradeValues();
+        startEvent?.Invoke();   
     }
 
     private void SetStartStats()
@@ -134,10 +121,6 @@ public class GameManager : MonoBehaviour
         enemyWaveManager.StopAllCoroutines();
 
         SaveData();
-        //dataSaver.SaveGameData(corpse, saveReachedStages.ToArray(), 0);
-        //Debug.Log($"corpses == {corpse}");
-        //Debug.Log($"saved stages == {saveReachedStages}");
-        //Debug.Log("sgt")
     }
 
     private IEnumerator DieEffect()
@@ -311,8 +294,6 @@ public class GameManager : MonoBehaviour
             volume[index].weight -= decayAmount;
         }
     }
-
-    //[Button]
     public void StartRun()
     {
         GainLife();

@@ -126,11 +126,6 @@ public class CorpseUpgrade : MonoBehaviour
         }
     }
 
-    public void RemoveListener()
-    {
-        //if (buyButton.onClick.)
-        buyButton.onClick.RemoveListener(TriggerUpgrade);
-    }
 
     void ChangeToTowerDMGUpgrade()
     {
@@ -170,5 +165,10 @@ public class CorpseUpgrade : MonoBehaviour
     {
         _gameData = dataSaver.LoadGameData();
         corpseText.text = $"{_gameData.CorpseCount}";
+    }
+    public void RemoveListener()
+    {
+        //if (buyButton.onClick.)
+        buyButton.onClick.RemoveListener(TriggerUpgrade);
     }
 }
