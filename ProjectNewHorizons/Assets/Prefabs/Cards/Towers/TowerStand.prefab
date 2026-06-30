@@ -47,7 +47,7 @@ MonoBehaviour:
   manager: {fileID: 0}
   stats: {fileID: 0}
   projectile: {fileID: 4092076749580936132, guid: 72fde0912c29c4947bf821bcaeb256ad, type: 3}
-  ShowRange: 0
+  ShowRange: 1
   rangeDrawingColor: {r: 0, g: 0.2, b: 1, a: 0.4}
 --- !u!1 &6280537639652918032
 GameObject:
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 975260030478227127}
   m_Layer: 0
   m_Name: TowerStand
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
