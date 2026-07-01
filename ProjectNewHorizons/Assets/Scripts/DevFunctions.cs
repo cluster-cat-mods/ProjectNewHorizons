@@ -11,6 +11,7 @@ public class DevFunctions : MonoBehaviour
     {
         _dataSaver.ResetData();
         _upgradeDataSaver.ResetUpgrades();
+        Debug.LogWarning($"delete full save file");
     }
     [Button]
     public void ResetGameData()
