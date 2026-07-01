@@ -9,6 +9,7 @@ TagManager:
   - EndNode
   - Enemy
   - Mushroom
+  - MusicEmitter
   layers:
   - Default
   - TransparentFX
