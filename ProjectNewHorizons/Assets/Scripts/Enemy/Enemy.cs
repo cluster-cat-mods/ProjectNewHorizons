@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     [SerializeField, ShowIf("drawDebug")] private Color spawnNodeColor = Color.green;
     [SerializeField, ShowIf("drawDebug")] private Color endNodeColor = Color.red;
 
+    [SerializeField] private AliveEnemyManager aliveEnemyManager;
+
     private Transform _spawnNode;
     private Transform _endNode;
     private PathFinder _pathFinder;
@@ -28,8 +30,17 @@ public class Enemy : MonoBehaviour
     private GameManager _manager;
     private GameObject[] _allNodes;
 
+    private bool _isDead;
+
     private void Start()
     {
+        if (aliveEnemyManager == null)
+        {
+            aliveEnemyManager = FindAnyObjectByType<AliveEnemyManager>();
+        }
+
+        aliveEnemyManager.AddEnemy(gameObject);
+
         StartCoroutine(HitNestCheck());
         if (!string.IsNullOrEmpty(runtimeStats.spawnSoundPath)) RuntimeManager.PlayOneShot(runtimeStats.spawnSoundPath);
     }
@@ -46,10 +57,13 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator OnDie()
     {
+        aliveEnemyManager.RemoveEnemy(gameObject);
+
         if (!string.IsNullOrEmpty(runtimeStats.deathSoundPath)) RuntimeManager.PlayOneShot(runtimeStats.deathSoundPath);
         //enemy spawning smaller ones
         if (runtimeStats.canSpawnEnemy)
         {
+            var closestNode = GetClosestNode();
             for (int i = 0; i < runtimeStats.enemySpawnCount; i++)
             {
                 
@@ -60,7 +74,7 @@ public class Enemy : MonoBehaviour
                 if (enemy != null)
                 {
                     //Debug.Log($"Setting up spawned enemy {enemy.name}");
-                    enemy.SetStuff(GetClosestNode(), _manager, _allNodes);
+                    enemy.SetStuff(closestNode, _manager, _allNodes);
                 }
 
                 yield return new WaitForSeconds(runtimeStats.spawnDelay);
@@ -75,10 +89,14 @@ public class Enemy : MonoBehaviour
 
     public void LoseHp(int amount)
     {
+        if (_isDead) return;
+
         if (!string.IsNullOrEmpty(runtimeStats.hitSoundPath))  RuntimeManager.PlayOneShot(runtimeStats.hitSoundPath);
         runtimeStats.hp -= amount;
 
         if (runtimeStats.hp > 0) return;
+
+        _isDead = true;
         diedByTower = true;
         StartCoroutine(OnDie());
     }
