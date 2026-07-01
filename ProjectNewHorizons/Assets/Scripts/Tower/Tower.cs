@@ -8,6 +8,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     [SerializeField] private GameManager manager;
+    [SerializeField] private AliveEnemyManager aliveEnemyManager;
 
     [SerializeField] private TowerStats stats;
     [SerializeField] private Projectile projectile;
@@ -15,7 +16,6 @@ public class Tower : MonoBehaviour
     [SerializeField] private bool ShowRange;
     [SerializeField, ShowIf("ShowRange")] private Color rangeDrawingColor = new Color(0,.2f,1,.4f);
 
-    private List<Transform> _enemyTransformList = new();
     private Enemy _closestEnemy;
 
     private void Start()
@@ -25,23 +25,16 @@ public class Tower : MonoBehaviour
             manager = FindAnyObjectByType<GameManager>();
         }
 
+        if (aliveEnemyManager == null)
+        {
+            aliveEnemyManager = FindAnyObjectByType<AliveEnemyManager>();
+        }
+
         stats = Instantiate(stats);
         SetMinimumAnts();
-        StartCoroutine(AliveEnemyUpdater());
     }
 
-    public IEnumerator AliveEnemyUpdater()
-    {
-        while (manager.alive)
-        {
-            var allEnemyGameObjects = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var gameObject in allEnemyGameObjects)
-            {
-                _enemyTransformList.Add(gameObject.transform);
-            }
-            yield return null;
-        }
-    }
+
     public IEnumerator Shoot()
     {
         while (stats.antAllocation.currentAntsAllocated >= stats.antAllocation.minimumAntsAllocated)
@@ -62,7 +55,6 @@ public class Tower : MonoBehaviour
             spawnedProjectile._towerRange = stats.startStats.range;
             spawnedProjectile._movementSpeed = stats.startStats.projectileSpeed;
             spawnedProjectile._damage = CalculateDamage(stats.startStats.damage);
-            _enemyTransformList.Clear();
         }
     }
 
@@ -81,17 +73,19 @@ public class Tower : MonoBehaviour
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
 
-        for (int i = _enemyTransformList.Count - 1; i >= 0; i--)
+        var AliveEnemyTransforms = aliveEnemyManager.AliveEnemyTransforms();
+
+        for (int i = aliveEnemyManager.AliveEnemiesCount() - 1; i >= 0; i--)
         {
-            Transform t = _enemyTransformList[i];
+            Transform t = AliveEnemyTransforms[i];
 
             if (t == null)
             {
-                _enemyTransformList.RemoveAt(i);
+                aliveEnemyManager.RemoveEnemy(t.gameObject);
                 continue;
             }
 
-            if (_enemyTransformList[i].gameObject.GetComponent<Enemy>().runtimeStats.isFlyingEnemy)
+            if (aliveEnemyManager.AliveEnemies()[i].GetComponent<Enemy>().runtimeStats.isFlyingEnemy)
             {
                 if (stats.startStats.isRangedTower)
                 {

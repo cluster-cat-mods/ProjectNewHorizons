@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+    [SerializeField] private AliveEnemyManager aliveEnemyManager;
 
     private StudioEventEmitter emitter;
     [SerializeField] private Volume[] volume;
@@ -55,6 +56,11 @@ public class GameManager : MonoBehaviour
         if (emitter == null)
         {
             emitter = GameObject.FindGameObjectWithTag("MusicEmitter").GetComponent<StudioEventEmitter>();
+        }
+
+        if (aliveEnemyManager == null)
+        {
+            aliveEnemyManager = FindAnyObjectByType<AliveEnemyManager>();
         }
 
         _gameData = dataSaver.LoadGameData();
@@ -153,12 +159,12 @@ public class GameManager : MonoBehaviour
 
     private void DestroyEnemies()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = aliveEnemyManager.AliveEnemies().ToArray();
         foreach (GameObject enemy in enemies)
         {
+            aliveEnemyManager.RemoveEnemy(enemy);
             Destroy(enemy);
         }
-
     }
     private IEnumerator AntGainOvertime()
     {
