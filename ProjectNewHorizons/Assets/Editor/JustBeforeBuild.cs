@@ -2,7 +2,7 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-public class JustBeforeBuiild : IPreprocessBuildWithReport
+public class JustBeforeBuild : IPreprocessBuildWithReport
 {
     private DevFunctions dev = new();
     public int callbackOrder => 0;
