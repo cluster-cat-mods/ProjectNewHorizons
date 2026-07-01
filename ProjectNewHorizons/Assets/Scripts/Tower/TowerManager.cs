@@ -5,6 +5,8 @@ public class TowerManager : MonoBehaviour
 {
     [SerializeField] private TouchController touchController;
     [SerializeField] private GameManager manager;
+    [SerializeField] private CameraMovement cameraMovementScript;
+
     [SerializeField] private GameObject[] towerObject;
     [SerializeField] private TowerStats[] TowerStats;
 
@@ -54,6 +56,11 @@ public class TowerManager : MonoBehaviour
         if (manager == null)
         {
             manager = FindAnyObjectByType<GameManager>();
+        }
+
+        if (cameraMovementScript == null)
+        {
+            cameraMovementScript = FindAnyObjectByType<CameraMovement>();
         }
 
         SetUpgradeValues();
@@ -115,6 +122,7 @@ public class TowerManager : MonoBehaviour
     public void ChooseTowerUIOpenToggle()
     {
         _ChooseTowerOpen = !_ChooseTowerOpen;
+        cameraMovementScript.ToggleTowerSelect(_ChooseTowerOpen);
     }
 
     public void ChooseTower()
@@ -125,7 +133,7 @@ public class TowerManager : MonoBehaviour
 
         towerSelect.SetActive(true);
 
-        _ChooseTowerOpen = true;
+        ChooseTowerUIOpenToggle();
     }
 
     public void PlaceTower(int towerIndex)
