@@ -19,7 +19,7 @@ public class PathMap : MonoBehaviour
     [field: SerializeField, HideInInspector] public Transform EndNode { get; private set; }
     [field: SerializeField, HideInInspector] public Graph<Transform> Graph { get; private set; } = new();
 
-    private void Awake()
+    private void Start()
     {
         FindNodes();
     }

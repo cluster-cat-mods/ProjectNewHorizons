@@ -3,6 +3,7 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using FMODUnity;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private EnemyWaveManager enemyWaveManager;
     [SerializeField] private AliveEnemyManager aliveEnemyManager;
 
+    private StudioEventEmitter emitter;
     [SerializeField] private Volume[] volume;
     
     public GameObject nest;
@@ -50,6 +52,10 @@ public class GameManager : MonoBehaviour
         if (enemyWaveManager == null)
         {
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
+        }
+        if (emitter == null)
+        {
+            emitter = GameObject.FindGameObjectWithTag("MusicEmitter").GetComponent<StudioEventEmitter>();
         }
 
         if (aliveEnemyManager == null)
@@ -251,11 +257,13 @@ public class GameManager : MonoBehaviour
 
     public void IncreaseWave()
     {
+        emitter.EventInstance.setParameterByName("WaveActive", 0);
         wave++;
         StartCoroutine(NextWaveEffect());
 
         if (wave % 5 == 0)
         {
+            emitter.EventInstance.setParameterByName("WaveActive", 1);
             stage++;
 
             StageReached existingStageReached = reachedStageList.Find(x => x.stageNumber == stage);
