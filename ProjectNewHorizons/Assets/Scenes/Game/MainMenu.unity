@@ -371,6 +371,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 22930038}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: SetButtonImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 602782212}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
@@ -443,12 +455,13 @@ MonoBehaviour:
     upgradeName: Bug Spray
     upgradeDescription: Unlock the Bug Spray tower!
     cost: 10000
-    upgradeSprite: {fileID: 21300000, guid: e696b2518b5fe5f409af0fb1cc370545, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: cc1ecd1f18129374596efc41e49481a0, type: 3}
+    upgradeButtonSprite: {fileID: 21300000, guid: e696b2518b5fe5f409af0fb1cc370545, type: 3}
   upgradeType: 2
   isTowerUpgrade: 1
   towerIndex: 4
   needsToChange: 1
-  upgradeSpriteDMGUp: {fileID: 21300000, guid: 6cc7556629caeed44bbb258329bdeafa, type: 3}
+  upgradeButtonSpriteDMGUp: {fileID: 21300000, guid: 6cc7556629caeed44bbb258329bdeafa, type: 3}
   upgradeNameDMGUp: Bug Spray DMG Up
   upgradeDescriptionDMGUp: Bug Spray Damage +1!
   corpseText: {fileID: 745566199}
@@ -838,12 +851,13 @@ MonoBehaviour:
     upgradeName: Hardened Hive
     upgradeDescription: Gain extra HP for your nest!
     cost: 1000
-    upgradeSprite: {fileID: 21300000, guid: 8690dff056fb463408562f9b8526ca5e, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: d0e31378fd82d5d45a9c18548f9be573, type: 3}
+    upgradeButtonSprite: {fileID: 0}
   upgradeType: 3
   isTowerUpgrade: 0
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}
@@ -1235,6 +1249,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 110571085}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: SetButtonImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 602782212}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
@@ -1307,12 +1333,13 @@ MonoBehaviour:
     upgradeName: Toothpicks
     upgradeDescription: Unlock the Toothpic tower!
     cost: 250
-    upgradeSprite: {fileID: 21300000, guid: bfaf940f50230834bb7e0e58f8aaa632, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: b36b28b6c91faa0478d174c958d99c07, type: 3}
+    upgradeButtonSprite: {fileID: 21300000, guid: bfaf940f50230834bb7e0e58f8aaa632, type: 3}
   upgradeType: 2
   isTowerUpgrade: 1
   towerIndex: 1
   needsToChange: 1
-  upgradeSpriteDMGUp: {fileID: 21300000, guid: fa8d10eedfae4b449928490fe26f3cac, type: 3}
+  upgradeButtonSpriteDMGUp: {fileID: 21300000, guid: fa8d10eedfae4b449928490fe26f3cac, type: 3}
   upgradeNameDMGUp: Thootpicks DMG Up
   upgradeDescriptionDMGUp: Thootpicks Damage +1!
   corpseText: {fileID: 745566199}
@@ -3350,6 +3377,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 321280190}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: SetButtonImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 602782212}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
@@ -3422,12 +3461,13 @@ MonoBehaviour:
     upgradeName: Needle Launcher
     upgradeDescription: Unlock the Needle Launcher tower!
     cost: 5000
-    upgradeSprite: {fileID: 21300000, guid: d3c72893d0f3ef9408c53dd1e940ed73, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: af3afab94f164574b901f20ba78be32f, type: 3}
+    upgradeButtonSprite: {fileID: 21300000, guid: d3c72893d0f3ef9408c53dd1e940ed73, type: 3}
   upgradeType: 2
   isTowerUpgrade: 1
   towerIndex: 3
   needsToChange: 1
-  upgradeSpriteDMGUp: {fileID: 21300000, guid: 9230191e526e786478cb45ad3276015d, type: 3}
+  upgradeButtonSpriteDMGUp: {fileID: 21300000, guid: 9230191e526e786478cb45ad3276015d, type: 3}
   upgradeNameDMGUp: Needle Launcher DMG Up
   upgradeDescriptionDMGUp: Needle Launcher Damage +1!
   corpseText: {fileID: 745566199}
@@ -3712,11 +3752,12 @@ MonoBehaviour:
     upgradeDescription: text of the function of the upgrade
     cost: 0
     upgradeSprite: {fileID: 0}
+    upgradeButtonSprite: {fileID: 0}
   upgradeType: 0
   isTowerUpgrade: 0
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}
@@ -3989,7 +4030,7 @@ GameObject:
   m_Component:
   - component: {fileID: 428884718}
   - component: {fileID: 428884720}
-  - component: {fileID: 428884719}
+  - component: {fileID: 428884721}
   m_Layer: 5
   m_Name: EnemyImageDisplay
   m_TagString: Untagged
@@ -4013,36 +4054,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0, y: 97}
-  m_SizeDelta: {x: 400, y: 400}
+  m_AnchoredPosition: {x: -0, y: 105}
+  m_SizeDelta: {x: 550, y: 550}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &428884719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 428884717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Texture: {fileID: 0}
-  m_UVRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
 --- !u!222 &428884720
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4051,6 +4065,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428884717}
   m_CullTransparentMesh: 1
+--- !u!114 &428884721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428884717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &433074088
 GameObject:
   m_ObjectHideFlags: 0
@@ -8344,6 +8388,7 @@ GameObject:
   - component: {fileID: 1062271941}
   - component: {fileID: 1062271940}
   - component: {fileID: 1062271942}
+  - component: {fileID: 1062271943}
   m_Layer: 5
   m_Name: ItemBackground_5
   m_TagString: Untagged
@@ -8390,7 +8435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b31e25b9231d60846beb6811bb7b21a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8476,6 +8521,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1062271943}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1062271943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062271938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 999e3811aec90f64d9c8a8f0a1f798a7, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Panic Ant
+  antDescription: this enemy seems scared and is fast
+  antSprite: {fileID: 21300000, guid: 3c89c22ae16e12c419a5fd6d1b153a30, type: 3}
 --- !u!1 &1068633286
 GameObject:
   m_ObjectHideFlags: 0
@@ -8668,11 +8744,12 @@ MonoBehaviour:
     upgradeDescription: text of the function of the upgrade
     cost: 0
     upgradeSprite: {fileID: 0}
+    upgradeButtonSprite: {fileID: 0}
   upgradeType: 0
   isTowerUpgrade: 0
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}
@@ -10403,6 +10480,7 @@ GameObject:
   - component: {fileID: 1434763796}
   - component: {fileID: 1434763795}
   - component: {fileID: 1434763797}
+  - component: {fileID: 1434763798}
   m_Layer: 5
   m_Name: ItemBackground_1
   m_TagString: Untagged
@@ -10449,7 +10527,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dfdf4bc41d75bed4dbd74e0ba565e5f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10535,6 +10613,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1434763798}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1434763798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434763793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 55ef3da9921a7e845acdbdcdea7b0ec6, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Red Ant
+  antDescription: this is the default enemy
+  antSprite: {fileID: 21300000, guid: 190d0ad09e44543418f5f71b13e988bf, type: 3}
 --- !u!1 &1434781146
 GameObject:
   m_ObjectHideFlags: 0
@@ -11159,11 +11268,12 @@ MonoBehaviour:
     upgradeDescription: text of the function of the upgrade
     cost: 0
     upgradeSprite: {fileID: 0}
+    upgradeButtonSprite: {fileID: 0}
   upgradeType: 0
   isTowerUpgrade: 0
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}
@@ -11683,6 +11793,7 @@ GameObject:
   - component: {fileID: 1615548370}
   - component: {fileID: 1615548369}
   - component: {fileID: 1615548371}
+  - component: {fileID: 1615548372}
   m_Layer: 5
   m_Name: ItemBackground_4
   m_TagString: Untagged
@@ -11729,7 +11840,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c38cfccfc660e7248b044ba96b8c4e7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11815,6 +11926,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1615548372}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1615548372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615548367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 256f7cb926aedbd449d1d2f39568517e, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Dragon Fly
+  antDescription: this enemy flies
+  antSprite: {fileID: 21300000, guid: 799613278436f604dac99b48ee5fe255, type: 3}
 --- !u!1 &1616292624
 GameObject:
   m_ObjectHideFlags: 0
@@ -12992,6 +13134,7 @@ GameObject:
   - component: {fileID: 1738334448}
   - component: {fileID: 1738334447}
   - component: {fileID: 1738334449}
+  - component: {fileID: 1738334450}
   m_Layer: 5
   m_Name: ItemBackground_6
   m_TagString: Untagged
@@ -13038,7 +13181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 375a1cedb2a1e91408573f98f99bad75, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13124,6 +13267,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1738334450}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1738334450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738334445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 7bf9a2a767409d5458653a41571d3a88, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Major Ant
+  antDescription: this enemy seems to be a tank
+  antSprite: {fileID: 21300000, guid: bb3c38c24eb21504a97922a6866a8563, type: 3}
 --- !u!1 &1739750413
 GameObject:
   m_ObjectHideFlags: 0
@@ -13715,6 +13889,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1768907049}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: SetButtonImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 602782212}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
@@ -13787,12 +13973,13 @@ MonoBehaviour:
     upgradeName: Pins DMG Up
     upgradeDescription: Pins Damage +1!
     cost: 100
-    upgradeSprite: {fileID: 21300000, guid: 2b242fdf084af9b4ab0e058bae76569a, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: 964c0f279ec7028488474add56d46f8d, type: 3}
+    upgradeButtonSprite: {fileID: 21300000, guid: 2b242fdf084af9b4ab0e058bae76569a, type: 3}
   upgradeType: 1
   isTowerUpgrade: 1
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}
@@ -14138,6 +14325,7 @@ GameObject:
   - component: {fileID: 1831445601}
   - component: {fileID: 1831445600}
   - component: {fileID: 1831445602}
+  - component: {fileID: 1831445603}
   m_Layer: 5
   m_Name: ItemBackground_3
   m_TagString: Untagged
@@ -14184,7 +14372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 864eede8f026f9f45828e630035501f3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14270,6 +14458,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1831445603}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1831445603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831445598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 3db3ad79fcc52704fb0299fddb0d03f1, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Brood Carrier
+  antDescription: this enemy might spawn some babies on death
+  antSprite: {fileID: 21300000, guid: 16ba864b909c8de4fa8b0325aaae07a4, type: 3}
 --- !u!1 &1832041118
 GameObject:
   m_ObjectHideFlags: 0
@@ -14282,6 +14501,7 @@ GameObject:
   - component: {fileID: 1832041121}
   - component: {fileID: 1832041120}
   - component: {fileID: 1832041122}
+  - component: {fileID: 1832041123}
   m_Layer: 5
   m_Name: ItemBackground_2
   m_TagString: Untagged
@@ -14328,7 +14548,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6be28b4714451e24cad7643545a51fae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7ef36c2ed7cb93347b7cfb36505a2b63, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14414,6 +14634,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1832041123}
+        m_TargetAssemblyTypeName: AntpediaUISetter, Assembly-CSharp
+        m_MethodName: SetUIElements
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &1832041123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832041118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2392e6eae76fc0428c21761355d71e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AntpediaUISetter
+  enemyStats: {fileID: 11400000, guid: 451309f90e470514a83e035efd154583, type: 2}
+  antNameText: {fileID: 811093328}
+  antDescriptionText: {fileID: 1952981016}
+  antImage: {fileID: 428884721}
+  antName: Guard Ant
+  antDescription: this enemy seems to have some armor
+  antSprite: {fileID: 21300000, guid: d247dac8eba0f0544968344d2a4925b0, type: 3}
 --- !u!1 &1844016167
 GameObject:
   m_ObjectHideFlags: 0
@@ -15616,7 +15867,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 7, y: -236}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1952981016
 MonoBehaviour:
@@ -15665,8 +15916,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16333,6 +16584,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2030344684}
+        m_TargetAssemblyTypeName: CorpseUpgrade, Assembly-CSharp
+        m_MethodName: SetButtonImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 602782212}
         m_TargetAssemblyTypeName: PlayFMODSound, Assembly-CSharp
         m_MethodName: PlaySound
@@ -16405,12 +16668,13 @@ MonoBehaviour:
     upgradeName: Slingshot
     upgradeDescription: Unlock the Slingshot tower!
     cost: 1000
-    upgradeSprite: {fileID: 21300000, guid: 67eac4bebfe8e4641b756e491a54a65e, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: a5c559edf40e6e94897946a860d05dda, type: 3}
+    upgradeButtonSprite: {fileID: 21300000, guid: 67eac4bebfe8e4641b756e491a54a65e, type: 3}
   upgradeType: 2
   isTowerUpgrade: 1
   towerIndex: 2
   needsToChange: 1
-  upgradeSpriteDMGUp: {fileID: 21300000, guid: e7820d111b93e89499d27f40f3c215ff, type: 3}
+  upgradeButtonSpriteDMGUp: {fileID: 21300000, guid: e7820d111b93e89499d27f40f3c215ff, type: 3}
   upgradeNameDMGUp: Slingshot DMG Up
   upgradeDescriptionDMGUp: Slingshot Damage +1!
   corpseText: {fileID: 745566199}
@@ -17184,12 +17448,13 @@ MonoBehaviour:
     upgradeName: Ant Abundance
     upgradeDescription: Gain +1 Ant per second!
     cost: 420
-    upgradeSprite: {fileID: 21300000, guid: dadf0407be549bf4e82f4e758ae4709b, type: 3}
+    upgradeSprite: {fileID: 21300000, guid: d8d310109b22aad4693d5a7e60519ff9, type: 3}
+    upgradeButtonSprite: {fileID: 0}
   upgradeType: 0
   isTowerUpgrade: 0
   towerIndex: 0
   needsToChange: 0
-  upgradeSpriteDMGUp: {fileID: 0}
+  upgradeButtonSpriteDMGUp: {fileID: 0}
   upgradeNameDMGUp: 
   upgradeDescriptionDMGUp: 
   corpseText: {fileID: 745566199}

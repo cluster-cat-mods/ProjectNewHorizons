@@ -19,7 +19,7 @@ public struct EnemyStartStats
     [AllowNesting] public int hp;
     [AllowNesting] public int damage;
     [AllowNesting] public float speed;
-    [AllowNesting] public int coinBounty;
+    [AllowNesting] public int corpseBounty;
     [AllowNesting] public string spawnSoundPath;
     [AllowNesting] public string deathSoundPath;
     [AllowNesting] public string hitSoundPath;

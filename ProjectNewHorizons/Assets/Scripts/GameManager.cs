@@ -86,7 +86,6 @@ public class GameManager : MonoBehaviour
             SetWantedStage(_gameData.WantedStartStage);
         }
 
-        nestMaxHP = startingNestMaxHP;
         nestHP = nestMaxHP;
         antCount = 0;
 
@@ -98,6 +97,7 @@ public class GameManager : MonoBehaviour
     private void SetStartStats()
     {
         antGain = 1;
+        nestMaxHP = startingNestMaxHP;
 
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)

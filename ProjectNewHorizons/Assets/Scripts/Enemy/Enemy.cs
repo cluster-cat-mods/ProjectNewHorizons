@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         if (diedByTower)
         {
             //gain corpse
-            _manager.GainCorpse(runtimeStats.coinBounty);
+            _manager.GainCorpse(runtimeStats.corpseBounty);
         }
 
     }

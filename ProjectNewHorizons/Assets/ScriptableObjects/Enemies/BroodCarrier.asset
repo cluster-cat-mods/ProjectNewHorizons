@@ -15,10 +15,11 @@ MonoBehaviour:
   startStats:
     canSpawnEnemy: 1
     bossEnemy: 1
+    isFlyingEnemy: 0
     hp: 20
     damage: 1
     speed: 1.2
-    coinBounty: 10
+    corpseBounty: 5
     spawnSoundPath: 
     deathSoundPath: 
     hitSoundPath: 
