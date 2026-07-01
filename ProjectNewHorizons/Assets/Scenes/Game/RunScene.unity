@@ -15620,6 +15620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerManager
   touchController: {fileID: 0}
   manager: {fileID: 0}
+  cameraMovementScript: {fileID: 0}
   towerObject:
   - {fileID: 4764294465436084640, guid: 12d45cca0655361408a3e25d3d5818c1, type: 3}
   - {fileID: 8785033163451612014, guid: 42c8e54d72501864ebae2d736051e7da, type: 3}

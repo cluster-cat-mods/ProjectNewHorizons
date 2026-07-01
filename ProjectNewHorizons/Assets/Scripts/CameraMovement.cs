@@ -9,6 +9,8 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector2 borderClamp = new(2000,1080);
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
+
+    private bool _towerSelectOpen;
     
     
     private void Start()
@@ -22,49 +24,53 @@ public class CameraMovement : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.touchCount == 1)
+        if (!_towerSelectOpen)
         {
-            if (touchController.touch.phase == TouchPhase.Began)
+            Debug.Log("allowed to move");
+            if (Input.touchCount == 1)
             {
-                _startTouchInWorldSpace = touchController.GetWorldPosition();
+                if (touchController.touch.phase == TouchPhase.Began)
+                {
+                    _startTouchInWorldSpace = touchController.GetWorldPosition();
+                }
+
+                if (touchController.touch.phase == TouchPhase.Moved)
+                {
+                    var _currentWorldPosition = touchController.GetWorldPosition();
+                    var _worldDifference = _currentWorldPosition - _startTouchInWorldSpace;
+
+                    _cameraPosition = transform.position;
+
+                    var _newCameraPosition = _cameraPosition + new Vector3(-_worldDifference.x, 0, -_worldDifference.z);
+
+                    _newCameraPosition.x = Mathf.Clamp(
+                        _newCameraPosition.x,
+                        -borderClamp.x / movementScalar.x / 2f,
+                        borderClamp.x / movementScalar.x / 2f
+                    );
+
+                    _newCameraPosition.z = Mathf.Clamp(
+                        _newCameraPosition.z,
+                        -borderClamp.y / movementScalar.y / 2f - 20,
+                        borderClamp.y / movementScalar.y / 2f - 20
+                    );
+
+                    transform.position = _newCameraPosition;
+                }
+
+
+                //logging
+                //Debug.Log($"finger {touch.fingerId} tapped {touch.tapCount} times");
+                //Debug.Log($"time since last touch value change = {touch.deltaTime}");
+                //Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
+                //Debug.Log($"the phase of the touch = {touch.phase}");
             }
-
-            if (touchController.touch.phase == TouchPhase.Moved)
-            {
-                var _currentWorldPosition = touchController.GetWorldPosition();
-                var _worldDifference = _currentWorldPosition - _startTouchInWorldSpace;
-
-                _cameraPosition = transform.position;
-
-                var _newCameraPosition = _cameraPosition + new Vector3(-_worldDifference.x, 0, -_worldDifference.z);
-
-                _newCameraPosition.x = Mathf.Clamp(
-                    _newCameraPosition.x,
-                    -borderClamp.x / movementScalar.x / 2f,
-                    borderClamp.x / movementScalar.x / 2f
-                );
-
-                _newCameraPosition.z = Mathf.Clamp(
-                    _newCameraPosition.z,
-                    -borderClamp.y / movementScalar.y / 2f - 20,
-                    borderClamp.y / movementScalar.y / 2f - 20
-                );
-
-                transform.position = _newCameraPosition;
-            }
-
-
-            //logging
-            //Debug.Log($"finger {touch.fingerId} tapped {touch.tapCount} times");
-            //Debug.Log($"time since last touch value change = {touch.deltaTime}");
-            //Debug.Log($"position since last change in pixel cords = {touch.deltaPosition}");
-            //Debug.Log($"the phase of the touch = {touch.phase}");
         }
-        
-        
-
     }
 
-    
-        
+    public void ToggleTowerSelect(bool openOrNot)
+    {
+        _towerSelectOpen = openOrNot;
+        Debug.Log($"tower select open == {_towerSelectOpen}");
+    }    
 }
