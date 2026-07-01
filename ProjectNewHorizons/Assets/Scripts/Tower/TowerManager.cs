@@ -150,6 +150,6 @@ public class TowerManager : MonoBehaviour
 
         towerSelect.SetActive(false);
 
-        _ChooseTowerOpen = false;
+        ChooseTowerUIOpenToggle();
     }
 }
