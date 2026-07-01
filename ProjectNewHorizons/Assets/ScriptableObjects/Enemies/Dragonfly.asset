@@ -19,7 +19,7 @@ MonoBehaviour:
     hp: 15
     damage: 1
     speed: 4
-    coinBounty: 5
+    corpseBounty: 5
     spawnSoundPath: 
     deathSoundPath: 
     hitSoundPath: 

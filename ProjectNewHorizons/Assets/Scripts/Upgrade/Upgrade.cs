@@ -18,6 +18,7 @@ public class Upgrade
     public string upgradeDescription = "text of the function of the upgrade";
     public int cost = 0;
     public Sprite upgradeSprite;
+    public Sprite upgradeButtonSprite;
     public event Action upgradeEvent;
 
     public void Trigger() => upgradeEvent?.Invoke();
@@ -28,7 +29,11 @@ public class Upgrade
         upgradeDescriptionText.text = upgradeDescription;
         upgradeCostText.text = cost + "";
         upgradeImage.sprite = upgradeSprite;
-        upgradeSelectButtonImage.sprite = upgradeSprite;
+    }
+
+    public void SetButtonImage()
+    {
+        upgradeSelectButtonImage.sprite = upgradeButtonSprite;
     }
 
     public void ChangeText(string newName, string newDescription)
@@ -40,7 +45,8 @@ public class Upgrade
     }
     public void ChangeImage(Sprite newSprite)
     {
-        upgradeSprite = newSprite;
+        upgradeButtonSprite = newSprite;
         SetUIElements();
+        SetButtonImage();
     }
 }

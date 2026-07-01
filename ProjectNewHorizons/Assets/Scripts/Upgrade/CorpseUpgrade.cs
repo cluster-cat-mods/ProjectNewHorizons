@@ -21,7 +21,7 @@ public class CorpseUpgrade : MonoBehaviour
     [SerializeField] private bool isTowerUpgrade;
     [SerializeField, ShowIf("isTowerUpgrade")] private int towerIndex;
     [SerializeField, ShowIf("isTowerUpgrade")] private bool needsToChange;
-    [SerializeField, ShowIf("needsToChange")] private Sprite upgradeSpriteDMGUp;
+    [SerializeField, ShowIf("needsToChange")] private Sprite upgradeButtonSpriteDMGUp;
     [SerializeField, ShowIf("needsToChange")] private string upgradeNameDMGUp;
     [SerializeField, ShowIf("needsToChange")] private string upgradeDescriptionDMGUp;
 
@@ -130,7 +130,7 @@ public class CorpseUpgrade : MonoBehaviour
     void ChangeToTowerDMGUpgrade()
     {
         upgradeType = UpgradeType.TowerDMG;
-        upgrade.ChangeImage(upgradeSpriteDMGUp);
+        upgrade.ChangeImage(upgradeButtonSpriteDMGUp);
         upgrade.ChangeText(upgradeNameDMGUp, upgradeDescriptionDMGUp);
 
         resetEvent();
@@ -160,6 +160,11 @@ public class CorpseUpgrade : MonoBehaviour
     {
         upgrade.SetUIElements();
         buyButton.onClick.AddListener(TriggerUpgrade);
+    }
+
+    public void SetButtonImage()
+    {
+        upgrade.SetButtonImage();
     }
     public void SetCorpseText()
     {
