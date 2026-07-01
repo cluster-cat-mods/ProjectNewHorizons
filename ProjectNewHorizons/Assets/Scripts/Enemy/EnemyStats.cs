@@ -13,6 +13,7 @@ public struct EnemyStartStats
 {
     public bool canSpawnEnemy;
     public bool bossEnemy;
+    public bool isFlyingEnemy;
 
     //normal runtimeStats
     [AllowNesting] public int hp;

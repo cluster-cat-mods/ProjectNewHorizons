@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     private Graph<Transform> _graph;
     private List<Transform> _path = new();
 
-    private EnemyStartStats runtimeStats;
+    [HideInInspector] public EnemyStartStats runtimeStats;
     private bool diedByTower = false;
 
     private GameManager _manager;

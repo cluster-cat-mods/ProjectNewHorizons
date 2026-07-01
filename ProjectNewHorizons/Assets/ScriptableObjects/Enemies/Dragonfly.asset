@@ -15,10 +15,15 @@ MonoBehaviour:
   startStats:
     canSpawnEnemy: 0
     bossEnemy: 0
+    isFlyingEnemy: 1
     hp: 15
     damage: 1
     speed: 4
     coinBounty: 5
+    spawnSoundPath: 
+    deathSoundPath: 
+    hitSoundPath: 
     enemy: {fileID: 0}
     enemySpawnCount: 0
+    spawnDelay: 0
     maxHp: 0

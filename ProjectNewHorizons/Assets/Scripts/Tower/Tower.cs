@@ -54,7 +54,9 @@ public class Tower : MonoBehaviour
             if (closestEnemyObject == null) continue;
             if (!string.IsNullOrEmpty(stats.startStats.shootSoundPath)) RuntimeManager.PlayOneShot(stats.startStats.shootSoundPath);
             _closestEnemy = closestEnemyObject.GetComponent<Enemy>();
-            Projectile spawnedProjectile = Instantiate(projectile, transform.position, Quaternion.identity, transform);
+            var spawnOffset = ((_closestEnemy.transform.position - transform.position).normalized * 3);
+            spawnOffset.y = 0;
+            Projectile spawnedProjectile = Instantiate(projectile, transform.position + spawnOffset, Quaternion.identity, transform);
             spawnedProjectile._hitSoundPath = stats.startStats.hitSoundPath;
             spawnedProjectile.SetTarget(_closestEnemy, stats.startStats.isRangedTower);
             spawnedProjectile._towerRange = stats.startStats.range;
@@ -89,15 +91,33 @@ public class Tower : MonoBehaviour
                 continue;
             }
 
-            float dist = Vector3.Distance(t.position, currentPos);
-
-            if (dist < minDist)
+            if (_enemyTransformList[i].gameObject.GetComponent<Enemy>().runtimeStats.isFlyingEnemy)
             {
-                closestEnemy = t;
-                minDist = dist;
+                if (stats.startStats.isRangedTower)
+                {
+                    float dist = Vector3.Distance(t.position, currentPos);
+
+                    if (dist < minDist)
+                    {
+                        closestEnemy = t;
+                        minDist = dist;
+                    }
+                }
+                else
+                {
+                    Debug.Log($"tower {gameObject.name} cannot hit flying enemies");
+                }
             }
+            else
+            {
+                float dist = Vector3.Distance(t.position, currentPos);
 
-
+                if (dist < minDist)
+                {
+                    closestEnemy = t;
+                    minDist = dist;
+                }
+            }
         }
 
         return minDist < stats.startStats.range ? closestEnemy : null;

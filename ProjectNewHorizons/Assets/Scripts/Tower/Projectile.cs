@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using FMODUnity;
 using UnityEngine;
@@ -44,10 +45,7 @@ public class Projectile : MonoBehaviour
         }
         else
         {
-            LookAtTarget();
-            if (!string.IsNullOrEmpty(_hitSoundPath)) RuntimeManager.PlayOneShot(_hitSoundPath);
-            _targetEnemy.LoseHp(_damage);
-            Destroy(gameObject);
+            StartCoroutine(MeleeAttack());
         }
 
     }
@@ -60,6 +58,16 @@ public class Projectile : MonoBehaviour
         _targetTransform = _targetEnemy.transform;
 
         _isRanged = rangedTower;
+    }
+
+    private IEnumerator MeleeAttack()
+    {
+        LookAtTarget();
+        yield return null;
+        if (!string.IsNullOrEmpty(_hitSoundPath)) RuntimeManager.PlayOneShot(_hitSoundPath);
+        yield return new WaitForSeconds(.3f);
+        _targetEnemy.LoseHp(_damage);
+        Destroy(gameObject);
     }
 
     public void MoveToTarget()
