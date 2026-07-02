@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("you died");
+        SaveData();
         nest.SetActive(false);
         dieEvent?.Invoke();
         yield return new WaitForSeconds(.1f);
@@ -150,7 +151,6 @@ public class GameManager : MonoBehaviour
         DestroyEnemies();
         enemyWaveManager.StopAllCoroutines();
         enemySpawner.StopAllCoroutines();
-        SaveData();
     }
 
     private IEnumerator DieEffect()
@@ -170,7 +170,6 @@ public class GameManager : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             aliveEnemyManager.RemoveEnemy(enemy);
-            Destroy(enemy);
         }
     }
     private IEnumerator AntGainOvertime()
@@ -328,6 +327,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartRun()
     {
+        _gameData = dataSaver.LoadGameData();
         GainLife();
     }
     /* testing functions and vars */

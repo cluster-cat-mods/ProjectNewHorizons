@@ -23,6 +23,18 @@ public class UIFunctions : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    public void TimeMult(int amount)
+    {
+        if (Time.timeScale > 1)
+        {
+            Time.timeScale = 1;
+        }
+        else
+        {
+            Time.timeScale *= amount;
+        }
+    }
+
     public void OpenFeedbackForm(string url)
     {
         Application.OpenURL(url);

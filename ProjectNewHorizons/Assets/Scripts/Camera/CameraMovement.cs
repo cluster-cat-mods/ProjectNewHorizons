@@ -7,6 +7,8 @@ public class CameraMovement : MonoBehaviour
 
     [SerializeField] private Vector2 movementScalar = new(16, 8);
     [SerializeField] private Vector2 borderClamp = new(2000,1080);
+
+    [SerializeField] private Transform cameraSpawnPos;
     private Vector3 _cameraPosition;
     private Vector3 _startTouchInWorldSpace;
 
@@ -20,7 +22,7 @@ public class CameraMovement : MonoBehaviour
             touchController = FindAnyObjectByType<TouchController>();
         }
 
-        _cameraPosition = transform.position;
+        ResetCameraToSpawn();
     }
     private void Update()
     {
@@ -66,6 +68,12 @@ public class CameraMovement : MonoBehaviour
                 //Debug.Log($"the phase of the touch = {touch.phase}");
             }
         }
+    }
+
+    public void ResetCameraToSpawn()
+    {
+        transform.position = cameraSpawnPos.position;
+        _cameraPosition = transform.position;
     }
 
     public void ToggleTowerSelect(bool openOrNot)

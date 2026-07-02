@@ -78,6 +78,8 @@ public class EnemyWaveManager : MonoBehaviour
 
         for (int i = manager.wave; i < enemyWaves.Length; i++)
         {
+            if (!manager.alive) break;
+
             var wave = enemyWaves[i];
 
             yield return StartCoroutine(StartEnemySpawners());
@@ -143,5 +145,12 @@ public class EnemyWaveManager : MonoBehaviour
         {
             stageText.text = $"Stage : {manager.stage + 1}";
         }
+    }
+
+    public void Replay()
+    {
+        UpdateText();
+
+        skipWaveDelayButton.SetActive(false);
     }
 }

@@ -4,14 +4,9 @@ using UnityEngine;
 public class AliveEnemyManager : MonoBehaviour
 {
     private List<GameObject> _aliveEnemyList = new();
-    private List<Transform> _aliveEnemyTransformList = new();
     public List<GameObject> AliveEnemies()
     {
         return _aliveEnemyList;
-    }
-    public List<Transform> AliveEnemyTransforms()
-    {
-        return _aliveEnemyTransformList;
     }
     public int AliveEnemiesCount()
     {
@@ -20,13 +15,15 @@ public class AliveEnemyManager : MonoBehaviour
 
     public void AddEnemy(GameObject enemy)
     {
+        if (_aliveEnemyList.Contains(enemy))
+            return;
+
         _aliveEnemyList.Add(enemy);
-        _aliveEnemyTransformList.Add(enemy.transform);
     }
 
     public void RemoveEnemy(GameObject enemy) 
     {
         _aliveEnemyList.Remove(enemy);
-        _aliveEnemyTransformList.Remove(enemy.transform);
+        Destroy(enemy);
     }
 }
