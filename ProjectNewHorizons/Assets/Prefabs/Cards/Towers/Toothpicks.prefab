@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 11400000, guid: 97e035eae99029641906631b705630bf, type: 2}
+    - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 186611491753671667, guid: 0ab17e6c075c2124bbc8b72154ea82ed, type: 3}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: Toothpicks
