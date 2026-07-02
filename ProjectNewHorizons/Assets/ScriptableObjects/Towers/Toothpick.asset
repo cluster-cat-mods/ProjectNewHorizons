@@ -16,7 +16,7 @@ MonoBehaviour:
     pathPlacement: 0
     needDamage: 1
     AOE_Effect: 0
-    isRangedTower: 1
+    isRangedTower: 0
     towerUnlocked: 0
     shootSoundPath: event:/Tower/ShootSounds/Melee_Hit
     hitSoundPath: 

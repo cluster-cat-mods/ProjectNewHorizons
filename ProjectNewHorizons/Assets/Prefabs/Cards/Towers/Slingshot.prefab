@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: ShowRange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: -6606240783924067742, guid: 5f512f88073e5ce46adf5a2902992497, type: 3}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: Slingshot

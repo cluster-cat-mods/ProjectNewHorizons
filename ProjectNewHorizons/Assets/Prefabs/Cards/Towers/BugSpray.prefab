@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: stats
       value: 
       objectReference: {fileID: 11400000, guid: 13ed49d3c4bf6a249a08dc645b374523, type: 2}
+    - target: {fileID: 4456854768159951753, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 8720506315953054902, guid: edd80590b0bc55346af05e2879908528, type: 3}
     - target: {fileID: 6280537639652918032, guid: 96956ac721eb02348b6fb0ce7138eb76, type: 3}
       propertyPath: m_Name
       value: BugSpray
