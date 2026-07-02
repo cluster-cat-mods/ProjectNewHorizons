@@ -74,9 +74,9 @@ public class PathHighlight : MonoBehaviour
         {
             Vector3 target = path[i].position;
             // Move towards the target position
-            while (Vector3.Distance(transform.position, target) > 0.1f)
+            while (Vector3.Distance(transform.position, target + Vector3.up * .5f) > 0.1f)
             {
-                transform.position = Vector3.MoveTowards(transform.position, target, Time.deltaTime * speed);
+                transform.position = Vector3.MoveTowards(transform.position, target + Vector3.up * .5f, Time.deltaTime * speed);
                 yield return null;
             }
 
