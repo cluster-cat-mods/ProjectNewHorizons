@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -32,10 +33,14 @@ public class EnemySpawner : MonoBehaviour
     
     public IEnumerator StartWave(EnemyWave[] enemyWaves, int wave)
     {
+
         for (int i = 0; i < enemyWaves[wave].enemyGroups.Length; i++)
         {
             _totalEnemyCount += enemyWaves[wave].enemyGroups[i].enemyCount;
         }
+
+        //if (!manager.alive) ResetTotalEnemyCount();
+        
         float spawnDelay = enemyWaves[wave].waveDuration / _totalEnemyCount;
         //Debug.Log($"wave duration: {enemyWaves[wave].waveDuration} / enemy count: {_totalEnemyCount} =  spawndelay: {spawnDelay}");
 
@@ -72,6 +77,7 @@ public class EnemySpawner : MonoBehaviour
         
         while (_totalEnemyCount > 0)
         {
+            if (!manager.alive) break;
             yield return new WaitForSeconds(spawnDelay);
             SpawnEnemy(enemyWaves, wave);
         }
@@ -135,4 +141,9 @@ public class EnemySpawner : MonoBehaviour
         if (indicatorActive) indicatorActive = false;
     }
     
+    public void ResetSpawner()
+    {
+        _totalEnemyCount = 0;
+        openPathsList.Clear();
+    }
 }

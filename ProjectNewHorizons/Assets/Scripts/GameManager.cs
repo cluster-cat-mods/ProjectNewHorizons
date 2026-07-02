@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+    [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private AliveEnemyManager aliveEnemyManager;
 
     private StudioEventEmitter emitter;
@@ -53,6 +54,12 @@ public class GameManager : MonoBehaviour
         {
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
+
+        if (enemySpawner == null) 
+        { 
+            enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        }
+
         if (emitter == null)
         {
             emitter = GameObject.FindGameObjectWithTag("MusicEmitter").GetComponent<StudioEventEmitter>();
@@ -136,14 +143,14 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
         Debug.Log("you died");
+        SaveData();
         nest.SetActive(false);
         dieEvent?.Invoke();
         yield return new WaitForSeconds(.1f);
         StartCoroutine(DieEffect());
         DestroyEnemies();
         enemyWaveManager.StopAllCoroutines();
-
-        SaveData();
+        enemySpawner.StopAllCoroutines();
     }
 
     private IEnumerator DieEffect()
@@ -163,7 +170,6 @@ public class GameManager : MonoBehaviour
         foreach (GameObject enemy in enemies)
         {
             aliveEnemyManager.RemoveEnemy(enemy);
-            Destroy(enemy);
         }
     }
     private IEnumerator AntGainOvertime()
@@ -321,6 +327,7 @@ public class GameManager : MonoBehaviour
     }
     public void StartRun()
     {
+        _gameData = dataSaver.LoadGameData();
         GainLife();
     }
     /* testing functions and vars */

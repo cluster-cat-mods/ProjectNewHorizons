@@ -73,17 +73,17 @@ public class Tower : MonoBehaviour
         float minDist = Mathf.Infinity;
         Vector3 currentPos = transform.position;
 
-        var AliveEnemyTransforms = aliveEnemyManager.AliveEnemyTransforms();
+        var AliveEnemy = aliveEnemyManager.AliveEnemies();
 
         for (int i = aliveEnemyManager.AliveEnemiesCount() - 1; i >= 0; i--)
         {
-            Transform t = AliveEnemyTransforms[i];
-
-            if (t == null)
+            if (AliveEnemy[i].transform == null)
             {
-                aliveEnemyManager.RemoveEnemy(t.gameObject);
+                aliveEnemyManager.RemoveEnemy(AliveEnemy[i]);
                 continue;
             }
+
+            Transform t = AliveEnemy[i].transform;
 
             if (aliveEnemyManager.AliveEnemies()[i].GetComponent<Enemy>().runtimeStats.isFlyingEnemy)
             {
