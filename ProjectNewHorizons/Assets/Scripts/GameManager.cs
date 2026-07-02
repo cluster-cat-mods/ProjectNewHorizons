@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text nestHPText;
 
     [SerializeField] private EnemyWaveManager enemyWaveManager;
+    [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private AliveEnemyManager aliveEnemyManager;
 
     private StudioEventEmitter emitter;
@@ -53,6 +54,12 @@ public class GameManager : MonoBehaviour
         {
             enemyWaveManager = FindAnyObjectByType<EnemyWaveManager>();
         }
+
+        if (enemySpawner == null) 
+        { 
+            enemySpawner = FindAnyObjectByType<EnemySpawner>();
+        }
+
         if (emitter == null)
         {
             emitter = GameObject.FindGameObjectWithTag("MusicEmitter").GetComponent<StudioEventEmitter>();
@@ -142,7 +149,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DieEffect());
         DestroyEnemies();
         enemyWaveManager.StopAllCoroutines();
-
+        enemySpawner.StopAllCoroutines();
         SaveData();
     }
 
