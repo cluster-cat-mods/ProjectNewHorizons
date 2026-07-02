@@ -149,8 +149,9 @@ public class EnemyWaveManager : MonoBehaviour
 
     public void Replay()
     {
+        skipWaveDelayButton.SetActive(false);
+        timer = 0;
         UpdateText();
 
-        skipWaveDelayButton.SetActive(false);
     }
 }

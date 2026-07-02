@@ -25,16 +25,26 @@ public class PathHighlight : MonoBehaviour
     private GameManager _manager;
     private GameObject[] _allNodes;
 
+    private AliveEnemyManager aliveEnemyManager;
+
+
     private void Start()
     {
+        if (aliveEnemyManager == null)
+        {
+            aliveEnemyManager = FindAnyObjectByType<AliveEnemyManager>();
+        }
+
+        aliveEnemyManager.AddEnemy(gameObject);
+
         StartCoroutine(HitNestCheck());
     }
     
 
     public IEnumerator HitNestCheck()
     {
-
         while (!(Vector3.SqrMagnitude(transform.position - _manager.nest.transform.position) < 1f)) yield return null;
+        aliveEnemyManager.RemoveEnemy(gameObject);
         Destroy(gameObject);
     }
     
