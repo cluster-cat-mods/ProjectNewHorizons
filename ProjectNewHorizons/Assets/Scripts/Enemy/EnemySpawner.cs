@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
     
     public IEnumerator StartWave(EnemyWave[] enemyWaves, int wave)
     {
+        _totalEnemyCount = 0;
 
         for (int i = 0; i < enemyWaves[wave].enemyGroups.Length; i++)
         {
@@ -112,9 +113,11 @@ public class EnemySpawner : MonoBehaviour
     public IEnumerator PathIndicator()
     {
         indicatorActive = true;
-        while (indicatorActive)
+        while (indicatorActive && manager.alive)
         {
-            foreach (Transform t in openPathsList)
+            var paths = openPathsList.ToArray();
+
+            foreach (Transform t in paths)
             {
                 var spawnPosition = t;
 

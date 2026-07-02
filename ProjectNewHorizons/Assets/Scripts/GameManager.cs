@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
             SetWantedStage(_gameData.WantedStartStage);
         }
 
-        nestHP = nestMaxHP;
         antCount = 0;
 
         SetAntText();
@@ -105,6 +104,7 @@ public class GameManager : MonoBehaviour
     {
         antGain = 1;
         nestMaxHP = startingNestMaxHP;
+        nestHP = nestMaxHP;
 
         var upgradeDataList = upgradeDataSaver.GetUpgrades();
         if (upgradeDataList != null)
@@ -145,12 +145,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("you died");
         SaveData();
         nest.SetActive(false);
-        dieEvent?.Invoke();
-        yield return new WaitForSeconds(.1f);
-        StartCoroutine(DieEffect());
         DestroyEnemies();
+        yield return StartCoroutine(DieEffect());
+        dieEvent?.Invoke();
         enemyWaveManager.StopAllCoroutines();
         enemySpawner.StopAllCoroutines();
+        StopAllCoroutines();
     }
 
     private IEnumerator DieEffect()
@@ -328,6 +328,7 @@ public class GameManager : MonoBehaviour
     public void StartRun()
     {
         _gameData = dataSaver.LoadGameData();
+        SetTexts();
         GainLife();
     }
     /* testing functions and vars */
